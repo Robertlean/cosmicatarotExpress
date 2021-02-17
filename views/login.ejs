@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es-Ar">
+
+<%- include('partials/head') %>
+
+<body>    
+    <div class="bodybg">
+        <!-- Header Start -->
+        <%- include('partials/header') %> 
+        <!-- Header End-->
+        <section class="hero">
+
+            <div class="texture"></div>
+            <div class="diag-bg"></div>
+        </section>
+
+        <section class="ingreso recent-posts">
+            <div class="container">
+                <div class="title text-center">
+                    <h1 class="title-blue">Iniciar sesión</h1>
+                </div>
+                <div class="cta-content">
+                    <div class="container">
+                        <div class="d-md-flex align-items-center justify-content-around text-center text-xl-left" style="flex-direction: column;">
+                            <img src="/images/cosmicatarot2.png" alt="logo" class="logo">
+                            <form method="POST" action="/usuarios/login">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nick o e-mail</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="nombre">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Contraseña</label>
+                                    <input type="password" class="form-control" name="pass">
+                                </div>
+                                <span>¿Te olviste la contraseña? Formateala desde el mail</span>
+                                <div class="d-flex justify-content-center">
+                                    <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="400" data-aos-offset="0">
+                                        <a href="login" class="btn btn-primary">Inicia sesión</a>
+                                        <a href="register" class="btn btn-primary">registrate</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Start-->
+        <%- include('partials/footer') %> 
+        <!-- Fotter End-->
+
+    </div>
+    <!-- Scripts Start-->
+    <%- include('partials/scripts') %> 
+    <!-- Scripts End-->
+</body>
+</html>

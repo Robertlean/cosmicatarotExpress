@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es-Ar">
+
+<%- include('partials/head') %>
+
+<body>    
+    <div class="bodybg">
+        <!-- Header Start -->
+        <%- include('partials/header') %> 
+        <!-- Header End-->
+        <section class="hero">
+
+            <div class="texture"></div>
+            <div class="diag-bg"></div>
+        </section>
+
+    <section class="ingreso recent-posts">
+            <div class="container">
+                <div class="title text-center">
+                    <h1 class="title-blue">registrarme</h1>
+                </div>
+                <div class="cta-content">
+                    <div class="container">
+                        <div class="d-md-flex align-items-center justify-content-around text-center text-xl-left"
+                            style="flex-direction: column;">
+                            <img src="/images/cosmicatarot2.png" alt="logo" class="logo">
+
+                            <form method="POST" action="/usuarios/register" style="margin-top: .5em; width:25em">
+                                <div class="form-group">
+                                    <label for="Inputuser">Usuario</label>
+                                    <input type="text" class="form-control" id="InputUser" name="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Inputuser">Fecha de nacimiento</label>
+                                    <input type="date" class="form-control" id="InputUser" name="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Inputmail">e-mail</label>
+                                    <input type="email" class="form-control" id="inputmail" name="mail"></input>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Contraseña</label>
+                                    <input type="password" class="form-control" name="pass">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Reingresar contraseña</label>
+                                    <input type="password" class="form-control" name="pass2">
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="400"
+                                        data-aos-offset="0">
+                                        <a href="register.html" class="btn btn-primary">registrate</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Start-->
+        <%- include('partials/footer') %> 
+        <!-- Fotter End-->
+
+    </div>
+    <!-- Scripts Start-->
+    <%- include('partials/scripts') %> 
+    <!-- Scripts End-->
+</body>
+</html>

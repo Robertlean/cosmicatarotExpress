@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es-Ar">
+
+<%- include('partials/head') %>
+
+<body>    
+    <div class="bodybg">
+        <!-- Header Start -->
+        <%- include('partials/header') %> 
+        <!-- Header End-->
+        <section class="hero">
+
+            <div class="texture"></div>
+            <div class="diag-bg"></div>
+        </section>
+
+        <section class="recent-posts">
+            <div class="container">
+                <div class=" text-center">
+                    <h1 class="title-blue">Reglas de sesión</h1>
+                    <h5 class="title-blue">A leer el siguiente informe estas aceptando las reglas sobre la compra de la
+                        sesión</h5>
+                </div>
+                <div class="cta-content" style="padding:1.5em 5em 1em 4em">
+                    <div class="container"
+                        style="display:flex; justify-content: center; flex-direction: column; align-items: center;">
+                        <div class="d-md-flex align-items-center justify-content-around text-xl-start text-xl-start content-img"
+                            style="flex-direction: column;">
+                            <p>1- Todos los turnos se agendan con pago adelantado. Para confirmar tu reserva debes
+                                enviar tu comprobante en el whatsapp que te hemos enviado (Botón enviar).<br><br>2-
+                                Podes abonar por cualquier medio de pago: Mercado pago, transferencia bancaria, deposito
+                                o pago fácil/rapipago (tiene recargo) <br><br>3- Te recordamos que los turnos tienen 20
+                                minutos de tolerancia. Pasado dicho tiempo se pierde el lugar y el dinero. <br><br>
+                                4- Las reprogramaciones son con 72hs de anticipación.</p>
+                        </div>
+                        <h6>Indicá la fecha de tu turno</h6>
+                        <form action="#">
+                            <!-- add class="tcal" to your input field -->
+                            <div><input type="text" name="date" class="tcal" value="Elegí el día" /></div>
+                        </form>
+                        <a href="#">
+                            <a href="http://www.google.com.ar"
+                                style="text-decoration:none; color: #ccc; width: fit-content; margin-bottom: 1.5em;"
+                                class="btn btn-primary">Continuar
+                            </a>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer Start-->
+        <%- include('partials/footer') %> 
+        <!-- Fotter End-->
+
+    </div>
+    <!-- Scripts Start-->
+    <%- include('partials/scripts') %> 
+    <!-- Scripts End-->
+</body>
+</html>
