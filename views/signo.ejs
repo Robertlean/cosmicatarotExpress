@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es-Ar">
+
+<%- include('partials/head') %>
+
+<body>    
+    <div class="bodybg">
+        <!-- Header Start -->
+        <%- include('partials/header') %> 
+        <!-- Header End-->
+        <section class="hero">
+
+            <div class="texture"></div>
+            <div class="diag-bg"></div>
+        </section>
+
+        <section class="recent-posts">
+            <div class="container">
+                <div class=" text-center">
+                    <img class="img-fluid" src="/images/icon/cancer.png" alt="Post 1">
+                    <h1 class="title-blue">Cancer</h1>
+                    <h5 class="title-blue">Pequeña descripción sobre el contenido del post</h5>
+                </div>
+                <div class="cta-content" style="padding:1.5em 5em 1em 4em">
+                    <div class="container">
+                        <div class="d-md-flex align-items-center justify-content-around text-xl-start text-xl-start content-img"
+                            style="flex-direction: column; padding-bottom: 3em;">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maxime rem porro
+                                totam fugit quibusdam qui blanditiis ab quasi vitae ipsa tempora facilis veritatis
+                                nesciunt, voluptatum laudantium eaque? Necessitatibus, laboriosam!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro dolorem numquam
+                                aliquid, suscipit officia sed minima omnis dolor autem a voluptatibus, id iste dicta
+                                aperiam tempora maxime perspiciatis! Architecto, recusandae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dicta officia saepe dignissimos harum, qui quia ipsum commodi perferendis nihil cum, ea debitis. Itaque consectetur, asperiores perferendis illo doloremque praesentium.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <section class=" text-center">
+                    <h2 class="title-blue">Comentarios</h2>
+                </section>
+                <div class="cta-content" style="padding:0 5em 5em 4em">
+                    <div class="container">
+                        <div class="coments">
+                            <h6>Comentado por <a href="../user/Robert">Robert</a> hace -20hs</h6>
+                            <h6> Cancer</h6>
+                        </div>
+                        <div class="d-md-flex align-items-center justify-content-around text-center text-xl-left"
+                            style="flex-direction: column; padding-bottom: 3em">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere eveniet iure deleniti tempore aut soluta animi. Maxime nam numquam atque eius accusantium sequi, minus id omnis fuga quae assumenda fugit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sapiente nobis, odio voluptatum fugit velit rerum, consectetur exercitationem quisquam nostrum provident optio minima. Aut aspernatur itaque aperiam harum distinctio deserunt!</p>
+
+                        </div>
+                        <div class=" form-comentario">
+                            <form action="" method="post" class="form-coment">
+                                <div class="d-md-flex" style="flex-direction:column;">
+                                    <label for="comentario">Deja un comentario</label>
+                                    <textarea name="coment" id="comentario" cols="90" rows="3" placeholder="Escribi que te parecio el post"></textarea>
+                                </div>
+                                
+                                <button class="btn btn-primary">Enviar</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer Start-->
+        <%- include('partials/footer') %> 
+        <!-- Fotter End-->
+
+    </div>
+    <!-- Scripts Start-->
+    <%- include('partials/scripts') %> 
+    <!-- Scripts End-->
+</body>
+</html>

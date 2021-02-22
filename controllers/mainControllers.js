@@ -35,4 +35,7 @@ module.exports = {
     horoscopo: (req, res, next) =>{
         res.render('horoscopo', {title: 'Horoscopo', css:'estilos.css'})
     },
+    signo:(req, res, next) =>{
+        res.render('signo', {title: 'Signo', css:'estilos.css'})
+    }
 }

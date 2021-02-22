@@ -1099,12 +1099,11 @@ form .btn{
 }
 
 .form-control{
-  width: 50%;
+  width: 100%;
   border-radius: 0.3rem;
   background-color: #fff;
   color: #170936;
   display: flex;
-  text-align: center
 }
 .form-control-lg{
   width: 40%;

@@ -14,5 +14,6 @@ router.get('/search', controller.search);
 router.get('/service', controller.service);
 router.get('/register', controller.register);
 router.get('/horoscopo', controller.horoscopo);
+router.get('/signo', controller.signo);
 
 module.exports = router;
