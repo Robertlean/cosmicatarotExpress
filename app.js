@@ -23,8 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret:'CosTar'}))
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/example',exampleRouter);
+app.use('/login', usersRouter)
+app.use('/examp',exampleRouter);
 
 
 // catch 404 and forward to error handler

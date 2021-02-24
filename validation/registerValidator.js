@@ -1,13 +1,12 @@
 const {check,validatorResult,body} = require('express-validator');
-const db = require('../database/models');
+//const db = require('../database/models');
 
 module.exports = [
     check('name')
     .isLength({
         min:1
     })
-    .withMessage('Debes ingresar un nombre válido'),
-    
+    .withMessage('Debes ingresar un nombre válido'), 
     
 
     /*body('email')
@@ -30,7 +29,7 @@ module.exports = [
     .toDate({
         min:1
     })
-    .withMessage("Ingrese su fecha de nacimiento"),
+    .withMessage('Ingrese su fecha de nacimiento'),
     
     check('pass')
     .isLength({
