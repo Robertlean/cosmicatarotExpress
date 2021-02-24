@@ -25,6 +25,12 @@ module.exports = [
                 }
             })
     }),*/
+
+    check('date')
+    .toDate({
+        min:1
+    })
+    .withMessage("Ingrese su fecha de nacimiento"),
     
     check('pass')
     .isLength({

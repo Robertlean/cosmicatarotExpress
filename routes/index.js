@@ -8,11 +8,8 @@ router.get('/post', controller.post);
 router.get('/aboutme', controller.aboutme);
 router.get('/buy', controller.buy);
 router.get('/experienceclient', controller.experience);
-router.get('/login', controller.login);
-router.get('/perfil', controller.user);
 router.get('/search', controller.search);
 router.get('/service', controller.service);
-router.get('/register', controller.register);
 router.get('/horoscopo', controller.horoscopo);
 router.get('/signo', controller.signo);
 
