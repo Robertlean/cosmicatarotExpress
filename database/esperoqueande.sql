@@ -5,7 +5,7 @@
 -- Dumped from database version 13.2
 -- Dumped by pg_dump version 13.1
 
--- Started on 2021-03-05 00:19:12
+-- Started on 2021-03-04 23:36:10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -422,7 +422,7 @@ ALTER TABLE ONLY public.comentspost
     ADD CONSTRAINT iduser FOREIGN KEY (iduser) REFERENCES public.users(id) NOT VALID;
 
 
--- Completed on 2021-03-05 00:19:15
+-- Completed on 2021-03-04 23:36:13
 
 --
 -- PostgreSQL database dump complete
