@@ -3,9 +3,9 @@
 --
 
 -- Dumped from database version 13.2
--- Dumped by pg_dump version 13.1
+-- Dumped by pg_dump version 13.2
 
--- Started on 2021-03-05 00:19:12
+-- Started on 2021-03-05 23:56:19
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -88,6 +88,23 @@ CREATE TABLE public.horoscopo (
 ALTER TABLE public.horoscopo OWNER TO postgres;
 
 --
+-- TOC entry 208 (class 1259 OID 41009)
+-- Name: posteohoroscopo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.posteohoroscopo (
+    id integer NOT NULL,
+    idsigno integer NOT NULL,
+    idtiposigno integer NOT NULL,
+    meshoroscopo timestamp without time zone NOT NULL,
+    text character varying(2000) NOT NULL,
+    idcoments integer
+);
+
+
+ALTER TABLE public.posteohoroscopo OWNER TO postgres;
+
+--
 -- TOC entry 201 (class 1259 OID 16406)
 -- Name: posteos; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -156,7 +173,7 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 3042 (class 0 OID 32823)
+-- TOC entry 3052 (class 0 OID 32823)
 -- Dependencies: 207
 -- Data for Name: comenthoroscopo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -166,7 +183,7 @@ COPY public.comenthoroscopo (id, iduser, idsigno, text, fechcreation, idtiposign
 
 
 --
--- TOC entry 3038 (class 0 OID 24586)
+-- TOC entry 3048 (class 0 OID 24586)
 -- Dependencies: 203
 -- Data for Name: comentspost; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -176,7 +193,7 @@ COPY public.comentspost ("IdComent", "fechaComent", "textComent", iduser, fechac
 
 
 --
--- TOC entry 3039 (class 0 OID 24603)
+-- TOC entry 3049 (class 0 OID 24603)
 -- Dependencies: 204
 -- Data for Name: comprasesion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -186,7 +203,7 @@ COPY public.comprasesion (id, price, "idComrpador") FROM stdin;
 
 
 --
--- TOC entry 3041 (class 0 OID 24621)
+-- TOC entry 3051 (class 0 OID 24621)
 -- Dependencies: 206
 -- Data for Name: horoscopo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -208,7 +225,17 @@ COPY public.horoscopo (id, nombre, idtipo, startfecha, endfecha) FROM stdin;
 
 
 --
--- TOC entry 3036 (class 0 OID 16406)
+-- TOC entry 3053 (class 0 OID 41009)
+-- Dependencies: 208
+-- Data for Name: posteohoroscopo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.posteohoroscopo (id, idsigno, idtiposigno, meshoroscopo, text, idcoments) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3046 (class 0 OID 16406)
 -- Dependencies: 201
 -- Data for Name: posteos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -218,7 +245,7 @@ COPY public.posteos (id, title, subtitle, img, contenido, fechcreation, idtags, 
 
 
 --
--- TOC entry 3037 (class 0 OID 16414)
+-- TOC entry 3047 (class 0 OID 16414)
 -- Dependencies: 202
 -- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -228,7 +255,7 @@ COPY public.tags ("IdTags", nombre) FROM stdin;
 
 
 --
--- TOC entry 3040 (class 0 OID 24611)
+-- TOC entry 3050 (class 0 OID 24611)
 -- Dependencies: 205
 -- Data for Name: tiposigno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -242,7 +269,7 @@ COPY public.tiposigno (id, signo) FROM stdin;
 
 
 --
--- TOC entry 3035 (class 0 OID 16398)
+-- TOC entry 3045 (class 0 OID 16398)
 -- Dependencies: 200
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -252,7 +279,7 @@ COPY public.users ("nameUser", "fechaNac", "rolUser", nation, "fotoUser", descri
 
 
 --
--- TOC entry 2886 (class 2606 OID 24590)
+-- TOC entry 2891 (class 2606 OID 24590)
 -- Name: comentspost ComentsPost_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -261,7 +288,7 @@ ALTER TABLE ONLY public.comentspost
 
 
 --
--- TOC entry 2890 (class 2606 OID 24625)
+-- TOC entry 2895 (class 2606 OID 24625)
 -- Name: horoscopo Horoscopo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -270,7 +297,7 @@ ALTER TABLE ONLY public.horoscopo
 
 
 --
--- TOC entry 2882 (class 2606 OID 16413)
+-- TOC entry 2887 (class 2606 OID 16413)
 -- Name: posteos Posteos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -279,7 +306,7 @@ ALTER TABLE ONLY public.posteos
 
 
 --
--- TOC entry 2884 (class 2606 OID 16418)
+-- TOC entry 2889 (class 2606 OID 16418)
 -- Name: tags Tags_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -288,7 +315,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 2888 (class 2606 OID 24615)
+-- TOC entry 2893 (class 2606 OID 24615)
 -- Name: tiposigno TipoSigno_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -297,7 +324,7 @@ ALTER TABLE ONLY public.tiposigno
 
 
 --
--- TOC entry 2892 (class 2606 OID 32827)
+-- TOC entry 2897 (class 2606 OID 32827)
 -- Name: comenthoroscopo comenthoroscopo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -306,7 +333,7 @@ ALTER TABLE ONLY public.comenthoroscopo
 
 
 --
--- TOC entry 2880 (class 2606 OID 24597)
+-- TOC entry 2885 (class 2606 OID 24597)
 -- Name: users id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -315,7 +342,16 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2895 (class 2606 OID 32778)
+-- TOC entry 2899 (class 2606 OID 41016)
+-- Name: posteohoroscopo posteohoroscopo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.posteohoroscopo
+    ADD CONSTRAINT posteohoroscopo_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2902 (class 2606 OID 32778)
 -- Name: posteos idComent; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -324,7 +360,7 @@ ALTER TABLE ONLY public.posteos
 
 
 --
--- TOC entry 2900 (class 2606 OID 24606)
+-- TOC entry 2907 (class 2606 OID 24606)
 -- Name: comprasesion idComprador; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -333,7 +369,7 @@ ALTER TABLE ONLY public.comprasesion
 
 
 --
--- TOC entry 2897 (class 2606 OID 32788)
+-- TOC entry 2904 (class 2606 OID 32788)
 -- Name: posteos idSigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -342,7 +378,7 @@ ALTER TABLE ONLY public.posteos
 
 
 --
--- TOC entry 2901 (class 2606 OID 24626)
+-- TOC entry 2908 (class 2606 OID 24626)
 -- Name: horoscopo idTipo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -351,7 +387,16 @@ ALTER TABLE ONLY public.horoscopo
 
 
 --
--- TOC entry 2893 (class 2606 OID 32793)
+-- TOC entry 2913 (class 2606 OID 41022)
+-- Name: posteohoroscopo idcoments; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.posteohoroscopo
+    ADD CONSTRAINT idcoments FOREIGN KEY (idcoments) REFERENCES public.comenthoroscopo(id);
+
+
+--
+-- TOC entry 2900 (class 2606 OID 32793)
 -- Name: users idsigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -360,7 +405,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2898 (class 2606 OID 32818)
+-- TOC entry 2905 (class 2606 OID 32818)
 -- Name: comentspost idsigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -369,7 +414,7 @@ ALTER TABLE ONLY public.comentspost
 
 
 --
--- TOC entry 2903 (class 2606 OID 32833)
+-- TOC entry 2910 (class 2606 OID 32833)
 -- Name: comenthoroscopo idsigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -378,7 +423,16 @@ ALTER TABLE ONLY public.comenthoroscopo
 
 
 --
--- TOC entry 2896 (class 2606 OID 32783)
+-- TOC entry 2912 (class 2606 OID 41017)
+-- Name: posteohoroscopo idsigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.posteohoroscopo
+    ADD CONSTRAINT idsigno FOREIGN KEY (idsigno) REFERENCES public.horoscopo(id);
+
+
+--
+-- TOC entry 2903 (class 2606 OID 32783)
 -- Name: posteos idtag; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -387,7 +441,16 @@ ALTER TABLE ONLY public.posteos
 
 
 --
--- TOC entry 2894 (class 2606 OID 32798)
+-- TOC entry 2914 (class 2606 OID 41027)
+-- Name: posteohoroscopo idtipo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.posteohoroscopo
+    ADD CONSTRAINT idtipo FOREIGN KEY (id) REFERENCES public.tiposigno(id);
+
+
+--
+-- TOC entry 2901 (class 2606 OID 32798)
 -- Name: users idtiposigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -396,7 +459,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2904 (class 2606 OID 32838)
+-- TOC entry 2911 (class 2606 OID 32838)
 -- Name: comenthoroscopo idtiposigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -405,7 +468,7 @@ ALTER TABLE ONLY public.comenthoroscopo
 
 
 --
--- TOC entry 2902 (class 2606 OID 32828)
+-- TOC entry 2909 (class 2606 OID 32828)
 -- Name: comenthoroscopo iduser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -414,7 +477,7 @@ ALTER TABLE ONLY public.comenthoroscopo
 
 
 --
--- TOC entry 2899 (class 2606 OID 32843)
+-- TOC entry 2906 (class 2606 OID 32843)
 -- Name: comentspost iduser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -422,7 +485,7 @@ ALTER TABLE ONLY public.comentspost
     ADD CONSTRAINT iduser FOREIGN KEY (iduser) REFERENCES public.users(id) NOT VALID;
 
 
--- Completed on 2021-03-05 00:19:15
+-- Completed on 2021-03-05 23:56:23
 
 --
 -- PostgreSQL database dump complete
