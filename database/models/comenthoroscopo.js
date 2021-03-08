@@ -14,7 +14,7 @@ module.exports = (sequelize,dataTypes) => {
             unique:true
         },
         idsigno:{
-            type: dataTypes.STRING(100),
+            type: dataTypes.INTEGER(),
             allowNull:false
         },
         text:{
@@ -39,5 +39,7 @@ module.exports = (sequelize,dataTypes) => {
 
     }
 
-    const comentHoroscopo = sequelize.define(alias,cols,config);
+    const comentHoroscopo = sequelize.define(alias,cols,config)
+
+    return comenthoroscopo
 }

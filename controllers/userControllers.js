@@ -1,8 +1,18 @@
+/************** BASES DE DATOS *************/
+
+//const db = require('../database/models');
+
+/***************** MODULOS ************/
+
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
 const {validationResult, body} = require('express-validator');
+const path = require('path')
+const e = require('express');
+const {
+  Op
+}= require('sequelize')
 
-const path = require("path")
 
 module.exports = {
     login: (req, res, next) =>{
@@ -54,5 +64,58 @@ module.exports = {
           })
         }
      },*/
+
+    processRegister:function(req,res){
+      let errors = validationResult(req);
+      
+      if(errors.isEmpty()){
+
+          db.public.users.create({
+           nombre: req.body.nombre.trim(),
+           mail:req.body.email.trim(),
+           pass:bcrypt.hashSync(req.body.pass.trim(),10),
+           image:(req.files[0])?req.files[0].filename:"default.png",
+           rol:(req.session.usuario)?req.session.usuario:"usuario"
+          })
+          .then(result => {
+           console.log(result)
+           return res.redirect('registro')
+          })
+          .catch(errores => {
+           errors = {};
+           errores.errors.forEach(error => {
+             if(error.path == "nombre"){
+               errors["nombre"] = {};
+               errors["nombre"]["msg"] = error.message
+             };
+             if(error.path == "mail"){
+               errors["mail"] = {};
+               errors["mail"]["msg"] = error.message
+             };
+             if (error.path == "pass") {
+               errors["pass"] = {};
+               errors["pass"]["msg"] = error.message
+             }
+           })
+         res.render('register',{
+                   title: "Registro",
+                   css:"estilos.css",
+                   errors: errors,
+                   old:req.body
+        })
+      
+      })
+        
+   }
+   else{
+           (req.fileSave)?fs.unlinkSync(path.join(__dirname,'../../public/images/users/'+req.fileSave)):"";
+            res.render('register',{
+               title: "Registro",
+               css:"estilos.css",
+               errors: errors.mapped(),
+               old:req.body
+           })
+       }
+   }
 
 }

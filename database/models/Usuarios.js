@@ -1,6 +1,6 @@
 module.exports = (sequelize,dataTypes) => {
     
-    let alias = "usuarios";
+    let alias = "users";
     let cols = {
         id:{
             type:dataTypes.INTEGER.UNSIGNED,
@@ -59,19 +59,14 @@ module.exports = (sequelize,dataTypes) => {
 
     }
 
-    const User = sequelize.define(alias,cols,config);
+    const users = sequelize.define(alias,cols,config);
 
-User.associate = function(models){
-User.hasOne(models.Carts,{
-    as:"carts", /*nombre de fantasia de la relación de las tablas*/
-    foreignKey:"id"
-}),
-User.hasMany(models.Payments,{
-    as:"payments",
-    foreignKey:"id_ordenCompra" 
+    User.associate = function(models){
+    User.hasOne(models.comentspost,{
+        as:"comentpost", /*nombre de fantasia de la relación de las tablas*/
+        foreignKey:"idComent"
+    })
 
-})
-
-}
-    return User;
+    }
+    return users;
 }

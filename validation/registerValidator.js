@@ -1,5 +1,5 @@
 const {check,validatorResult,body} = require('express-validator');
-//const db = require('../database/models');
+const db = require('../database/models');
 
 module.exports = [
     check('name')
@@ -9,10 +9,10 @@ module.exports = [
     .withMessage('Debes ingresar un nombre válido'), 
     
 
-    /*body('email')
+    body('mail')
     .custom(function(value){
         console.log(value)
-        return db.Usuarios.findOne({
+        return db.usuarios.findOne({
             where:{
                 email:value
             }
@@ -23,7 +23,7 @@ module.exports = [
                     return Promise.reject('Este mail ya está registrado')
                 }
             })
-    }),*/
+    }),
 
     check('date')
     .toDate({
