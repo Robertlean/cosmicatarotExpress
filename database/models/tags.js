@@ -24,4 +24,6 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const tags = sequelize.define(alias,cols,config);
+
+    return tags
 }

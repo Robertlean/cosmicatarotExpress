@@ -12,9 +12,9 @@ module.exports = [
     body('mail')
     .custom(function(value){
         console.log(value)
-        return db.usuarios.findOne({
+        return db.users.findOne({
             where:{
-                email:value
+                mail:value
             }
             })
             .then(user => {

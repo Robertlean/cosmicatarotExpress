@@ -35,5 +35,7 @@ module.exports = (sequelize,dataTypes) => {
 
     }
 
-    const Horoscoppo = sequelize.define(alias,cols,config);
+    const Horoscopo = sequelize.define(alias,cols,config);
+
+    return Horoscopo
 }

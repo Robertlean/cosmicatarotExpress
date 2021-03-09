@@ -2,7 +2,7 @@ module.exports={
     "development": {
       "name": "postgres",
       "password": "felicidad",
-      "database": "cosmicaTarotdb",
+      "database": "cosmicaTarot",
       "host": "localhost",
       "dialect": "postgres",
       "port":5432

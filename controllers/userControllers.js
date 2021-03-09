@@ -1,6 +1,6 @@
 /************** BASES DE DATOS *************/
 
-//const db = require('../database/models');
+const db = require('../database/models');
 
 /***************** MODULOS ************/
 
@@ -70,7 +70,7 @@ module.exports = {
       
       if(errors.isEmpty()){
 
-          db.public.users.create({
+          db.users.create({
            nombre: req.body.nombre.trim(),
            mail:req.body.email.trim(),
            pass:bcrypt.hashSync(req.body.pass.trim(),10),

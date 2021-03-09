@@ -3,7 +3,7 @@ module.exports = (sequelize,dataTypes) => {
     let alias = "comenthoroscopo";
     let cols = {
         id:{
-            type:dataTypes.INTEGER.UNSIGNED,
+            type:dataTypes.INTEGER(),
             primaryKey:true,
             autoIncrement:true,
             allowNull:false
@@ -39,7 +39,7 @@ module.exports = (sequelize,dataTypes) => {
 
     }
 
-    const comentHoroscopo = sequelize.define(alias,cols,config)
+    const comenthoroscopo = sequelize.define(alias,cols,config)
 
     return comenthoroscopo
 }

@@ -61,8 +61,8 @@ module.exports = (sequelize,dataTypes) => {
 
     const users = sequelize.define(alias,cols,config);
 
-    User.associate = function(models){
-    User.hasOne(models.comentspost,{
+    users.associate = function(models){
+    users.hasOne(models.comentspost,{
         as:"comentpost", /*nombre de fantasia de la relación de las tablas*/
         foreignKey:"idComent"
     })

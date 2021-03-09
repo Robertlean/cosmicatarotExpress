@@ -44,4 +44,6 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const posteos = sequelize.define(alias,cols,config);
+
+    return posteos
 }

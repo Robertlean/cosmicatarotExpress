@@ -39,4 +39,6 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const comentPost = sequelize.define(alias,cols,config);
+
+    return comentPost
 }

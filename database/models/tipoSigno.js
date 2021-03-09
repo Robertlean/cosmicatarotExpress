@@ -24,4 +24,5 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const tipoSigno = sequelize.define(alias,cols,config);
+    return tipoSigno
 }

@@ -9,11 +9,11 @@ const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 let sequelize;
-/*if (config.use_env_variable) {
+if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
-}*/
+}
 
 fs
   .readdirSync(__dirname)
@@ -21,7 +21,9 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
+    console.log(file)
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    console.log(model)
     db[model.name] = model;
   });
 
