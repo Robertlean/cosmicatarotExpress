@@ -3,7 +3,7 @@ module.exports = (sequelize,dataTypes) => {
     let alias = "posteos";
     let cols = {
         id:{
-            type:dataTypes.INTEGER.UNSIGNED,
+            type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
             allowNull:false
@@ -26,11 +26,11 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:true
         },
         idtiposigno:{
-            type: dataTypes.INTEGER(),
+            type: dataTypes.INTEGER,
             allowNull:false
         },
         idtags: {
-            type: dataTypes.INTEGER(),
+            type: dataTypes.INTEGER,
             allowNull:false
         }
         

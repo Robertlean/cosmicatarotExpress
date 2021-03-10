@@ -3,7 +3,7 @@ module.exports = (sequelize,dataTypes) => {
     let alias = "horoscopo";
     let cols = {
         id:{
-            type:dataTypes.INTEGER.UNSIGNED,
+            type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
             allowNull:false
@@ -14,7 +14,7 @@ module.exports = (sequelize,dataTypes) => {
             unique:true
         },
         idtipo:{
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER,
             allowNull:false
         },
         startfecha:{

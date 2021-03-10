@@ -3,7 +3,7 @@ module.exports = (sequelize,dataTypes) => {
     let alias = "comentspost";
     let cols = {
         idComent:{
-            type:dataTypes.INTEGER.UNSIGNED,
+            type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
             allowNull:false
@@ -17,7 +17,7 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:false
         },
         iduser:{
-            type: dataTypes.INTEGER(),
+            type: dataTypes.INTEGER,
             allowNull:false
         },
         fechacoment:{
@@ -25,7 +25,7 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:true
         },
         idsigno:{
-            type: dataTypes.INTEGER(),
+            type: dataTypes.INTEGER,
             allowNull:false
         },
         

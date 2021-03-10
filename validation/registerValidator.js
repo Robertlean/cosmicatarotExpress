@@ -6,8 +6,23 @@ module.exports = [
     .isLength({
         min:1
     })
-    .withMessage('Debes ingresar un nombre válido'), 
-    
+    .withMessage('Debes ingresar un nombre válido'),
+
+    body('name')
+    .custom(function(value){
+        console.log(value)
+        return db.usuario.findOne({
+            where:{
+                id:value
+            }
+        })
+    .then(user => {
+        console.log(user)
+        if(user){
+            return Promise.reject('Este nombre está registrado')
+        }
+    })
+    }),    
 
     body('mail')
     .custom(function(value){
@@ -27,7 +42,7 @@ module.exports = [
 
     check('date')
     .isDate({
-        format: 'DD-MM-YYYY'
+       
     })
     .withMessage('Ingrese su fecha de nacimiento'),
     

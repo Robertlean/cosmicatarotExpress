@@ -8,10 +8,10 @@ window.addEventListener('load',function(){
    let formulario = qs ('#formRegister')
 
    let inputNombre = qs('#users');
-   let inputEmail = qs('#inputmail');
-   let inputDate = qs('#inputdate')
-   let inputPass = qs('#inputpass');
-   let inputPass2 = qs('#inputpass2');
+   let inputEmail = qs('#mail');
+   let inputDate = qs('#date')
+   let inputPass = qs('#pass');
+   let inputPass2 = qs('#pass2');
    let regExPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$/;
 
    let regExEmail =  /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]:+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/;
@@ -22,7 +22,7 @@ window.addEventListener('load',function(){
                errorNombre.innerHTML = "El campo del  nombre es obligatorio";
                this.classList.add('is_invalid')
                break;
-           case this.value.length == 0:
+           case this.value.length == 1:
                errorNombre.innerHTML = "El campo del nombre debe tener al menos 3 letras";
                this.classList.add('is-invalid')
                break;

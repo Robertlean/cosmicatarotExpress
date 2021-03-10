@@ -3,7 +3,7 @@ module.exports = (sequelize,dataTypes) => {
     let alias = "comprasesion";
     let cols = {
         id:{
-            type:dataTypes.INTEGER.UNSIGNED,
+            type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
             allowNull:false
@@ -13,7 +13,7 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:false
         },
         idCompador:{
-            type: dataTypes.INTEGER(100),
+            type: dataTypes.INTEGER,
             allowNull:false
         }
         

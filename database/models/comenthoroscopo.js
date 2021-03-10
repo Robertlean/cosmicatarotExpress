@@ -3,18 +3,18 @@ module.exports = (sequelize,dataTypes) => {
     let alias = "comenthoroscopo";
     let cols = {
         id:{
-            type:dataTypes.INTEGER(),
+            type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
             allowNull:false
         },
         iduser:{
-            type: dataTypes.INTEGER(),
+            type: dataTypes.INTEGER,
             allowNull:false,
             unique:true
         },
         idsigno:{
-            type: dataTypes.INTEGER(),
+            type: dataTypes.INTEGER,
             allowNull:false
         },
         text:{
@@ -26,7 +26,7 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:true
         },
         idtiposigno:{
-            type: dataTypes.INTEGER(),
+            type: dataTypes.INTEGER,
             allowNull:false
         },
         

@@ -3,13 +3,13 @@ module.exports = (sequelize,dataTypes) => {
     let alias = "tags";
     let cols = {
         idTags:{
-            type:dataTypes.INTEGER.UNSIGNED,
+            type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
             allowNull:false
         },
         nombre:{
-            type: dataTypes.INTEGER(),
+            type: dataTypes.STRING(100),
             allowNull:false,
             unique:true
         }
