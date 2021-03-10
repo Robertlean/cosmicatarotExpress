@@ -3,6 +3,7 @@
 
 <%- include('partials/head') %>
 
+
 <body>    
     <div class="bodybg">
         <!-- Header Start -->
@@ -25,7 +26,7 @@
                             style="flex-direction: column;">
                             <img src="/images/cosmicatarot2.png" alt="logo" class="logo">
 
-                            <form method="POST" action="/login/register" style="margin-top: .5em; width:25em">
+                            <form method="POST" action="/login/register" style="margin-top: .5em; width:25em" id="formRegister">
                                 <div class="form-group">
                                     <label for="users">Nombre o Nick <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.nombre == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>" id="users" name="name" value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %>" placeholder="Ingrese tu nombre o un nick">
@@ -36,7 +37,7 @@
 
                                 <div class="form-group">
                                     <label for="Inputuser">Fecha de nacimiento <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="InputUser" name="date">
+                                    <input type="date" class="form-control" id="inputdate" name="date">
                                 </div>
 
                                 <div class="form-group">
@@ -46,12 +47,12 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" name="pass">
+                                    <input type="password" class="form-control" name="pass" id="inputpass">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Reingresar contraseña <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" name="pass2">
+                                    <input type="password" class="form-control" input ="inputpass2" name="pass2">
                                 </div>
 
                                 <div class="d-flex justify-content-center">

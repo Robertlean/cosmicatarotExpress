@@ -12,7 +12,7 @@ module.exports = [
     body('mail')
     .custom(function(value){
         console.log(value)
-        return db.users.findOne({
+        return db.usuarios.findOne({
             where:{
                 mail:value
             }
@@ -26,8 +26,8 @@ module.exports = [
     }),
 
     check('date')
-    .toDate({
-        min:1
+    .isDate({
+        format: 'DD-MM-YYYY'
     })
     .withMessage('Ingrese su fecha de nacimiento'),
     
