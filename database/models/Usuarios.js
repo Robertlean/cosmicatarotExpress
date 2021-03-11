@@ -24,14 +24,15 @@ module.exports = (sequelize,dataTypes) => {
         },
         fechanac:{
             type: dataTypes.DATEONLY(),
-            allowNull:true
+            allowNull:false
         },
         avatar:{
-            type: dataTypes.STRING(200)
+            type: dataTypes.STRING(200),
+            allowNull: true
         },
         rol:{
             type: dataTypes.STRING(100),
-            allowNull:true
+            allowNull:false
         },
         description:{
             type: dataTypes.STRING(300),

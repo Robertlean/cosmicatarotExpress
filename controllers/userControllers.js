@@ -71,9 +71,9 @@ module.exports = {
       if(errors.isEmpty()){
 
           db.users.create({
-           nameuser: req.body.name.trim(),
+           name: req.body.users.trim(),
            mail:req.body.mail.trim(),
-           password:bcrypt.hashSync(req.body.pass.trim(),10),
+           pass:bcrypt.hashSync(req.body.pass.trim(),10),
            avatar:(req.files[0])?req.files[0].filename:"default.png",
            rol:"usuario"
           })
@@ -92,13 +92,13 @@ module.exports = {
                errors["mail"] = {};
                errors["mail"]["msg"] = error.message
              };
-             if (error.path == "password") {
-               errors["password"] = {};
-               errors["password"]["msg"] = error.message
+             if (error.path == "pass") {
+               errors["pass"] = {};
+               errors["pass"]["msg"] = error.message
              }
            })
-         res.render('register',{
-                   title: "Registro",
+         res.render('login',{
+                   title: "Iniciar Sesión",
                    css:"estilos.css",
                    errors: errors,
                    old:req.body

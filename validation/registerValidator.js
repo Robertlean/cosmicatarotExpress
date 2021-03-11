@@ -11,9 +11,9 @@ module.exports = [
     body('name')
     .custom(function(value){
         console.log(value)
-        return db.usuario.findOne({
+        return db.users.findOne({
             where:{
-                id:value
+                name:value
             }
         })
     .then(user => {
@@ -27,7 +27,7 @@ module.exports = [
     body('mail')
     .custom(function(value){
         console.log(value)
-        return db.usuarios.findOne({
+        return db.users.findOne({
             where:{
                 mail:value
             }

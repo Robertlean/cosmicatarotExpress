@@ -23,10 +23,10 @@
                     <div class="container">
                         <div class="d-md-flex align-items-center justify-content-around text-center text-xl-left" style="flex-direction: column;">
                             <img src="/images/cosmicatarot2.png" alt="logo" class="logo">
-                            <form method="POST" action="/usuarios">
+                            <form method="POST" action="index">
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
-                                    <input type="email" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>" id="email" name="email" value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>" placeholder="Ingrese su e-mail">
+                                    <input type="email" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>" id="mail" name="mail" value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>" placeholder="Ingrese su e-mail">
                                     <small class="text-warning"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
 
                                 </div>

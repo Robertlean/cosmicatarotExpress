@@ -27,6 +27,15 @@ SET default_table_access_method = heap;
 -- Name: comenthoroscopo; Type: TABLE; Schema: public; Owner: postgres
 --
 
+CREATE DATABASE "cosmicaTarotdb"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Argentina.1252'
+    LC_CTYPE = 'Spanish_Argentina.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
 CREATE TABLE public.comenthoroscopo (
     id integer NOT NULL,
     iduser integer NOT NULL,

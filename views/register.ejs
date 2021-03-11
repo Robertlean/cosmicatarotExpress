@@ -27,41 +27,41 @@
                             style="flex-direction: column;">
                             <img src="/images/cosmicatarot2.png" alt="logo" class="logo">
 
-                            <form method="POST" action="/login/register" style="margin-top: .5em; width:25em" id="formRegister">
+                            <form method="POST" action="/" style="margin-top: .5em; width:25em" id="formRegister">
                                 <div class="form-group">
                                     <label for="users">Nombre o Nick <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.name == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>" id="users" name="name" value="<%= (typeof inputs != 'undefined' && inputs.name)?inputs.name:'' %>" placeholder="Ingrese tu nombre o un nick">
 
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.name)?errors.name.msg: "" %> </small>
+                                    <small id="errorNombre" class="text-danger"><%= (typeof errors != 'undefined' && errors.name)?errors.name.msg: "" %> </small>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Inputuser">Fecha de nacimiento <span class="text-danger">*</span></label>
+                                    <label for="date">Fecha de nacimiento <span class="text-danger">*</span></label>
                                     <input type="date" class="form-control" id="date" name="date">
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.date)?errors.date.msg: "" %> </small>
+                                    <small id="errorDate" class="text-danger"><%= (typeof errors != 'undefined' && errors.date)?errors.date.msg: "" %> </small>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Inputmail">e-mail <span class="text-danger">*</span></label>
+                                    <label for="mail">E-mail <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="mail" name="mail"></input>
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.mail)?errors.mail.msg: "" %> </small>
+                                    <small id="errorEmail"  class="text-danger"><%= (typeof errors != 'undefined' && errors.mail)?errors.mail.msg: "" %> </small>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Contraseña <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" name="pass" id="pass">
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
+                                    <label for="pass">Contraseña <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" name="pass" id="pass"></input>
+                                    <small id="errorPass" class="text-danger"><%= (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Reingresar contraseña <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" input ="pass2" name="pass2">
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.pass2)?errors.pass2.msg: "" %> </small>
+                                    <label for="pass2">Reingresar contraseña <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control"  name="pass2">
+                                    <small id="errorPass2" class="text-danger"><%= (typeof errors != 'undefined' && errors.pass2)?errors.pass2.msg: "" %> </small>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="400"
+                                    <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="200"
                                         data-aos-offset="0">
                                         <button type="submit" class="btn btn-primary">Registrese</button>
                                     </div>

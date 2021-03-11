@@ -15,7 +15,7 @@ const sessionUpCheck = require('../middleware/sessionUserCheck')
 router.get('/', controller.login);
 //router.post('/login', loginValidator, controller.processLogin)
 router.get('/register', controller.register);
-router.post('/register', registerValidator, controller.processRegister);
+router.post('/', registerValidator, controller.processRegister);
 router.get('/perfil', controller.user);
 
 module.exports = router;
