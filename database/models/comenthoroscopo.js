@@ -21,7 +21,7 @@ module.exports = (sequelize,dataTypes) => {
             type: dataTypes.STRING(200),
             allowNull:false
         },
-        fechacreation:{
+        fechcreation:{
             type: dataTypes.DATE(),
             allowNull:true
         },

@@ -2,7 +2,7 @@ module.exports = (sequelize,dataTypes) => {
     
     let alias = "tags";
     let cols = {
-        idTags:{
+        idtags:{
             type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,

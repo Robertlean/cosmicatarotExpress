@@ -21,17 +21,25 @@ module.exports = (sequelize,dataTypes) => {
             type: dataTypes.STRING(300),
             allowNull:false
         },
+        contenido:{
+            type: dataTypes.STRING(1000),
+            alowNull:false
+        },
         fechacreation:{
             type: dataTypes.DATE(),
             allowNull:true
         },
-        idtiposigno:{
-            type: dataTypes.INTEGER,
-            allowNull:false
-        },
         idtags: {
             type: dataTypes.INTEGER,
             allowNull:false
+        },
+        idsigno: {
+            type: dataTypes.INTEGER,
+            allowNull :false
+        },
+        idcoment: {
+            type: dataTypes.INTEGER,
+            allowNull: false
         }
         
     }

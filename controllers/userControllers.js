@@ -19,7 +19,7 @@ module.exports = {
         res.render('login', {title: 'Iniciar sesión', css:'estilos.css'})
     },
     user: (req, res, next) =>{
-        res.render('perfil', {title: 'Tu perfil', css:'estilos.css', usuario:req.session.usuario})
+        res.render('perfil', {title: 'Tu perfil', css:'estilos.css'})
     },
     register: (req, res, next) =>{
         res.render('register', {title: 'Registrate', css:'estilos.css'})
@@ -71,30 +71,30 @@ module.exports = {
       if(errors.isEmpty()){
 
           db.users.create({
-           nombre: req.body.nombre.trim(),
-           mail:req.body.email.trim(),
-           pass:bcrypt.hashSync(req.body.pass.trim(),10),
-           image:(req.files[0])?req.files[0].filename:"default.png",
-           rol:(req.session.usuario)?req.session.usuario:"usuario"
+           nameuser: req.body.name.trim(),
+           mail:req.body.mail.trim(),
+           password:bcrypt.hashSync(req.body.pass.trim(),10),
+           avatar:(req.files[0])?req.files[0].filename:"default.png",
+           rol:"usuario"
           })
           .then(result => {
            console.log(result)
-           return res.redirect('registro')
+           return res.redirect('login')
           })
           .catch(errores => {
            errors = {};
            errores.errors.forEach(error => {
-             if(error.path == "nombre"){
-               errors["nombre"] = {};
-               errors["nombre"]["msg"] = error.message
+             if(error.path == "nameuser"){
+               errors["nameuser"] = {};
+               errors["nameuser"]["msg"] = error.message
              };
              if(error.path == "mail"){
                errors["mail"] = {};
                errors["mail"]["msg"] = error.message
              };
-             if (error.path == "pass") {
-               errors["pass"] = {};
-               errors["pass"]["msg"] = error.message
+             if (error.path == "password") {
+               errors["password"] = {};
+               errors["password"]["msg"] = error.message
              }
            })
          res.render('register',{

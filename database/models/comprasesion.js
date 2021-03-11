@@ -12,7 +12,7 @@ module.exports = (sequelize,dataTypes) => {
             type: dataTypes.REAL(),
             allowNull:false
         },
-        idCompador:{
+        idcompador:{
             type: dataTypes.INTEGER,
             allowNull:false
         }

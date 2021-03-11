@@ -3,9 +3,9 @@
 --
 
 -- Dumped from database version 13.2
--- Dumped by pg_dump version 13.2
+-- Dumped by pg_dump version 13.1
 
--- Started on 2021-03-05 23:56:19
+-- Started on 2021-03-11 00:29:31
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -45,12 +45,10 @@ ALTER TABLE public.comenthoroscopo OWNER TO postgres;
 --
 
 CREATE TABLE public.comentspost (
-    "IdComent" bigint NOT NULL,
-    "fechaComent" timestamp without time zone NOT NULL,
-    "textComent" character varying(200) NOT NULL,
+    idcoment integer NOT NULL,
+    textcoment character varying(1000) NOT NULL,
     iduser integer NOT NULL,
     fechacoment timestamp with time zone NOT NULL,
-    text character varying(500) NOT NULL,
     idsigno integer NOT NULL
 );
 
@@ -65,7 +63,7 @@ ALTER TABLE public.comentspost OWNER TO postgres;
 CREATE TABLE public.comprasesion (
     id integer NOT NULL,
     price real NOT NULL,
-    "idComrpador" integer NOT NULL
+    idcomrpador integer NOT NULL
 );
 
 
@@ -80,8 +78,8 @@ CREATE TABLE public.horoscopo (
     id integer NOT NULL,
     nombre character varying(20) NOT NULL,
     idtipo integer NOT NULL,
-    startfecha date NOT NULL,
-    endfecha date NOT NULL
+    startfecha timestamp without time zone NOT NULL,
+    endfecha timestamp without time zone NOT NULL
 );
 
 
@@ -115,7 +113,7 @@ CREATE TABLE public.posteos (
     subtitle character varying(200),
     img character varying(300),
     contenido character varying(1000) NOT NULL,
-    fechcreation date NOT NULL,
+    fechcreation timestamp with time zone NOT NULL,
     idtags integer,
     idsigno integer NOT NULL,
     idcoment integer
@@ -130,8 +128,8 @@ ALTER TABLE public.posteos OWNER TO postgres;
 --
 
 CREATE TABLE public.tags (
-    "IdTags" integer NOT NULL,
-    nombre character varying(50)
+    idtags integer NOT NULL,
+    nombre character varying(100)
 );
 
 
@@ -156,11 +154,11 @@ ALTER TABLE public.tiposigno OWNER TO postgres;
 --
 
 CREATE TABLE public.users (
-    "nameUser" character varying(50) NOT NULL,
-    "fechaNac" date NOT NULL,
-    "rolUser" character varying(100) NOT NULL,
+    nameuser character varying(50) NOT NULL,
+    fechanac timestamp without time zone NOT NULL,
+    rol character varying(100) NOT NULL,
     nation character varying(100) NOT NULL,
-    "fotoUser" character varying(200),
+    avatar character varying(200),
     description character varying(300),
     id integer NOT NULL,
     idsigno integer NOT NULL,
@@ -188,7 +186,7 @@ COPY public.comenthoroscopo (id, iduser, idsigno, text, fechcreation, idtiposign
 -- Data for Name: comentspost; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.comentspost ("IdComent", "fechaComent", "textComent", iduser, fechacoment, text, idsigno) FROM stdin;
+COPY public.comentspost (idcoment, textcoment, iduser, fechacoment, idsigno) FROM stdin;
 \.
 
 
@@ -198,7 +196,7 @@ COPY public.comentspost ("IdComent", "fechaComent", "textComent", iduser, fechac
 -- Data for Name: comprasesion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.comprasesion (id, price, "idComrpador") FROM stdin;
+COPY public.comprasesion (id, price, idcomrpador) FROM stdin;
 \.
 
 
@@ -209,18 +207,18 @@ COPY public.comprasesion (id, price, "idComrpador") FROM stdin;
 --
 
 COPY public.horoscopo (id, nombre, idtipo, startfecha, endfecha) FROM stdin;
-2	Acuario	2	2021-01-21	2021-02-19
-3	Piscis	3	2021-02-20	2021-03-20
-4	Aries	4	2021-03-21	2021-04-20
-5	Tauro	1	2021-04-21	2021-05-20
-6	Geminis	2	2021-01-21	2021-06-21
-7	Cancer	3	2021-06-22	2021-07-22
-8	Leo	4	2021-07-23	2021-08-23
-9	Virgo	1	2021-08-21	2021-09-22
-10	Libra	2	2021-09-23	2021-10-22
-11	Escorpio	3	2021-10-23	2021-11-22
-12	Sagitario	4	2021-11-23	2021-12-21
-1	Capricornio	1	2020-12-22	2021-01-20
+2	Acuario	2	2021-01-21 00:00:00	2021-02-19 00:00:00
+3	Piscis	3	2021-02-20 00:00:00	2021-03-20 00:00:00
+4	Aries	4	2021-03-21 00:00:00	2021-04-20 00:00:00
+5	Tauro	1	2021-04-21 00:00:00	2021-05-20 00:00:00
+6	Geminis	2	2021-01-21 00:00:00	2021-06-21 00:00:00
+7	Cancer	3	2021-06-22 00:00:00	2021-07-22 00:00:00
+8	Leo	4	2021-07-23 00:00:00	2021-08-23 00:00:00
+9	Virgo	1	2021-08-21 00:00:00	2021-09-22 00:00:00
+10	Libra	2	2021-09-23 00:00:00	2021-10-22 00:00:00
+11	Escorpio	3	2021-10-23 00:00:00	2021-11-22 00:00:00
+12	Sagitario	4	2021-11-23 00:00:00	2021-12-21 00:00:00
+1	Capricornio	1	2020-12-22 00:00:00	2021-01-20 00:00:00
 \.
 
 
@@ -250,7 +248,7 @@ COPY public.posteos (id, title, subtitle, img, contenido, fechcreation, idtags, 
 -- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.tags ("IdTags", nombre) FROM stdin;
+COPY public.tags (idtags, nombre) FROM stdin;
 \.
 
 
@@ -274,17 +272,17 @@ COPY public.tiposigno (id, signo) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users ("nameUser", "fechaNac", "rolUser", nation, "fotoUser", description, id, idsigno, idtiposigno, password, mail) FROM stdin;
+COPY public.users (nameuser, fechanac, rol, nation, avatar, description, id, idsigno, idtiposigno, password, mail) FROM stdin;
 \.
 
 
 --
--- TOC entry 2891 (class 2606 OID 24590)
+-- TOC entry 2891 (class 2606 OID 49170)
 -- Name: comentspost ComentsPost_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.comentspost
-    ADD CONSTRAINT "ComentsPost_pkey" PRIMARY KEY ("IdComent");
+    ADD CONSTRAINT "ComentsPost_pkey" PRIMARY KEY (idcoment);
 
 
 --
@@ -311,7 +309,7 @@ ALTER TABLE ONLY public.posteos
 --
 
 ALTER TABLE ONLY public.tags
-    ADD CONSTRAINT "Tags_pkey" PRIMARY KEY ("IdTags");
+    ADD CONSTRAINT "Tags_pkey" PRIMARY KEY (idtags);
 
 
 --
@@ -351,12 +349,12 @@ ALTER TABLE ONLY public.posteohoroscopo
 
 
 --
--- TOC entry 2902 (class 2606 OID 32778)
+-- TOC entry 2904 (class 2606 OID 49171)
 -- Name: posteos idComent; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.posteos
-    ADD CONSTRAINT "idComent" FOREIGN KEY (idcoment) REFERENCES public.comentspost("IdComent") NOT VALID;
+    ADD CONSTRAINT "idComent" FOREIGN KEY (idcoment) REFERENCES public.comentspost(idcoment) NOT VALID;
 
 
 --
@@ -365,11 +363,11 @@ ALTER TABLE ONLY public.posteos
 --
 
 ALTER TABLE ONLY public.comprasesion
-    ADD CONSTRAINT "idComprador" FOREIGN KEY ("idComrpador") REFERENCES public.users(id);
+    ADD CONSTRAINT "idComprador" FOREIGN KEY (idcomrpador) REFERENCES public.users(id);
 
 
 --
--- TOC entry 2904 (class 2606 OID 32788)
+-- TOC entry 2903 (class 2606 OID 32788)
 -- Name: posteos idSigno; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -432,12 +430,12 @@ ALTER TABLE ONLY public.posteohoroscopo
 
 
 --
--- TOC entry 2903 (class 2606 OID 32783)
+-- TOC entry 2902 (class 2606 OID 32783)
 -- Name: posteos idtag; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.posteos
-    ADD CONSTRAINT idtag FOREIGN KEY (idtags) REFERENCES public.tags("IdTags") NOT VALID;
+    ADD CONSTRAINT idtag FOREIGN KEY (idtags) REFERENCES public.tags(idtags) NOT VALID;
 
 
 --
@@ -485,7 +483,7 @@ ALTER TABLE ONLY public.comentspost
     ADD CONSTRAINT iduser FOREIGN KEY (iduser) REFERENCES public.users(id) NOT VALID;
 
 
--- Completed on 2021-03-05 23:56:23
+-- Completed on 2021-03-11 00:29:34
 
 --
 -- PostgreSQL database dump complete

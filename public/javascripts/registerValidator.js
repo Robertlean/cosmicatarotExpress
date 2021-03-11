@@ -18,7 +18,7 @@ window.addEventListener('load',function(){
 
    inputNombre.addEventListener('blur', function(){
        switch (true) {
-           case this.value.lenght == 0:
+           case this.value.length == 0:
                errorNombre.innerHTML = "El campo del  nombre es obligatorio";
                this.classList.add('is_invalid')
                break;
@@ -116,6 +116,7 @@ window.addEventListener('load',function(){
        }
        if(!error){
            console.log("Todo Perfecto!!");
+           alert("Te registraste correctamente, inicia sesión")
            formulario.submit()
        }
        
