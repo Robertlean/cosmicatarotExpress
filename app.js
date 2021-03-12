@@ -30,7 +30,7 @@ app.use(methodOverride('_method'));
 app.use('/', indexRouter);
 app.use('/login', usersRouter)
 app.use('/examp',exampleRouter);
-app.use('/register',registroRouter);
+app.use('/register',registerRouter);
 
 
 // catch 404 and forward to error handler

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var controller = require('../controllers/userControllers');
 
-const registerValidator = require("../validation/registerValidator");
+
 const loginValidator = require('../validation/loginValidator')
 
 const sessionUpCheck = require('../middleware/sessionUserCheck')
@@ -14,8 +14,6 @@ const sessionUpCheck = require('../middleware/sessionUserCheck')
 
 router.get('/', controller.login);
 //router.post('/login', loginValidator, controller.processLogin)
-router.get('/register', controller.register);
-router.post('/', registerValidator, controller.processRegister);
 router.get('/perfil', controller.user);
 
 module.exports = router;

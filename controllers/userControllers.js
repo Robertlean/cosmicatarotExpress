@@ -71,7 +71,7 @@ module.exports = {
       if(errors.isEmpty()){
 
           db.users.create({
-           name: req.body.users.trim(),
+           nameuser: req.body.users.trim(),
            mail:req.body.mail.trim(),
            pass:bcrypt.hashSync(req.body.pass.trim(),10),
            avatar:(req.files[0])?req.files[0].filename:"default.png",
@@ -79,7 +79,7 @@ module.exports = {
           })
           .then(result => {
            console.log(result)
-           return res.redirect('login')
+           //return res.redirect('/login')
           })
           .catch(errores => {
            errors = {};
@@ -96,6 +96,7 @@ module.exports = {
                errors["pass"] = {};
                errors["pass"]["msg"] = error.message
              }
+             //return res.redirect('/login')
            })
          res.render('login',{
                    title: "Iniciar Sesión",

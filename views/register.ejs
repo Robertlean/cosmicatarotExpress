@@ -27,7 +27,7 @@
                             style="flex-direction: column;">
                             <img src="/images/cosmicatarot2.png" alt="logo" class="logo">
 
-                            <form method="POST" action="/" style="margin-top: .5em; width:25em" id="formRegister">
+                            <form method="POST" action="" style="margin-top: .5em; width:25em" id="formRegister">
                                 <div class="form-group">
                                     <label for="users">Nombre o Nick <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.name == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>" id="users" name="name" value="<%= (typeof inputs != 'undefined' && inputs.name)?inputs.name:'' %>" placeholder="Ingrese tu nombre o un nick">
