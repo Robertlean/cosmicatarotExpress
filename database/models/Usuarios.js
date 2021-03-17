@@ -9,33 +9,33 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:false
         },
         nameuser:{
-            type: dataTypes.STRING(50),
+            type: dataTypes.STRING,
             allowNull:false,
             unique:true
         },
         mail:{
-            type: dataTypes.STRING(100),
+            type: dataTypes.STRING,
             allowNull:false,
             unique:true
         },
         password:{
-            type: dataTypes.STRING(200),
+            type: dataTypes.STRING,
             allowNull:false
         },
         fechanac:{
-            type: dataTypes.DATEONLY(),
+            type: dataTypes.DATEONLY,
             allowNull:false
         },
         avatar:{
-            type: dataTypes.STRING(200),
+            type: dataTypes.STRING,
             allowNull: true
         },
         rol:{
-            type: dataTypes.STRING(100),
-            allowNull:false
+            type: dataTypes.STRING,
+            allowNull:true
         },
         description:{
-            type: dataTypes.STRING(300),
+            type: dataTypes.STRING,
             allowNull:true
         },
         idsigno:{
@@ -47,7 +47,7 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:true
         },
         nation:{
-            type: dataTypes.STRING(100),
+            type: dataTypes.STRING,
             allowNull: true
         }
         
@@ -55,19 +55,19 @@ module.exports = (sequelize,dataTypes) => {
 
     let config = {
         tableName: "users",
-        timestamps:true,
+        timestamps:false,
         underscored:true
 
     }
 
     const users = sequelize.define(alias,cols,config);
 
-    users.associate = function(models){
+    /*users.associate = function(models){
     users.hasOne(models.comentspost,{
-        as:"comentpost", /*nombre de fantasia de la relación de las tablas*/
+        as:"comentpost", //nombre de fantasia de la relación de las tablas
         foreignKey:"idComent"
     })
 
-    }
+    }*/
     return users;
 }

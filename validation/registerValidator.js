@@ -13,7 +13,7 @@ module.exports = [
         console.log(value)
         return db.users.findOne({
             where:{
-                name:value
+                nameuser:value
             }
         })
     .then(user => {

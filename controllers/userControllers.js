@@ -71,10 +71,10 @@ module.exports = {
       if(errors.isEmpty()){
 
           db.users.create({
-           nameuser: req.body.users.trim(),
+           nameuser: "robert",//req.body.users.trim(),
            mail:req.body.mail.trim(),
            pass:bcrypt.hashSync(req.body.pass.trim(),10),
-           avatar:(req.files[0])?req.files[0].filename:"default.png",
+           //avatar:(req.files[0])?req.files[0].filename:"default.png",
            rol:"usuario"
           })
           .then(result => {

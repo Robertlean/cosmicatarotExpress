@@ -1,7 +1,7 @@
 module.exports={
     "development": {
-      "name": "postgres",
-      "password": "pgadmin",
+      "username": "postgres",
+      "password": null,
       "database": "cosmicaTarotdb",
       "host": "localhost",
       "dialect": "postgres",

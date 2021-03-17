@@ -33,7 +33,7 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-sequelize = new Sequelize('cosmicaTarotdb', 'postgres', 'pgadmin', {
+sequelize = new Sequelize('cosmicaTarotdb', 'postgres', null, {
   host: 'localhost',
   dialect: 'postgres'
 });
