@@ -67,22 +67,25 @@ module.exports = {
 
     processRegister:function(req,res){
       let errors = validationResult(req);
-      
+      console.log(req.body)
       if(errors.isEmpty()){
 
           db.users.create({
-           nameuser: "robert",//req.body.users.trim(),
+           nameuser: req.body.name.trim(),
            mail:req.body.mail.trim(),
-           pass:bcrypt.hashSync(req.body.pass.trim(),10),
-           //avatar:(req.files[0])?req.files[0].filename:"default.png",
-           rol:"usuario"
+           password:bcrypt.hashSync(req.body.pass.trim(),10),
+           avatar: "default.png",
+           rol:"usuario",
+           fechanac: req.body.date.trim(),
+                   
           })
           .then(result => {
+           console.log('Llegue acá')
            console.log(result)
-           //return res.redirect('/login')
+           return res.redirect('/login')
           })
           .catch(errores => {
-           errors = {};
+           console.log(errores)
            errores.errors.forEach(error => {
              if(error.path == "nameuser"){
                errors["nameuser"] = {};
