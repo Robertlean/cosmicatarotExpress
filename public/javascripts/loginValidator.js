@@ -51,7 +51,7 @@ window.addEventListener('load', function () {
         for (let index = 0; index < elementosForm.length - 1; index++) {
             if (elementosForm[index].value == "") {
                 elementosForm[index].classList.add('is-invalid');
-                msgError.innerHTML = "Los campos señadados son obligatorios";
+                msgError.innerHTML = "Los campos señalados son obligatorios";
                 error = true
             }
         }

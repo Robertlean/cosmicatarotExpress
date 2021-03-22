@@ -13,7 +13,7 @@ module.exports = [
     })
     .withMessage('Contraseña muy corta'),
 
-    /*body('mail')
+    body('mail')
     .custom(function(value){
         return db.users.findOne({
             where:{
@@ -28,7 +28,7 @@ module.exports = [
         .catch( error => {
             res.send(error)
         })
-    }),*/
+    }),
 
     body('pass')
     .custom((value,{req})=>{
@@ -44,7 +44,7 @@ module.exports = [
             }
         })
         .catch(() => {
-            return Promise.reject('E-mail y/o contraseña incorrectas')
+            return Promise.reject('E-mail y contraseña incorrectas')
         })
     })
 
