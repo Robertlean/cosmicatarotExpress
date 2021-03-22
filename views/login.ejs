@@ -2,6 +2,7 @@
 <html lang="es-Ar">
 
 <%- include('partials/head') %>
+<script src="/javascripts/loginValidator.js"></script>
 
 <body>    
     <div class="bodybg">
@@ -23,20 +24,20 @@
                     <div class="container">
                         <div class="d-md-flex align-items-center justify-content-around text-center text-xl-left" style="flex-direction: column;">
                             <img src="/images/cosmicatarot2.png" alt="logo" class="logo">
-                            <form method="POST" action="index">
+                            <form method="POST" action="/login" id="formIngreso">
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
-                                    <input type="email" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>" id="mail" name="mail" value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>" placeholder="Ingrese su e-mail">
-                                    <small class="text-warning"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
+                                    <input type="email" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.mail == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.mail)?"is-invalid": ""  %>" id="mail" name="mail" value="<%= (typeof inputs != 'undefined' && inputs.mail)?inputs.mail:'' %>" placeholder="Ingrese su e-mail">
+                                    <small class="text-warning"><%= (typeof errors != 'undefined' && errors.mail)?errors.mail.msg: "" %> </small>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña</label>
-                                    <input type="password" name="pass" id="pass" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pass == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constraseña)?"is-invalid": ""  %>" value="<%= (typeof inputs != 'undefined' && inputs.pass)?inputs.pass:'' %>" placeholder="Ingrese su pass">
+                                    <input type="password" name="pass" id="pass" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pass == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.pass)?"is-invalid": ""  %>" value="<%= (typeof inputs != 'undefined' && inputs.pass)?inputs.pass:'' %>" placeholder="Ingrese su contraseña">
                                     <small class="text-warning"><%= (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
 
                                 </div>
-                                <span>¿Te olviste la contraseña? Formateala desde el mail</span>
+                                <!--<span>¿Te olviste la contraseña? Formateala desde el mail</span>-->
                                 <div class="d-flex justify-content-center">
                                     <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="400" data-aos-offset="0">
                                         <button type="submit" class="btn btn-primary">Inicia sesión</button>
@@ -44,6 +45,7 @@
                                     </div>
                                 </div>
                             </form>
+                            <small class="text-warning" id="msgError"></small>
                         </div>
                     </div>
                 </div>
