@@ -11,8 +11,9 @@ const path = require('path')
 const e = require('express');
 const {
   Op
-} = require('sequelize')
+} = require('sequelize');
 
+let nacimiento = require('../functions/diamesnacimiento')
 
 module.exports = {
   login: (req, res, next) => {
@@ -48,13 +49,13 @@ module.exports = {
             avatar: (usuario.rol == "usuario") ? usuario.avatar : usuario.avatar,
             rol: usuario.rol
           }
-          csole.log(usuario.fechanac)
-          con
+          console.log(usuario.fechanac)
+          
           if (req.body.recordar) {
             res.cookie('userPQNTA', req.session.usuario, { maxAge: 1000 * 60 * 5 })
           }
           res.locals.usuario = req.session.usuario
-          return res.redirect('/')
+          return res.redirect('/', {usuario: usuario})
         })
         .catch(error => {
           res.send(error)
@@ -79,32 +80,9 @@ module.exports = {
     let mes = fecha.getMonth()+1
     console.log(dia)
     console.log(mes)
+    console.log(nacimiento(dia,mes))
     if (errors.isEmpty()) {
 
-      /*console.log(req.body.date)
-      let fecha = req.body.date
-      let dia
-      let mes
-      let contadordia = 0
-      let contadormes = 0
-
-      //YYYY-MM-DD
-      for(let x=1; x <= fecha.lenght; x++ ){
-        if ()
-
-      }
-      function fechames(cumpleaños){
-let mes
-let arraymes = []
-for(let x = 4; x <= 7; x++ ){
-    if(cumpleaños[x]!== '-'){
-        arraymes[x]= arraymes[x]+cumpleaños[x]
-    }
-}
-return console.log(arraymes)
-}
-
-      */
       db.users.create({
         nameuser: req.body.name.trim(),
         mail: req.body.mail.trim(),
@@ -112,6 +90,7 @@ return console.log(arraymes)
         avatar: "default.png",
         rol: "usuario",
         fechanac: req.body.date.trim(),
+        idsigno: nacimiento(dia, mes)
 
       })
         .then(result => {
