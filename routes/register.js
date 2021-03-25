@@ -5,7 +5,10 @@ var controller = require('../controllers/userControllers');
 
 const registerValidator = require("../validation/registerValidator");
 
-router.get('/', controller.register);
+const userCheck = require('../middleware/sessionUserCheck')
+const adminCheck = require('../middleware/adminCheck')
+
+router.get('/', userCheck, controller.register);
 router.post('/', registerValidator, controller.processRegister);
 
 module.exports = router;

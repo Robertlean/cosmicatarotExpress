@@ -13,7 +13,8 @@ const {
   Op
 } = require('sequelize');
 
-let nacimiento = require('../functions/diamesnacimiento')
+let signo = require('../functions/funcionsigno')
+let tipo = require('../functions/funciontipo')
 
 module.exports = {
   login: (req, res, next) => {
@@ -50,12 +51,12 @@ module.exports = {
             rol: usuario.rol
           }
           console.log(usuario.fechanac)
-          
+
           if (req.body.recordar) {
-            res.cookie('userPQNTA', req.session.usuario, { maxAge: 1000 * 60 * 5 })
+            res.cookie('userCosmica', req.session.usuario, { maxAge: 1000 * 60 * 5 })
           }
           res.locals.usuario = req.session.usuario
-          return res.redirect('/', {usuario: usuario})
+          return res.redirect(url)
         })
         .catch(error => {
           res.send(error)
@@ -75,12 +76,9 @@ module.exports = {
     let errors = validationResult(req);
     console.log(req.body)
     let fecha = new Date(req.body.date.trim())
-    console.log(fecha)
-    let dia = fecha.getDate()+1
-    let mes = fecha.getMonth()+1
-    console.log(dia)
-    console.log(mes)
-    console.log(nacimiento(dia,mes))
+    let dia = fecha.getDate() + 1
+    let mes = fecha.getMonth() + 1
+
     if (errors.isEmpty()) {
 
       db.users.create({
@@ -90,7 +88,8 @@ module.exports = {
         avatar: "default.png",
         rol: "usuario",
         fechanac: req.body.date.trim(),
-        idsigno: nacimiento(dia, mes)
+        idsigno: signo(dia, mes),
+        idtiposigno: tipo(signo(dia, mes))
 
       })
         .then(result => {

@@ -1,8 +1,16 @@
 var express = require('express');
 var router = express.Router();
+
 var controller = require('../controllers/mainControllers')
+
+const userCheck = require('../middleware/sessionUserCheck')
+const adminCheck = require('../middleware/adminCheck')
+const upImage = require('../middleware/UpImageAvatar')
+const sessionUpCheck = require('../middleware/sessionUpCheck')
+
+
 /* GET home page. */
-router.get('/', controller.index);
+router.get('/', userCheck, controller.index);
 router.get('/createpost', controller.createpost);
 router.get('/post', controller.post);
 router.get('/aboutme', controller.aboutme);
