@@ -7,10 +7,11 @@ const userCheck = require('../middleware/sessionUserCheck')
 const adminCheck = require('../middleware/adminCheck')
 const upImage = require('../middleware/UpImageAvatar')
 const sessionUpCheck = require('../middleware/sessionUpCheck')
+const cookieCheck = require('../middleware/CookieCheck')
 
 
 /* GET home page. */
-router.get('/', userCheck, controller.index);
+router.get('/', cookieCheck, controller.index);
 router.get('/createpost', controller.createpost);
 router.get('/post', controller.post);
 router.get('/aboutme', controller.aboutme);

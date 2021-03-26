@@ -10,14 +10,32 @@
             </div>
             <nav class="d-flex aic">
                 <% if (typeof usuario !="undefined" ) {%>
-                    <%= usuario.nameuser %>
-
-                <% }else { %>
-                    <a href="login" class="login"><i class="fa fa-user" aria-hidden="true"></i>Iniciar
-                    Sesión
+                    <a class="d-flex justify-content-center nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transform:521px, 65 px, 0px">
+                        <p class="login"><i class="fa fa-user" aria-hidden="true"></i>
+                            <%= usuario.nameuser %>
+                        </p>
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/usuarios/perfil/<%= usuario.id %> ">Mi perfil</a>
+                        <a class="dropdown-item" href="">Cambiar contraseña</a>
+                        <a class="dropdown-item" href="">Cerrar sesión</a>
+        
+                        <% if (usuario.rol=="admin") { %>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/productos/agregar/">Ver compras</a>
+        
+                        <% } %>
+        
+                    </div>
+                    
 
-                <% } %>
+                    <% }else { %>
+                        <a href="login" class="login"><i class="fa fa-user" aria-hidden="true"></i>Iniciar
+                            Sesión
+                        </a>
+
+                        <% } %>
 
                             <ul class="nav social d-none d-md-flex">
                                 <li><a href="https://www.facebook.com/cosmicatarot-114161293570553" target="_blank"><i
@@ -55,7 +73,7 @@
                             <input class="submit btn btn-primary" id="searchsubmit" name="submit" type="submit"
                                 value="Buscar">
                         </span>
-                    </div>                     
+                    </div>
                 </form>
             </div>
         </nav>

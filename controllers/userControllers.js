@@ -45,16 +45,16 @@ module.exports = {
         .then(usuario => {
           req.session.usuario = {
             id: usuario.id,
-            nameuser: usuario.nombre,
-            mail: usuario.email,
+            nameuser: usuario.nameuser,
+            mail: usuario.mail,
             avatar: (usuario.rol == "usuario") ? usuario.avatar : usuario.avatar,
             rol: usuario.rol
           }
-          console.log(usuario.fechanac)
+          console.log(usuario)
 
-          if (req.body.recordar) {
+          /*if (req.body.recordar) {
             res.cookie('userCosmica', req.session.usuario, { maxAge: 1000 * 60 * 5 })
-          }
+          }*/
           res.locals.usuario = req.session.usuario
           return res.redirect(url)
         })

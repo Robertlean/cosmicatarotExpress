@@ -6,14 +6,14 @@ var controller = require('../controllers/userControllers');
 
 const loginValidator = require('../validation/loginValidator')
 
-const sessionUpCheck = require('../middleware/sessionUserCheck')
+const sessionUserCheck = require('../middleware/sessionUserCheck')
 
 
 /* GET users listing. */
 
 
-router.get('/', sessionUpCheck, controller.login);
+router.get('/', controller.login);
 router.post('/', loginValidator, controller.processLogin)
-router.get('/perfil', controller.user);
+router.get('/perfil', sessionUserCheck, controller.user);
 
 module.exports = router;
