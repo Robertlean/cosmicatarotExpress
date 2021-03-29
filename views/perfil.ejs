@@ -21,19 +21,18 @@
                         style="flex-direction: column; justify-content: center;">
                         <div class="col-lg-12">
                             <div class="test-img">
-                                <img src="/assets/images/daimosqui1.jpg" alt="">
+                                <img src="/images/users/<%= usuario.avatar%>" alt="">
                             </div>
                         </div>
                         <div class="col-lg-6" style="display: flex; justify-content: center; flex-direction: column;">
                             <div class="col-lg-12" style="justify-content: center; display: flex;">
-                                <h1>Daiana Mosqueiras</h1>
+                                <h1><%= usuario.nameuser%></h1>
                             </div>
                             <div class="col-lg-12" style="display: flex; justify-content: space-between;">
                                 <div class="col-lg-12 title" style="display: flex; justify-content: space-between;">
-                                    <h6>Cancer</h6>
-                                    <h6 style="color: rgb(0, 132, 184)">Agua</h6>
-                                    <h6><i class="fa fa-globe"></i>
-                                        Ar</h6>                                    
+                                    <h6><%=usuario.idtipo %></h6>
+                                    <h6 style="color: rgb(0, 132, 184)"><%= usuario.idtiposigno %>  </h6>
+                                                                       
                                 </div>
                             </div>
                             <div class="col-lg-12" style="display: flex; justify-content: center;">

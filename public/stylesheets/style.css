@@ -75,9 +75,9 @@ header::after {
 }
 
 .login {
-  padding: 10px 20px;
+  
   font-size: 14px;
-  margin-right: 25px;
+  margin-right: 5px;
   text-transform: uppercase;
 }
 
@@ -1139,4 +1139,16 @@ form .btn{
 .tagsenter{
   padding: 1em 3em;
   margin-bottom: 3em
+}
+
+.dropdown-item{
+  background-color: #26264b;
+  color: white
+}
+.dropdown-item:hover{
+  background-color: #ee1515;
+}
+
+.dropdown-menu{
+  background-color: #26264b;
 }

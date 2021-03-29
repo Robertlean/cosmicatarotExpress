@@ -8,7 +8,7 @@
                 <a href="tarotcosmica@gmail.com"><i class="fa fa-envelope"
                         aria-hidden="true"></i>tarotcosmica@gmail.com</a>
             </div>
-            <nav class="d-flex aic">
+            <nav class="d-flex aic align-items-center">
                 <% if (typeof usuario !="undefined" ) {%>
                     <a class="d-flex justify-content-center nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transform:521px, 65 px, 0px">
@@ -17,13 +17,13 @@
                         </p>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/usuarios/perfil/<%= usuario.id %> ">Mi perfil</a>
+                        <a class="dropdown-item" href="/perfil/<%= usuario.id %> ">Mi perfil</a>
                         <a class="dropdown-item" href="">Cambiar contraseña</a>
-                        <a class="dropdown-item" href="">Cerrar sesión</a>
+                        <a class="dropdown-item" href="/logout">Cerrar sesión</a>
         
                         <% if (usuario.rol=="admin") { %>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/productos/agregar/">Ver compras</a>
+                        <a class="dropdown-item" href="#">Ver compras de clientes</a>
         
                         <% } %>
         

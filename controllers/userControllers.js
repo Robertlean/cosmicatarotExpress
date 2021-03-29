@@ -132,6 +132,28 @@ module.exports = {
         old: req.body
       })
     }
-  }
+  },
+  profile:function(req,res){
+    if (req.session.usuario) {
+      db.users.findByPk(req.session.usuario.id)
+      .then(usuario => {
+        console.log(usuario)
+        res.render('perfil', {
+          title: "Perfil de "+usuario.nameuser,
+          css: "estilos.css",
+          usuario:usuario
+        })
+      })
+    }else{
+      res.redirect('/')
+    }       
+  },
+  logout: function (req, res) {
+    req.session.destroy();
+    if (req.cookies.userCosmica) {
+      res.cookie('userCosmica', '', { maxAge: -1 })
+    }
+    return res.redirect('/')
+  },
 
 }
