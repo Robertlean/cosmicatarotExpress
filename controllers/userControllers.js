@@ -135,7 +135,7 @@ module.exports = {
   },
   profile:function(req,res){
     if (req.session.usuario) {
-      db.users.findByPk(req.session.usuario.id)
+      db.users.findByPk(req.session.usuario.id,{include: 'tiposigno'})
       .then(usuario => {
         console.log(usuario)
         res.render('perfil', {

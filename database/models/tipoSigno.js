@@ -24,5 +24,14 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const tipoSigno = sequelize.define(alias,cols,config);
+
+    tipoSigno.associate = function(models){
+    tipoSigno.hasMany(models.users,{
+        as:"user", //nombre de fantasia de la relación de las tablas
+        foreignKey:"idsigno"
+    })
+
+    }
+
     return tipoSigno
 }

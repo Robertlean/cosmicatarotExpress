@@ -62,12 +62,12 @@ module.exports = (sequelize,dataTypes) => {
 
     const users = sequelize.define(alias,cols,config);
 
-    /*users.associate = function(models){
-    users.hasOne(models.comentspost,{
-        as:"comentpost", //nombre de fantasia de la relación de las tablas
-        foreignKey:"idComent"
+    users.associate = function(models){
+    users.hasOne(models.tiposigno,{
+        as:"tiposigno", //nombre de fantasia de la relación de las tablas
+        foreignKey:"id"
     })
 
-    }*/
+    }
     return users;
 }
