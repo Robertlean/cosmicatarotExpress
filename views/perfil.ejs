@@ -22,11 +22,14 @@
                         <div class="col-lg-12">
                             <div class="test-img">
                                 <img src="/images/users/<%= usuario.avatar%>" alt="">
+                                
                             </div>
+                            
                         </div>
                         <div class="col-lg-6" style="display: flex; justify-content: center; flex-direction: column;">
-                            <div class="col-lg-12" style="justify-content: center; display: flex;">
+                            <div class="col-lg-12" style="justify-content: center; display: flex; align-items: center;">
                                 <h1><%= usuario.nameuser%></h1>
+                                <a href="/perfil/<%= usuario.id %>/editperfil" style="color: white; justify-content: center;"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="col-lg-12" style="display: flex; justify-content: space-between;">
                                 <div class="col-lg-12 title" style="display: flex; justify-content: space-between;">
@@ -55,7 +58,7 @@
                                 data-aos-duration="400">
                                 <div class="imgblog">
                                     <a href="/post.html"><img
-                                            src="assets/images/07_ small-kitchen-homepersonalshopper.jpg"
+                                            src="/images/07_ small-kitchen-homepersonalshopper.jpg"
                                             alt="Web Development"></a>
                                 </div>
                                 <div class="media-body">

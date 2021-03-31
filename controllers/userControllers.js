@@ -168,6 +168,12 @@ module.exports = {
       console.log(err)
     })
   },
+  mostraredit: (req, res, next) => {
+    res.render('editperfil', { 
+      title: 'Modificar tu perfil',
+      css: 'estilos.css' 
+    })
+  },
   logout: function (req, res) {
     req.session.destroy();
     if (req.cookies.userCosmica) {

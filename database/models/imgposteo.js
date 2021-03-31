@@ -1,6 +1,6 @@
 module.exports = (sequelize,dataTypes) => {
     
-    let alias = "tiposigno";
+    let alias = "imgposteo";
     let cols = {
         id:{
             type:dataTypes.INTEGER,
@@ -8,30 +8,26 @@ module.exports = (sequelize,dataTypes) => {
             autoIncrement:true,
             allowNull:false
         },
-        signo:{
+        nombre:{
             type: dataTypes.STRING,
             allowNull:false,
             unique:true
+        },
+        idpost:{
+            type: dataTypes.INTEGER,
+            allowNull:false,
         }
         
     }
 
     let config = {
-        tableName: "tiposigno",
+        tableName: "imgposteo",
         timestamps:true,
         underscored:true
 
     }
 
-    const tipoSigno = sequelize.define(alias,cols,config);
+    const imgposteo = sequelize.define(alias,cols,config);
 
-    tipoSigno.associate = function(models){
-    tipoSigno.hasOne(models.users,{
-        as:"users", //nombre de fantasia de la relación de las tablas
-        foreignKey:"idtiposigno"
-    })
-
-    }
-
-    return tipoSigno
+    return imgposteo
 }
