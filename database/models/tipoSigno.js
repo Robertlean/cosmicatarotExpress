@@ -18,7 +18,7 @@ module.exports = (sequelize,dataTypes) => {
 
     let config = {
         tableName: "tiposigno",
-        timestamps:true,
+        timestamps:false,
         underscored:true
 
     }
@@ -26,9 +26,10 @@ module.exports = (sequelize,dataTypes) => {
     const tipoSigno = sequelize.define(alias,cols,config);
 
     tipoSigno.associate = function(models){
-    tipoSigno.hasOne(models.users,{
+    tipoSigno.hasMany(models.users,{
         as:"users", //nombre de fantasia de la relación de las tablas
-        foreignKey:"idtiposigno"
+        foreignKey:"idtiposigno",
+        where: "signo"
     })
 
     }

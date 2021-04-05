@@ -8,5 +8,6 @@ var controller = require('../controllers/userControllers');
 router.get('/:id', controller.profile);
 
 router.get('/:id/editperfil',controller.mostraredit);
+router.post('/:id/editperfil', controller.editprofile)
 
 module.exports = router;

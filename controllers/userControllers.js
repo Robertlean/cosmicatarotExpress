@@ -133,45 +133,46 @@ module.exports = {
       })
     }
   },
-  profile:function(req,res){
+  profile: function (req, res) {
     if (req.session.usuario) {
-      db.users.findByPk(req.session.usuario.id,{include: 'tiposigno'})
-      .then(usuario => {
-        console.log(usuario)
-        res.render('perfil', {
-          title: "Perfil de "+usuario.nameuser,
-          css: "estilos.css",
-          usuario:usuario
+      db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo'] }
+      )
+        .then(usuario => {
+          res.render('perfil', {
+            title: "Perfil de " + usuario.nameuser,
+            css: "estilos.css",
+            usuario: usuario
+          })
         })
-      })
-    }else{
+    } else {
       res.redirect('/')
-    }       
+    }
   },
-  editprofile: function(req,res){
-    db.users.update(
-      {
-        avatar:(req.files[0])?req.files[0].filename:req.session.usuario.avatar,
-        description: req.body.description.trim()
-      },
-      {
-        where:{
-          id:req.params.id
-        }
-      }
-    )
-    .then(result => {
-      console.log(req.session.usuario);
-      return res.redirect('perfil/:id')
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  editprofile: function (req, res) {
+    let errors = validatioResult(req);
+    if (errors.isEmpty()){
+      db.users.update({
+          avatar: (req.files[0]) ? req.files[0].filename : req.session.usuario.avatar,
+          description: req.body.description.trim()
+        },{
+          where: {
+            id: req.params.id
+          }
+        })
+        .then(result => {
+          console.log(req.session.usuario);
+          res.redirect('/perfil')
+        })
+        .catch(error => res.send(error))
+
+    }
+
   },
   mostraredit: (req, res, next) => {
-    res.render('editperfil', { 
-      title: 'Modificar tu perfil',
-      css: 'estilos.css' 
+    res.render('editperfil', {
+      title: 'Modifica tu perfil',
+      css: 'estilos.css',
+      usuario: req.session.usuario
     })
   },
   logout: function (req, res) {

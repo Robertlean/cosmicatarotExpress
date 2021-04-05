@@ -1,72 +1,79 @@
-module.exports = (sequelize,dataTypes) => {
-    
+module.exports = (sequelize, dataTypes) => {
+
     let alias = "users";
     let cols = {
-        id:{
-            type:dataTypes.INTEGER,
-            primaryKey:true,
-            autoIncrement:true,
-            allowNull:false
+        id: {
+            type: dataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
         },
-        nameuser:{
+        nameuser: {
             type: dataTypes.STRING,
-            allowNull:false,
-            unique:true
+            allowNull: false,
+            unique: true
         },
-        mail:{
+        mail: {
             type: dataTypes.STRING,
-            allowNull:false,
-            unique:true
+            allowNull: false,
+            unique: true
         },
-        password:{
+        password: {
             type: dataTypes.STRING,
-            allowNull:false
+            allowNull: false
         },
-        fechanac:{
+        fechanac: {
             type: dataTypes.DATEONLY,
-            allowNull:false
+            allowNull: false
         },
-        avatar:{
+        avatar: {
             type: dataTypes.STRING,
             allowNull: true
         },
-        rol:{
+        rol: {
             type: dataTypes.STRING,
-            allowNull:true
+            allowNull: true
         },
-        description:{
+        description: {
             type: dataTypes.STRING,
-            allowNull:true
+            allowNull: true
         },
-        idsigno:{
+        idsigno: {
             type: dataTypes.INTEGER,
-            allowNull:true
+            allowNull: true
         },
-        idtiposigno:{
+        idtiposigno: {
             type: dataTypes.INTEGER,
-            allowNull:true
+            allowNull: true
         },
-        nation:{
+        nation: {
             type: dataTypes.STRING,
             allowNull: true
         }
-        
+
     }
 
     let config = {
         tableName: "users",
-        timestamps:false,
-        underscored:true
+        timestamps: false,
+        underscored: true
 
     }
 
-    const users = sequelize.define(alias,cols,config);
+    const users = sequelize.define(alias, cols, config);
 
-    users.associate = function(models){
-    users.hasOne(models.tiposigno,{
-        as:"tiposigno", //nombre de fantasia de la relación de las tablas
-        foreignKey:"id"
-    })
+    users.associate = function (models) {
+        users.belongsTo(models.tiposigno, {
+            as: "tiposigno", //nombre de fantasia de la relación de las tablas
+            foreignKey: "idtiposigno",
+            where: "signo",
+
+        })
+        users.belongsTo(models.horoscopo, {
+            as: "horoscopo",
+            foreignKey: "idsigno",
+            where: "nombre"
+        })
 
     }
     return users;

@@ -30,12 +30,19 @@ module.exports = (sequelize,dataTypes) => {
 
     let config = {
         tableName: "horoscopo",
-        timestamps:true,
+        timestamps:false,
         underscored:true
 
     }
 
     const Horoscopo = sequelize.define(alias,cols,config);
+    Horoscopo.associate = function (models) {
+        Horoscopo.hasMany(models.users, {
+            as: "users", //nombre de fantasia de la relación de las tablas
+            foreignKey: "id",
+            where: "signo",
 
+        })
+    }
     return Horoscopo
 }
