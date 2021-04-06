@@ -150,6 +150,8 @@ module.exports = {
   },
   editprofile: function (req, res) {
     let errors = validatioResult(req);
+    console.log(req.file[0])
+    console.log(req.body.description)/*
     if (errors.isEmpty()){
       db.users.update({
           avatar: (req.files[0]) ? req.files[0].filename : req.session.usuario.avatar,
@@ -161,11 +163,11 @@ module.exports = {
         })
         .then(result => {
           console.log(req.session.usuario);
-          res.redirect('/perfil')
+          res.redirect('/perfil/:id')
         })
         .catch(error => res.send(error))
 
-    }
+    }*/
 
   },
   mostraredit: (req, res, next) => {

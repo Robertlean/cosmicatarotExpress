@@ -34,8 +34,10 @@
                                             </p>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <% if(usuario.avatar=="default.png" ) {%>
-                                                <a class="dropdown-item" href="/perfil/">Agregar foto</a>
+                                            <input type="file" name="avatar" id="avatar">
+                                            <% if(usuario.avatar!="default.png" ) {%>
+                                                
+                                                <a class="dropdown-item" href="/perfil/">Cambiar foto</a>
                                                 <a class="dropdown-item" href="">Eliminar foto</a>
                                             <% }else{ %>
                                                 <a class="dropdown-item" href="/perfil/">Agregar foto</a>
@@ -49,9 +51,10 @@
 
                                         <div 
                                             style="display: flex; justify-content: center; padding: 0.5em 0em;">
+                                            <%=usuario.description %>
                                             <% if ( typeof usuario.description=="undefined" || usuario.description== "null" ) {%>
                                                 <input type="text" name="description" id="description"
-                                                    class="form-control" placeholder="Agregá una descripción sobre tí" autocomplete="off">
+                                                    class="form-control" placeholder="Agregá una descripción sobre tí" autocomplete="randomasdqwea">
                                                 <% }else{ %>
                                                     <input type="text" name="description" id="description"
                                                         class="form-control" 
@@ -63,7 +66,7 @@
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label for="pass">Contraseña Actual</label>
-                                        <input type="password" class="form-control" name="pass" id="pass"></input>
+                                        <input type="password" class="form-control" name="pass" id="pass" autocomplete="new-password"></input>
                                         <small id="errorPass" class="text-danger"><%= (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
                                     </div>
                                     <div class="form-group col-lg-4">
