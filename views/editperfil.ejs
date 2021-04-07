@@ -22,8 +22,7 @@
                                     style="flex-direction: column; justify-content: center;">
                                     <div class="col-lg-12">
                                         <div class="test-img">
-                                            <img src="/images/users/default.png" alt="">
-
+                                            <img src="/images/users/<%= usuario.avatar %> " alt="">
                                         </div>
                                         <a class="d-flex justify-content-center nav-link dropdown-toggle" href="#"
                                             id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -34,51 +33,59 @@
                                             </p>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <input type="file" name="avatar" id="avatar">
+                                            <input type="file" name="avatar" id="avatar" lang="en">
                                             <% if(usuario.avatar!="default.png" ) {%>
-                                                
+
                                                 <a class="dropdown-item" href="/perfil/">Cambiar foto</a>
                                                 <a class="dropdown-item" href="">Eliminar foto</a>
-                                            <% }else{ %>
-                                                <a class="dropdown-item" href="/perfil/">Agregar foto</a>
-                                            <% } %>
+                                                <% }else{ %>
+                                                    <a class="dropdown-item" href="/perfil/">Agregar foto</a>
+                                                    <% } %>
 
 
                                         </div>
                                     </div>
                                     <div class="col-lg-4" style="display: flex; justify-content: center; flex-direction: column;">
-
-
-                                        <div 
-                                            style="display: flex; justify-content: center; padding: 0.5em 0em;">
+                                        <div style="display: flex; justify-content: center; padding: 0.5em 0em;">
                                             <%=usuario.description %>
-                                            <% if ( typeof usuario.description=="undefined" || usuario.description== "null" ) {%>
-                                                <input type="text" name="description" id="description"
-                                                    class="form-control" placeholder="Agregá una descripción sobre tí" autocomplete="randomasdqwea">
-                                                <% }else{ %>
+                                                <% if ( typeof usuario.description=="undefined" ||
+                                                    usuario.description=="null" ) {%>
                                                     <input type="text" name="description" id="description"
-                                                        class="form-control" 
-                                                        value="<%=usuario.description %>" placeholder="">
+                                                        class="form-control"
+                                                        placeholder="Agregá una descripción sobre tí"
+                                                        autocomplete="randomasdqwea">
+                                                    <% }else{ %>
+                                                        <input type="text" name="description" id="description"
+                                                            class="form-control" value="<%=usuario.description %>"
+                                                            placeholder="<%=usuario.description%>" autocomplete="randomasdqwea">
 
 
-                                                    <% } %>
+                                                        <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label for="pass">Contraseña Actual</label>
-                                        <input type="password" class="form-control" name="pass" id="pass" autocomplete="new-password"></input>
-                                        <small id="errorPass" class="text-danger"><%= (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
+                                        <input type="password" class="form-control" name="pass" id="pass"
+                                            autocomplete="new-password"></input>
+                                        <small id="errorPass" class="text-danger">
+                                            <%= (typeof errors !='undefined' && errors.pass)?errors.pass.msg: "" %>
+                                        </small>
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label for="pass">Nueva Contraseña</label>
                                         <input type="password" class="form-control" name="pass" id="pass"></input>
-                                        <small id="errorPass" class="text-danger"><%= (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
+                                        <small id="errorPass" class="text-danger">
+                                            <%= (typeof errors !='undefined' && errors.pass)?errors.pass.msg: "" %>
+                                        </small>
                                     </div>
-    
+
                                     <div class="form-group col-lg-4">
-                                        <label for="pass2">Reingresar contraseña<span class="text-danger">*</span></label>
-                                        <input type="password" class="form-control"  name="pass2">
-                                        <small id="errorPass2" class="text-danger"><%= (typeof errors != 'undefined' && errors.pass2)?errors.pass2.msg: "" %> </small>
+                                        <label for="pass2">Reingresar contraseña<span
+                                                class="text-danger">*</span></label>
+                                        <input type="password" class="form-control" name="pass2">
+                                        <small id="errorPass2" class="text-danger">
+                                            <%= (typeof errors !='undefined' && errors.pass2)?errors.pass2.msg: "" %>
+                                        </small>
                                     </div>
                                     <div class="d-flex justify-content-center" style="padding: 0.5em 0em;">
                                         <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="200"

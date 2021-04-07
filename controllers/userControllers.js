@@ -80,7 +80,6 @@ module.exports = {
     let mes = fecha.getMonth() + 1
 
     if (errors.isEmpty()) {
-
       db.users.create({
         nameuser: req.body.name.trim(),
         mail: req.body.mail.trim(),
@@ -94,7 +93,6 @@ module.exports = {
       })
         .then(result => {
           console.log('Llegue acá')
-
           return res.redirect('/login')
         })
         .catch(errores => {
@@ -149,12 +147,24 @@ module.exports = {
     }
   },
   editprofile: function (req, res) {
-    let errors = validatioResult(req);
-    console.log(req.file[0])
-    console.log(req.body.description)/*
+    let url = '/';
+    if (req.session.url) {
+      url = req.session.url
+      console.log(req)
+    }
+    let errors = validationResult(req);
+    console.log(errors)
+
+    
+    console.log('Holis')
+    console.log(req.body.avatar)
+    console.log(req.body.description)
+   
+    
+    
     if (errors.isEmpty()){
       db.users.update({
-          avatar: (req.files[0]) ? req.files[0].filename : req.session.usuario.avatar,
+          avatar: (req.files[0])?req.files[0].filename : "default.png",
           description: req.body.description.trim()
         },{
           where: {
@@ -167,7 +177,7 @@ module.exports = {
         })
         .catch(error => res.send(error))
 
-    }*/
+    }
 
   },
   mostraredit: (req, res, next) => {
