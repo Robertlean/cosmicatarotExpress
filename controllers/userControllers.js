@@ -154,17 +154,12 @@ module.exports = {
     }
     let errors = validationResult(req);
     console.log(errors)
-
-    
-    console.log('Holis')
     console.log(req.body.avatar)
-    console.log(req.body.description)
-   
     
     
     if (errors.isEmpty()){
       db.users.update({
-          avatar: (req.files[0])?req.files[0].filename : "default.png",
+          avatar: (req.files)?req.files[0].filename : req.session.usuario.avatar,
           description: req.body.description.trim()
         },{
           where: {
