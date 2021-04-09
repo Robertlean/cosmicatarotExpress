@@ -15,7 +15,7 @@
                 </section>
 
                 <section class="recent-post">
-                    <form action="/perfil/<%= usuario.id %> " method="post" autocomplete="off">
+                    <form action="/perfil/<%= usuario.id %> " method="post" autocomplete="off" enctype="multipart/form-data">
                         <div class="cta-content2" style="padding:2em 0 2.5em; margin:3em 0">
                             <div class="container" style="display:block; justify-content: center; align-items: center;">
                                 <div class="d-md-flex row align-items-center text-xl-start text-xl-start content-img"
@@ -48,7 +48,7 @@
                                     <div class="col-lg-4" style="display: flex; justify-content: center; flex-direction: column;">
                                         <div style="display: flex; justify-content: center; padding: 0.5em 0em;">
                                             <%=usuario.description %>
-                                                <% if ( typeof usuario.description=="undefined" ||
+                                                <% if (usuario.description=="undefined" ||
                                                     usuario.description=="null" ) {%>
                                                     <input type="text" name="description" id="description"
                                                         class="form-control"
@@ -56,7 +56,7 @@
                                                         autocomplete="randomasdqwea">
                                                     <% }else{ %>
                                                         <input type="text" name="description" id="description"
-                                                            class="form-control" value="<%=usuario.description %>"
+                                                            class="form-control" value="<%=usuario.idsigno%>"
                                                             placeholder="<%=usuario.description%>" autocomplete="randomasdqwea">
 
 

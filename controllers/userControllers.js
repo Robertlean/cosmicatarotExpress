@@ -88,7 +88,8 @@ module.exports = {
         rol: "usuario",
         fechanac: req.body.date.trim(),
         idsigno: signo(dia, mes),
-        idtiposigno: tipo(signo(dia, mes))
+        idtiposigno: tipo(signo(dia, mes)),
+        description: "undefined"
 
       })
         .then(result => {
@@ -154,12 +155,13 @@ module.exports = {
     }
     let errors = validationResult(req);
     console.log(errors)
-    console.log(req.body.avatar)
+    console.log(req)
     
     
     if (errors.isEmpty()){
+      console.log(req.files)
       db.users.update({
-          avatar: (req.files)?req.files[0].filename : req.session.usuario.avatar,
+          avatar: req.file.filename,
           description: req.body.description.trim()
         },{
           where: {
