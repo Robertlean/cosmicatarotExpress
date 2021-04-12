@@ -12,40 +12,40 @@
 
         <section class="recent-posts">
             <div class="container">
-                <form action="" method="post">
-                    
-                    <div class="signopost" style="display: flex; justify-content: center; flex-direction: column;">
-                        <h6>Elija opción signo del post</h6>
-                        <select name="optsigno" id="signopt">
-                            <option value="ALL">Todos</option>
-                            <option value="CAP">Capricornio</option>
-                            <option value="ACU">Acuario</option>
-                            <option value="PIS">Piscis</option>
-                            <option value="ARI">Aries</option>
-                            <option value="TAU">Tauro</option>
-                            <option value="GEM">Geminis</option>
-                            <option value="CAN">Cancer</option>
-                            <option value="LEO">Leo</option>
-                            <option value="VIR">Virgo</option>
-                            <option value="LIB">Libra</option>
-                            <option value="ESC">Escorpio</option>
-                            <option value="SAG">Sagitario</option>
-                        </select>
-                    </div>
+                <form action="/post/" method="post">
                     <div class="text-center formtitulo">
-                        <input class="form-control form-control-lg" type="text"
-                            placeholder="Escribe un titulo para el post">
-                        <input class="form-control" type="text" placeholder="Escribe un subtitulo al post">
+                        <input class="form-control form-control-lg align-text-center" type="text"
+                            placeholder="Escribe un titulo para el post" id="title" name="title">
+                        <input id="subtitle" name="subtitle" class="form-control align-text-center" type="text" placeholder="Escribe un subtitulo al post">
+                        <input type="file" name="imgpost" id=" imgpost" multiple>
                     </div>
                     <div class="cta-content" style="padding:1em 3em">
                         <div class="hero-unit">
-                            <textarea class="textarea" placeholder="Empieza con algo motivador..."
-                                style="width: 100%; height: 200px"></textarea>
+                            <input type="text" class="textarea" id="context" name="context" placeholder="Empieza con algo motivador..."
+                                style="width: 80%; height: 200px; text-align: center; justify-content: center;">
                         </div>
                         <div class="tagsenter">
                             <h6>Ingresé tags separados por coma</h6>
-                            <textarea name="tags" id="tags" style="width: 100%; height: 100px"></textarea>
-                        </div>                        
+                            <input type="text" name="tags" id="tags" style="width: 100%; height: 100px">
+                        </div>   
+                        <div class="signopost" style="display: flex; justify-content: center; flex-direction: column;">
+                            <h6>Elija opción signo del post</h6>
+                            <select name="optsigno" id="signopt">
+                                <option value="0">Todos</option>                                
+                                <option value="1">Acuario</option>
+                                <option value="2">Piscis</option>
+                                <option value="3">Aries</option>
+                                <option value="4">Tauro</option>
+                                <option value="5">Geminis</option>
+                                <option value="6">Cancer</option>
+                                <option value="7">Leo</option>
+                                <option value="8">Virgo</option>
+                                <option value="9">Libra</option>
+                                <option value="10">Escorpio</option>
+                                <option value="11">Sagitario</option>
+                                <option value="12">Capricornio</option>
+                            </select>
+                        </div>                     
                         <div class="d-flex justify-content-center">
                             <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="400" data-aos-offset="0" style="display: flex; margin-bottom: 2em;">
                                 <input type="submit" value="Guardar" class="btn2 btn-primary" style="margin:0 .5em">

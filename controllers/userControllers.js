@@ -161,7 +161,7 @@ module.exports = {
     if (errors.isEmpty()){
       console.log(req.files)
       db.users.update({
-          avatar: req.file.filename,
+          avatar: (req.file.filename == req.file.filename)? req.file.filename: "default.png",
           description: req.body.description.trim()
         },{
           where: {

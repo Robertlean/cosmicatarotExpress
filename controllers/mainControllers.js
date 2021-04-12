@@ -2,12 +2,7 @@ module.exports = {
     index: (req, res, next) => {
         res.render('index', { title: 'Inicio', css: 'estilos.css', usuario: req.session.usuario});
     },
-    createpost: (req, res, next) => {
-        res.render('createpost', {title: 'Crear Post', css: 'estilos.css', usuario: req.session.usuario})
-    },
-    post: (req, res, next) =>{
-        res.render('post', {title: 'Post', css:'estilos.css', usuario: req.session.usuario})
-    },
+    
     aboutme: (req, res, next) =>{
         res.render('aboutme', {title: 'Sobre mí', css:'estilos.css', usuario: req.session.usuario})
     },

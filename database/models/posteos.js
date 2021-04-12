@@ -25,7 +25,7 @@ module.exports = (sequelize,dataTypes) => {
             type: dataTypes.STRING(1000),
             alowNull:false
         },
-        fechacreation:{
+        fechcreation:{
             type: dataTypes.DATE(),
             allowNull:true
         },
@@ -37,16 +37,16 @@ module.exports = (sequelize,dataTypes) => {
             type: dataTypes.INTEGER,
             allowNull :false
         },
-        idcoment: {
+        idcoments: {
             type: dataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         }
         
     }
 
     let config = {
         tableName: "posteos",
-        timestamps:true,
+        timestamps:false,
         underscored:true
 
     }
