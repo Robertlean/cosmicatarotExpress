@@ -9,16 +9,20 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:false
         },
         nombre:{
-            type: dataTypes.STRING(100),
+            type: dataTypes.STRING,
             allowNull:false,
             unique:true
+        },
+        idpost:{
+            type: dataTypes.INTEGER,
+            allowNull: true,
         }
         
     }
 
     let config = {
         tableName: "tags",
-        timestamps:true,
+        timestamps:false,
         underscored:true
 
     }

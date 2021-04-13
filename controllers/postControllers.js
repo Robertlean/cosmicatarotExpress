@@ -32,6 +32,7 @@ module.exports = {
                 idtiposigno: 3,
                 fechcreation: fecha,
                 idtags: 1,
+                idcoments: 1
                 
             })
             .then(result =>{
@@ -41,10 +42,16 @@ module.exports = {
             .catch(error => res.send(error))
         }
 
-        if (errors.isEmpty()){
+        /*if (errors.isEmpty()){
             db.tags.create({
-                nombre: req.session.tags
+                nombre: req.body.tags.trim(),
+                idpost: 1
             })
-        }
+            .then(result =>{
+                console.log('Ya pase por aquí')
+                return res.redirect('/post')
+            })
+            .catch(error => res.send(error))
+        }*/
     }
 }
