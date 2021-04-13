@@ -25,21 +25,26 @@ module.exports = {
         if (errors.isEmpty()){
             db.posteos.create({
                 idsigno: req.body.optsigno,
-                title: req.body.title,
-                subtitle: req.body.subtitle,
+                title: req.body.title.trim(),
+                subtitle: req.body.subtitle.trim(),
                 img: "galaxy.jpg",
-                contenido: req.body.context,
+                contenido: req.body.context.trim(),
                 idtiposigno: 3,
-                fechcreation: new Date(),
+                fechcreation: fecha,
                 idtags: 1,
-                idcoments: 1,
-                idcoments: 1,
+                
             })
             .then(result =>{
                 console.log('Ya pase por aquí')
-                return res.redirect('/post/:id')
+                return res.redirect('/post')
             })
             .catch(error => res.send(error))
+        }
+
+        if (errors.isEmpty()){
+            db.tags.create({
+                nombre: req.session.tags
+            })
         }
     }
 }
