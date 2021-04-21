@@ -1,6 +1,6 @@
 module.exports = (sequelize,dataTypes) => {
     
-    let alias = "imgposteo";
+    let alias = "sessionposteo";
     let cols = {
         id:{
             type:dataTypes.INTEGER,
@@ -8,12 +8,12 @@ module.exports = (sequelize,dataTypes) => {
             autoIncrement:true,
             allowNull:false
         },
-        nombre:{
+        nombreimg:{
             type: dataTypes.STRING,
             allowNull:false,
             unique:true
         },
-        idpost:{
+        conttext:{
             type: dataTypes.INTEGER,
             allowNull:false,
         }
@@ -21,7 +21,7 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     let config = {
-        tableName: "imgposteo",
+        tableName: "sessionposteo",
         timestamps:true,
         underscored:true
 

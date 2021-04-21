@@ -2,7 +2,7 @@ module.exports = (sequelize,dataTypes) => {
     
     let alias = "tags";
     let cols = {
-        idtags:{
+        id:{
             type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true,
@@ -28,6 +28,17 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const tags = sequelize.define(alias,cols,config);
+
+    tags.associate = function (models) {
+        tags.hasMany(models.posteos, {
+            as: "posteos", //nombre de fantasia de la relación de las tablas
+            foreignKey: "id",
+            where: "posteos",
+
+        })
+        
+
+    }
 
     return tags
 }

@@ -9,21 +9,21 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:false
         },
         title:{
-            type: dataTypes.STRING(100),
+            type: dataTypes.STRING,
             allowNull:false,
             unique:true
         },
         subtitle:{
-            type: dataTypes.STRING(200),
+            type: dataTypes.STRING,
             allowNull:false
         },
         img:{
-            type: dataTypes.STRING(300),
-            allowNull:false
+            type: dataTypes.STRING,
+            allowNull:true
         },
         contenido:{
-            type: dataTypes.STRING(1000),
-            alowNull:false
+            type: dataTypes.STRING,
+            alowNull:true
         },
         fechcreation:{
             type: dataTypes.DATE(),
@@ -31,13 +31,17 @@ module.exports = (sequelize,dataTypes) => {
         },
         idtags: {
             type: dataTypes.INTEGER,
-            allowNull:false
+            allowNull:true
         },
         idsigno: {
             type: dataTypes.INTEGER,
             allowNull :false
         },
         idcoments: {
+            type: dataTypes.INTEGER,
+            allowNull: true
+        },
+        idtiposigno: {
             type: dataTypes.INTEGER,
             allowNull: true
         }
@@ -52,6 +56,17 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const posteos = sequelize.define(alias,cols,config);
+
+    posteos.associate = function (models) {
+        posteos.hasMany(models.tags, {
+            as: "tags", //nombre de fantasia de la relación de las tablas
+            foreignKey: "id",
+            where: "tags",
+
+        })
+        
+
+    }
 
     return posteos
 }
