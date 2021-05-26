@@ -16,6 +16,10 @@ module.exports = (sequelize,dataTypes) => {
             type: dataTypes.STRING(2000),
             allowNull:false
         },
+        description:{
+            type: dataTypes.STRING,
+            allowNull: false
+        },
         meshoroscopo:{
             type: dataTypes.DATE(),
             allowNull:true

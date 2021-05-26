@@ -24,6 +24,10 @@ module.exports = (sequelize,dataTypes) => {
         endfecha:{
             type: dataTypes.DATEONLY(),
             allowNull:true
+        },
+        img:{
+            type: dataTypes.STRING(1000),
+            allowNull: true
         }
         
     }

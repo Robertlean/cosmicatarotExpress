@@ -18,9 +18,6 @@ module.exports = {
     service: (req, res, next) =>{
         res.render('service', {title: 'Sesiones', css:'estilos.css', usuario: req.session.usuario})
     },
-    horoscopo: (req, res, next) =>{
-        res.render('horoscopo', {title: 'Horoscopo', css:'estilos.css', usuario: req.session.usuario})
-    },
     signo:(req, res, next) =>{
         res.render('signo', {title: 'Signo', css:'estilos.css', usuario: req.session.usuario})
     },
