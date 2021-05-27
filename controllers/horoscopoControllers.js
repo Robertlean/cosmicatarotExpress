@@ -10,9 +10,7 @@ const { Op } = require('sequelize');
 
 module.exports={
     mostrarhoroscopo: (req, res, next) =>{
-        db.horoscopo.findAll({where:{
-            idSigno: req.param.id}
-        })
+        db.horoscopo.findAll()
         .then(signo =>{
             console.log(signo)
             res.render('horoscopo', {
@@ -27,11 +25,25 @@ module.exports={
         })
     },
     mostrarsigno:(req, res, next) =>{
-        db.horoscopo.findAll()
-        res.render('signo', {title: 'Signo', css:'estilos.css', usuario: req.session.usuario})
+        db.horoscopo.findOne({
+            where: {id : req.params.id}
+        })
+        .then(signo =>{
+            res.render('signo', {
+                title: 'Signo', 
+                css:'estilos.css', 
+                usuario: req.session.usuario,
+                signo: signo
+            })
+        })
+        
     },
     signoedit: (req, res, next) =>{
-        res.render('edithoroscopo', {title: 'Editar signo', css:'estilos.css', usuario: req.session.usuario})
+        res.render('edithoroscopo', {
+            title: 'Editar signo', 
+            css:'estilos.css', 
+            usuario: req.session.usuario
+        })
 
     },
     signosend: (req, res, next) =>{

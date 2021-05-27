@@ -50,11 +50,7 @@ module.exports = {
             avatar: (usuario.rol == "usuario") ? usuario.avatar : usuario.avatar,
             rol: usuario.rol
           }
-          console.log(usuario)
-
-          /*if (req.body.recordar) {
-            res.cookie('userCosmica', req.session.usuario, { maxAge: 1000 * 60 * 5 })
-          }*/
+         
           res.locals.usuario = req.session.usuario
           return res.redirect(url)
         })
@@ -151,15 +147,10 @@ module.exports = {
     let url = '/';
     if (req.session.url) {
       url = req.session.url
-      console.log(req)
     }
     let errors = validationResult(req);
-    console.log(errors)
-    console.log(req)
-    
     
     if (errors.isEmpty()){
-      console.log(req.files)
       db.users.update({
           avatar: (req.file.filename == req.file.filename)? req.file.filename: "default.png",
           description: req.body.description.trim()
