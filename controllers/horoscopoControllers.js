@@ -30,7 +30,7 @@ module.exports={
         })
         .then(signo =>{
             res.render('signo', {
-                title: 'Signo', 
+                title: signo.nombre, 
                 css:'estilos.css', 
                 usuario: req.session.usuario,
                 signo: signo
@@ -39,16 +39,24 @@ module.exports={
         
     },
     signoedit: (req, res, next) =>{
-        res.render('edithoroscopo', {
-            title: 'Editar signo', 
-            css:'estilos.css', 
-            usuario: req.session.usuario
+        db.horoscopo.findOne({
+            where: {id: req.params.id}
         })
+        .then(signo => {
+            res.render('edithoroscopo', {
+                title: 'Editar signo', 
+                css:'estilos.css', 
+                usuario: req.session.usuario,
+                signo: signo
+            })
+        })
+        
 
     },
     signosend: (req, res, next) =>{
         let idSigno = req.params.id;
         console.log(req.body)
+
         db.posteohoroscopo.create({
            text: req.body.titulo,
            description: req.body.subtitulo
@@ -59,7 +67,7 @@ module.exports={
             }
         })
         .then(resultado => {
-            res.redirect('/productos/listar')
+            res.redirect('/')
         })
     }
 }

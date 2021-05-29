@@ -44,5 +44,14 @@ module.exports = (sequelize,dataTypes) => {
 
     const posteoHoroscopo = sequelize.define(alias,cols,config);
 
+    posteoHoroscopo.associate = function(models){
+        posteoHoroscopo.belongsTo(models.horoscopo, {
+            as:"horoscopo",
+            foreignKey: "id",
+            where: "horoscopo"
+        })
+    }
+
+
     return posteoHoroscopo;
 }
