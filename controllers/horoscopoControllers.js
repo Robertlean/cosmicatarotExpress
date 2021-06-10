@@ -8,66 +8,94 @@ const path = require('path');
 const e = require('express');
 const { Op } = require('sequelize');
 
-module.exports={
-    mostrarhoroscopo: (req, res, next) =>{
+module.exports = {
+    mostrarhoroscopo: (req, res, next) => {
         db.horoscopo.findAll()
-        .then(signo =>{
-            console.log(signo)
-            res.render('horoscopo', {
-                title: 'Horoscopo',
-                css:'estilos.css', 
-                usuario: req.session.usuario,
-                signo: signo
+            .then(signo => {
+                console.log(signo)
+                res.render('horoscopo', {
+                    title: 'Horoscopo',
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
             })
-        })
-        .catch(error =>{
-            res.send(error)
-        })
+            .catch(error => {
+                res.send(error)
+            })
     },
-    mostrarsigno:(req, res, next) =>{
+    mostrarsigno: (req, res, next) => {
         db.horoscopo.findOne({
-            where: {id : req.params.id}
+            where: { id: req.params.id }
         })
-        .then(signo =>{
-            res.render('signo', {
-                title: signo.nombre, 
-                css:'estilos.css', 
-                usuario: req.session.usuario,
-                signo: signo
+            .then(signo => {
+                res.render('signo', {
+                    title: signo.nombre,
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
             })
-        })
-        
-    },
-    signoedit: (req, res, next) =>{
-        db.horoscopo.findOne({
-            where: {id: req.params.id}
-        })
-        .then(signo => {
-            res.render('edithoroscopo', {
-                title: 'Editar signo', 
-                css:'estilos.css', 
-                usuario: req.session.usuario,
-                signo: signo
-            })
-        })
-        
 
     },
-    signosend: (req, res, next) =>{
+    signoedit: (req, res, next) => {
+        db.horoscopo.findOne({
+            where: { id: req.params.id }
+        })
+            .then(signo => {
+                res.render('edithoroscopo', {
+                    title: 'Editar signo',
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
+            })
+
+
+    },
+    signosend: (req, res, next) => {
         let idSigno = req.params.id;
         console.log(req.body)
 
-        db.posteohoroscopo.create({
-           text: req.body.titulo,
-           description: req.body.subtitulo
-        },
-        {
-            where: {
-                idSigno: req.params.id
+        let fecha = new Date()
+
+        let dbmes = new Date(db.posteohoroscopo.meshoroscopo);
+        let dbanio = new Date(db.posteohoroscopo.meshoroscopo);
+        let calendmes = fecha.Month()
+        let calendanio = fecha.Year()
+
+        db.posteohoroscopo.findOrCreate({
+            where: sequelize.where(sequelize.fn('date', sequelize.col('meshoroscopo')), '=', 'new Date(getYear())'),
+
+            //Where: { new Date(meshoroscopo).getMonth: new Date().getMonth}, andWhere: {new Date(meshoroscopo).getYear(): new Date().getYear()}
+       
+
+            defaults: {
+                text: req.body.titulo,
+                description: req.body.subtitulo,
+                meshoroscopo: fecha
             }
-        })
-        .then(resultado => {
-            res.redirect('/')
-        })
+          });
+
+        if (dbmes.getMonth() == calendmes && dbanio.getYear() == calendanio) {
+            db.posteohoroscopo.edit({
+
+            })
+        }
+        else {
+            db.posteohoroscopo.create({
+                text: req.body.titulo,
+                description: req.body.subtitulo,
+                meshoroscopo: fecha
+            },
+            {
+                where: {
+                    idSigno: req.params.id
+                }
+            })
+            .then(resultado => {
+                res.redirect('/horoscopo/signo/id')
+            })
+        }
     }
 }
