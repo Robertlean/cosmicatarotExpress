@@ -64,7 +64,10 @@ module.exports = {
         let calendmes = fecha.Month()
         let calendanio = fecha.Year()
 
-        db.posteohoroscopo.findOrCreate({
+        //https://stackoverflow.com/questions/37723420/convert-datetime-to-date-of-a-column-in-where-condition-using-sequelize
+        //https://sequelize.org/master/manual/model-querying-finders.html#-code-findall--code-
+
+        /*db.posteohoroscopo.findOrCreate({
             where: sequelize.where(sequelize.fn('date', sequelize.col('meshoroscopo')), '=', 'new Date(getYear())'),
 
             //Where: { new Date(meshoroscopo).getMonth: new Date().getMonth}, andWhere: {new Date(meshoroscopo).getYear(): new Date().getYear()}
@@ -75,11 +78,13 @@ module.exports = {
                 description: req.body.subtitulo,
                 meshoroscopo: fecha
             }
-          });
+          });*/
 
         if (dbmes.getMonth() == calendmes && dbanio.getYear() == calendanio) {
             db.posteohoroscopo.edit({
-
+                text: req.body.texto,
+                description: req.body.description,
+                meshoroscopo: fecha
             })
         }
         else {
