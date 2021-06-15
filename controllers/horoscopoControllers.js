@@ -55,14 +55,19 @@ module.exports = {
     },
     signosend: (req, res, next) => {
         let idSigno = req.params.id;
-        console.log(req.body)
 
         let fecha = new Date()
 
-        let dbmes = new Date(db.posteohoroscopo.meshoroscopo);
-        let dbanio = new Date(db.posteohoroscopo.meshoroscopo);
-        let calendmes = fecha.Month()
-        let calendanio = fecha.Year()
+        let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo);
+        let dbanio = fecha.getYear(db.posteohoroscopo.meshoroscopo);
+
+        console.log(dbmes)
+        console.log(dbanio);
+        let calendmes = fecha.getMonth()
+        let calendanio = fecha.getYear()
+
+        console.log(calendmes);
+        console.log(calendanio);
 
         //https://stackoverflow.com/questions/37723420/convert-datetime-to-date-of-a-column-in-where-condition-using-sequelize
         //https://sequelize.org/master/manual/model-querying-finders.html#-code-findall--code-
@@ -80,26 +85,52 @@ module.exports = {
             }
           });*/
 
-        if (dbmes.getMonth() == calendmes && dbanio.getYear() == calendanio) {
-            db.posteohoroscopo.edit({
-                text: req.body.texto,
+        if (dbmes === calendmes && dbanio === calendanio) {
+            db.posteohoroscopo.update({
+                text: req.body.context,
                 description: req.body.description,
-                meshoroscopo: fecha
-            })
-        }
-        else {
-            db.posteohoroscopo.create({
-                text: req.body.titulo,
-                description: req.body.subtitulo,
-                meshoroscopo: fecha
+                idsigno: idSigno
+                
             },
             {
                 where: {
                     idSigno: req.params.id
                 }
             })
-            .then(resultado => {
-                res.redirect('/horoscopo/signo/id')
+            .then(signo => {
+                res.render('horoscopo',{
+                    title: 'Horoscopo',
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
+            })
+            .catch(error => {
+                res.send(error)
+            })            
+        }
+        else {
+            db.posteohoroscopo.create({
+                text: req.body.context,
+                description: req.body.description,
+                meshoroscopo: fecha,
+                idsigno:idSigno
+            },
+            {
+                where: {
+                    idSigno: req.params.id
+                }
+            })
+            .then(signo => {
+                res.render('horoscopo',{
+                    title: 'Horoscopo',
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
+            })
+            .catch(error => {
+                res.send(error)
             })
         }
     }

@@ -10,7 +10,7 @@ module.exports = (sequelize,dataTypes) => {
         },
         idsigno:{
             type: dataTypes.INTEGER,
-            allowNull:false
+            allowNull:true
         },
         text:{
             type: dataTypes.STRING(2000),
@@ -18,7 +18,7 @@ module.exports = (sequelize,dataTypes) => {
         },
         description:{
             type: dataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         meshoroscopo:{
             type: dataTypes.DATE(),
@@ -26,7 +26,7 @@ module.exports = (sequelize,dataTypes) => {
         },
         idtiposigno:{
             type: dataTypes.INTEGER,
-            allowNull:false
+            allowNull:true
         },
         idcoments:{
             type: dataTypes.INTEGER,
@@ -37,7 +37,7 @@ module.exports = (sequelize,dataTypes) => {
 
     let config = {
         tableName: "posteohoroscopo",
-        timestamps:true,
+        timestamps:false,
         underscored:true
 
     }
@@ -47,7 +47,7 @@ module.exports = (sequelize,dataTypes) => {
     posteoHoroscopo.associate = function(models){
         posteoHoroscopo.belongsTo(models.horoscopo, {
             as:"horoscopo",
-            foreignKey: "id",
+            foreignKey: "idsigno",
             where: "horoscopo"
         })
     }
