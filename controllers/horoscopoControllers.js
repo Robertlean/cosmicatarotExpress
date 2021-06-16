@@ -8,6 +8,8 @@ const path = require('path');
 const e = require('express');
 const { Op } = require('sequelize');
 
+let tipo = require('../functions/funciontipo')
+
 module.exports = {
     mostrarhoroscopo: (req, res, next) => {
         db.horoscopo.findAll()
@@ -28,15 +30,20 @@ module.exports = {
         db.horoscopo.findOne({
             where: { id: req.params.id }
         })
-            .then(signo => {
+        .then(signo => {
+            db.posteohoroscopo.findOne({
+                where: {idsigno: req.params.id}
+            })
+            .then(signal => {
+                console.log(signo)
                 res.render('signo', {
                     title: signo.nombre,
                     css: 'estilos.css',
                     usuario: req.session.usuario,
                     signo: signo
                 })
-            })
-
+            })                
+        })
     },
     signoedit: (req, res, next) => {
         db.horoscopo.findOne({
@@ -50,7 +57,6 @@ module.exports = {
                     signo: signo
                 })
             })
-
 
     },
     signosend: (req, res, next) => {
@@ -83,7 +89,8 @@ module.exports = {
         if (dbmes === calendmes && dbanio === calendanio) {
             db.posteohoroscopo.update({
                 text: req.body.context,
-                description: req.body.description
+                description: req.body.description,
+                
                 
             },
             {
@@ -108,6 +115,7 @@ module.exports = {
                 text: req.body.context,
                 description: req.body.description,
                 meshoroscopo: fecha,
+                idtiposigno: tipo(req.params.id),
                 idsigno:idSigno
             },
             {
