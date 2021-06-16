@@ -13,7 +13,7 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:true
         },
         text:{
-            type: dataTypes.STRING(2000),
+            type: dataTypes.STRING(),
             allowNull:false
         },
         description:{

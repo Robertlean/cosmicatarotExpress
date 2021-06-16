@@ -60,14 +60,9 @@ module.exports = {
 
         let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo);
         let dbanio = fecha.getYear(db.posteohoroscopo.meshoroscopo);
-
-        console.log(dbmes)
-        console.log(dbanio);
         let calendmes = fecha.getMonth()
         let calendanio = fecha.getYear()
-
-        console.log(calendmes);
-        console.log(calendanio);
+       
 
         //https://stackoverflow.com/questions/37723420/convert-datetime-to-date-of-a-column-in-where-condition-using-sequelize
         //https://sequelize.org/master/manual/model-querying-finders.html#-code-findall--code-
@@ -88,13 +83,12 @@ module.exports = {
         if (dbmes === calendmes && dbanio === calendanio) {
             db.posteohoroscopo.update({
                 text: req.body.context,
-                description: req.body.description,
-                idsigno: idSigno
+                description: req.body.description
                 
             },
             {
                 where: {
-                    idSigno: req.params.id
+                    idsigno: req.params.id
                 }
             })
             .then(signo => {
