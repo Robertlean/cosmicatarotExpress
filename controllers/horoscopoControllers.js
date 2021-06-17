@@ -28,55 +28,61 @@ module.exports = {
     },
     mostrarsigno: (req, res, next) => {
         db.posteohoroscopo.findAll({
-            where: {},
-            include:[{
+            where: {idsigno: req.params.id},
+            include: [{
                 model: db.horoscopo,
-                where: {id: req.params.id},
+                where: { id: req.params.id },
                 as: "horoscopo"
             }],
         })
         .then(signo => {
-                console.log(signo+ "Hola por aca ando")
-                res.render('signo', {
-                    title: signo.nombre,
-                    css: 'estilos.css',
-                    usuario: req.session.usuario,
-                    signo: signo                
-            })                
-                               
+            console.log(signo + "<--algo anda mal aqui")
+            res.render('signo', {
+                title: signo.nombre,
+                css: 'estilos.css',
+                usuario: req.session.usuario,
+                signo: signo
+            })
         })
-            
-    },
-   /*  Models.Users.findAll({
-        where: {},
-        include: [{
-            model: Models.Orders,
-            where: {}
-        }]
- */
+        .catch(error => {
+            console.log(error)
+            res.send(error)
+        })
 
-   /*  db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo'] }
-      )
-        .then(usuario => {
-          res.render('perfil', {
-            title: "Perfil de " + usuario.nameuser,
-            css: "estilos.css",
-            usuario: usuario
-          })
-        }) */
+    },
+    /*  Models.Users.findAll({
+         where: {},
+         include: [{
+             model: Models.Orders,
+             where: {}
+         }]
+  */
+
+    /*  db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo'] }
+       )
+         .then(usuario => {
+           res.render('perfil', {
+             title: "Perfil de " + usuario.nameuser,
+             css: "estilos.css",
+             usuario: usuario
+           })
+         }) */
 
     signoedit: (req, res, next) => {
         db.horoscopo.findOne({
             where: { id: req.params.id }
         })
-            .then(signo => {
-                res.render('edithoroscopo', {
-                    title: 'Editar signo',
-                    css: 'estilos.css',
-                    usuario: req.session.usuario,
-                    signo: signo
-                })
+        .then(signo => {
+            res.render('edithoroscopo', {
+                title: 'Editar signo',
+                css: 'estilos.css',
+                usuario: req.session.usuario,
+                signo: signo
             })
+        })
+        .catch(error => {
+            res.send(error)
+        })
 
     },
     signosend: (req, res, next) => {
@@ -88,7 +94,7 @@ module.exports = {
         let dbanio = fecha.getYear(db.posteohoroscopo.meshoroscopo);
         let calendmes = fecha.getMonth()
         let calendanio = fecha.getYear()
-       
+
 
         //https://stackoverflow.com/questions/37723420/convert-datetime-to-date-of-a-column-in-where-condition-using-sequelize
         //https://sequelize.org/master/manual/model-querying-finders.html#-code-findall--code-
@@ -111,22 +117,22 @@ module.exports = {
                 text: req.body.context,
                 description: req.body.description
             },
-            {
-                where: {
-                    idsigno: req.params.id
-                }
-            })
-            .then(signo => {
-                res.render('horoscopo',{
-                    title: 'Horoscopo',
-                    css: 'estilos.css',
-                    usuario: req.session.usuario,
-                    signo: signo
+                {
+                    where: {
+                        idsigno: req.params.id
+                    }
                 })
-            })
-            .catch(error => {
-                res.send(error)
-            })            
+                .then(signo => {
+                    res.render('horoscopo', {
+                        title: 'Horoscopo',
+                        css: 'estilos.css',
+                        usuario: req.session.usuario,
+                        signo: signo
+                    })
+                })
+                .catch(error => {
+                    res.send(error)
+                })
         }
         else {
             db.posteohoroscopo.create({
@@ -134,24 +140,24 @@ module.exports = {
                 description: req.body.description,
                 meshoroscopo: fecha,
                 idtiposigno: tipo(req.params.id),
-                idsigno:idSigno
+                idsigno: idSigno
             },
-            {
-                where: {
-                    idSigno: req.params.id
-                }
-            })
-            .then(signo => {
-                res.render('horoscopo',{
-                    title: 'Horoscopo',
-                    css: 'estilos.css',
-                    usuario: req.session.usuario,
-                    signo: signo
+                {
+                    where: {
+                        idSigno: req.params.id
+                    }
                 })
-            })
-            .catch(error => {
-                res.send(error)
-            })
+                .then(signo => {
+                    res.render('horoscopo', {
+                        title: 'Horoscopo',
+                        css: 'estilos.css',
+                        usuario: req.session.usuario,
+                        signo: signo
+                    })
+                })
+                .catch(error => {
+                    res.send(error)
+                })
         }
     }
 }
