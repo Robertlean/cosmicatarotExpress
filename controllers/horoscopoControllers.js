@@ -27,24 +27,44 @@ module.exports = {
             })
     },
     mostrarsigno: (req, res, next) => {
-        db.horoscopo.findOne({
-            where: { id: req.params.id }
+        db.posteohoroscopo.findAll({
+            where: {},
+            include:[{
+                model: db.horoscopo,
+                where: {id: req.params.id},
+                as: "horoscopo"
+            }],
         })
         .then(signo => {
-            db.posteohoroscopo.findOne({
-                where: {idsigno: req.params.id}
-            })
-            .then(signal => {
-                console.log(signo)
+                console.log(signo+ "Hola por aca ando")
                 res.render('signo', {
                     title: signo.nombre,
                     css: 'estilos.css',
                     usuario: req.session.usuario,
-                    signo: signo
-                })
+                    signo: signo                
             })                
+                               
         })
+            
     },
+   /*  Models.Users.findAll({
+        where: {},
+        include: [{
+            model: Models.Orders,
+            where: {}
+        }]
+ */
+
+   /*  db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo'] }
+      )
+        .then(usuario => {
+          res.render('perfil', {
+            title: "Perfil de " + usuario.nameuser,
+            css: "estilos.css",
+            usuario: usuario
+          })
+        }) */
+
     signoedit: (req, res, next) => {
         db.horoscopo.findOne({
             where: { id: req.params.id }
@@ -89,9 +109,7 @@ module.exports = {
         if (dbmes === calendmes && dbanio === calendanio) {
             db.posteohoroscopo.update({
                 text: req.body.context,
-                description: req.body.description,
-                
-                
+                description: req.body.description
             },
             {
                 where: {

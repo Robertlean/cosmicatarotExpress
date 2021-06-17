@@ -22,7 +22,6 @@ router.post('/:id', upload.single('posteos'), controllerPost.sendpost,function(r
 router.get('/aboutme', controller.aboutme);
 router.get('/buy', controller.buy);
 router.get('/experienceclient', controller.experience);
-router.get('/search', controller.search);
 router.get('/service', controller.service);
 
 module.exports = router;
