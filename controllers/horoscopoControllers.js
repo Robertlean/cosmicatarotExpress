@@ -27,16 +27,12 @@ module.exports = {
             })
     },
     mostrarsigno: (req, res, next) => {
-        db.posteohoroscopo.findAll({
-            where: {idsigno: req.params.id},
-            include: [{
-                model: db.horoscopo,
-                where: { id: req.params.id },
-                as: "horoscopo"
-            }],
+        db.horoscopo.findByPk(req.params.id,{            
+            include: ['horoscopoposteo'],
         })
         .then(signo => {
-            console.log(signo + "<--algo anda mal aqui")
+            /* Seguir arreglando desde aca*/
+            console.log(signo.horoscopoposteo.horoscopoposteo)
             res.render('signo', {
                 title: signo.nombre,
                 css: 'estilos.css',
