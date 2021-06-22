@@ -1,3 +1,29 @@
+@media (max-width:575px){
+  .hero .slide-content{
+    min-height: 350px
+  }
+
+  .cta-content::after {
+    border-top-right-radius: 6.5em;
+    border-bottom-left-radius: 6.5em;
+    margin: 2em 0;
+  }
+
+  .cta-content{
+    border-top-right-radius: 6.5em;
+    border-bottom-left-radius: 6.5em;
+    padding: 2em 0;
+    margin-top: 2em;
+  }
+  .cta-content::after{
+    top: -45px
+  }
+  .services{
+    padding: .9em
+  }
+}
+
+
 /*-----------------------------------
     Small devices (landscape phones, 576px and up)
 ------------------------------------*/
@@ -6,7 +32,7 @@
     padding: 20px 0 15px;
   }
   .hero .slide-content {
-    min-height: 700px;
+    min-height: 76vh;
   }
   .hero .slide-content h1 {
     margin-top: 0px;
@@ -22,7 +48,6 @@
   .content-img img{
     width:50%
   }
-  
 }
 
 /*-----------------------------------
@@ -136,6 +161,9 @@
     align-self: flex-end;
     
   }
+  .field .form-control{
+    width: 37vh
+  }
 }
 
 /*-----------------------------------
@@ -149,7 +177,7 @@
     margin-right: 20px;
   }
   .hero .slide-content {
-    min-height: 80vh;
+    min-height: 50vh;
   }
   .hero .slide-content h1 {
     font-size: 4.5rem;
@@ -200,5 +228,8 @@
     z-index: 1;
     border-top-right-radius: 200px;
     border-bottom-left-radius: 200px;
+  }
+  .field{
+    width: 45vh
   }
 }

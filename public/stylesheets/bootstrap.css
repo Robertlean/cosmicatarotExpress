@@ -3419,7 +3419,6 @@ input[type="button"].btn-block {
 .input-group > .custom-file {
   position: relative;
   flex: 1 1 auto;
-  width: 1%;
   margin-bottom: 0;
 }
 

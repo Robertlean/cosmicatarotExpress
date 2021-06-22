@@ -962,6 +962,7 @@ span {
   line-height: 0;
   position: relative;
   z-index: 1;
+  
 }
 
 .subscribe-widget input:focus {
@@ -1099,14 +1100,13 @@ form .btn{
 }
 
 .form-control{
-  width: 100%;
   border-radius: 0.3rem;
   background-color: #fff;
   color: #170936;
   display: flex;
 }
 .form-control-lg{
-  width: 40%;
+  width: 80%;
 }
 
 .formtitulo{
@@ -1151,4 +1151,10 @@ form .btn{
 
 .dropdown-menu{
   background-color: #26264b;
+}
+
+.suscribite{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }

@@ -17,7 +17,7 @@
         <section class="recent-posts services">
             <div class="title text-center">
                 <h1 class="title-blue horoscopo">horoscopo</h1>
-                <p>Junio</p>
+                <p class="title-blue">Junio</p>
             </div>
             <div class="container">
                 <div class="row">
@@ -36,11 +36,11 @@
                                     Consequatur.</h5>
                                 <h6 style="color: rgb(134, 43, 43)">Tierra</h6>
 
-                                <a class="post-btn" href="<%='horoscopo/signo/'+ 12%>"><i
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+ 12%>"><i
                                         class="fa fa-arrow-right"></i></a>
                             </div>
                             <div class="post-thumb post-left">
-                                <a href="<%='horoscopo/signo/'+ 12%>"><img class="img-fluid"
+                                <a href="<%='/horoscopo/signo/'+ 12%>"><img class="img-fluid"
                                         src="/images/icon/Capricornio.png" alt="Post 1">
                                 </a>
                             </div>
@@ -49,15 +49,15 @@
                     <div class="col-lg-6">
                         <div class="single-rpost d-sm-flex" data-aos="fade-left" data-aos-duration="800">
                             <div class="post-thumb">
-                                <a href="/zodiacales/acuario.html">
+                                <a href="<%='/horoscopo/signo/'+1 %> ">
                                     <img class="img-fluid" src="/images/icon/acuario.png" alt="Post 1">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <h1><time datetime="2019-04-06T13:53">21/Enero - 19/Febrero</time></h1>
                                 <h3>
-                                    <a href="/zodiacales/acuario.html">Acuario</a>
-                                    <i class="fa fa-edit"></i>
+                                    <a href="<%='/horoscopo/signo/'+1 %>">Acuario</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+1 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
                                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quis quae,
                                     tempore aliquid, hic, iusto fugit iste</h5>
@@ -65,7 +65,7 @@
                                 0px  1px 0px black,
                                -1px  0px 0px black,
                                 0px -1px 0px black;">Aire</h6>
-                                <a class="post-btn" href="/zodiacales/acuario.html"><i
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+1 %>"><i
                                     class="fa fa-arrow-right"></i></a>
 
                             </div>
@@ -77,8 +77,8 @@
                             <div class="post-content text-sm-right">
                                 <h1><time datetime="2019-04-06T13:53">20/Febrero - 20/Marzo</time></h1>
                                 <h3>
-                                    <i class="fa fa-edit"></i>
-                                    <a href="/zodiacales/piscis.html">Piscis</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+2 %>"><i class="fa fa-edit"></i></a>
+                                    <a href="<%='/horoscopo/signo/'+2 %>">Piscis</a>
                                 </h3>
                                 <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
                                     molestiae
@@ -88,7 +88,7 @@
 
                             </div>
                             <div class="post-thumb post-left">
-                                <a href="/zodiacales/acuario.html">
+                                <a href="<%='/horoscopo/signo/'+2 %>">
                                     <img class="img-fluid" src="/images/icon/piscis.png" alt="Post 1">
                                 </a>
 
@@ -99,20 +99,20 @@
                         <div class="single-rpost d-sm-flex" data-aos="fade-left" data-aos-delay="200"
                             data-aos-duration="800">
                             <div class="post-thumb">
-                                <a href="/zodiacales/aries.html">
+                                <a href="<%='/horoscopo/signo/'+3 %>">
                                     <img class="img-fluid" src="/images/icon/aries.png" alt="Post 1">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <h1><time datetime="2019-04-06T13:53">21/Marzo - 20/Abril</time></h1>
                                 <h3>
-                                    <a href="/zodiacales/aries.html">Aries</a>
-                                    <i class="fa fa-edit"></i>
+                                    <a href="<%='/horoscopo/signo/'+3 %>">Aries</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+3 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
                                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque libero
                                     mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam perspiciatis</h5>
                                 <h6 style="color:rgb(231, 34, 7)">Fuego</h6>
-                                <a class="post-btn" href="/zodiacales/aries.html"><i class="fa fa-arrow-right"></i></a>
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+3 %>"><i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -122,19 +122,19 @@
                             <div class="post-content text-sm-right">
                                 <h1><time datetime="2019-04-06T13:53">21/Abril - 20/Mayo</time></h1>
                                 <h3>
-                                    <i class="fa fa-edit"></i>
-                                    <a href="/zodiacales/tauro.html">Tauro</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+4 %>"><i class="fa fa-edit"></i></a>
+                                    <a href="<%='/horoscopo/signo/'+4 %>">Tauro</a>
                                 </h3>
                                 <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
                                     molestiae
                                     amet aspernatur nulla autem corrupti, unde itaque officia</p>
                                     <h6 style="color: rgb(134, 43, 43)">Tierra</h6>
-                                    <a class="post-btn" href="/zodiacales/tauro.html"><i
+                                    <a class="post-btn" href="<%='/horoscopo/signo/'+4 %>"><i
                                             class="fa fa-arrow-right"></i></a>
 
                             </div>
                             <div class="post-thumb post-left">
-                                <a href="/zodiacales/tauro.html">
+                                <a href="<%='/horoscopo/signo/'+4 %>">
                                     <img class="img-fluid" src="/images/icon/tauro.png" alt="Post 1">
                                 </a>
                             </div>
@@ -144,15 +144,15 @@
                         <div class="single-rpost d-sm-flex" data-aos="fade-left" data-aos-delay="200"
                             data-aos-duration="800">
                             <div class="post-thumb">
-                                <a href="/zodiacales/geminis.html">
+                                <a href="<%='/horoscopo/signo/'+5 %>">
                                     <img class="img-fluid" src="/images/icon/geminis.png" alt="Post 1">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <h1><time datetime="2019-04-06T13:53">21/Mayo - 21/Junio</time></h1>
                                 <h3>
-                                    <i class="fa fa-edit"></i>
-                                    <a href="/zodiacales/geminis.html">Geminis</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+5 %>"><i class="fa fa-edit"></i></a>
+                                    <a href="<%='/horoscopo/signo/'+5 %>">Geminis</a>
                                 </h3>
                                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque libero
                                     mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam perspiciatis</p>
@@ -160,7 +160,7 @@
                                 0px  1px 0px black,
                                -1px  0px 0px black,
                                 0px -1px 0px black">Aire</h6>
-                                    <a class="post-btn" href="/zodiacales/geminis.html"><i
+                                    <a class="post-btn" href="<%='/horoscopo/signo/'+5 %>"><i
                                             class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -171,17 +171,17 @@
                             <div class="post-content text-sm-right">
                                 <h1><time datetime="2019-04-06T13:53">22/Junio - 22/Julio</time></h1>
                                 <h3>                
-                                    <i class="fa fa-edit"></i>                  
-                                    <a href="/zodiacales/cancer.html">Cancer</a>                                    
+                                    <a href="<%='/horoscopo/signo/edit/'+6 %>"><i class="fa fa-edit"></i></a>                 
+                                    <a href="<%='/horoscopo/signo/'+6 %>">Cancer</a>                                    
                                 </h3>
                                 <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
                                     molestiae amet aspernatur nulla autem corrupti, unde itaque officia</h5>
                                 <h6 style="color: rgb(0, 132, 184)">Agua</h6>
-                                <a class="post-btn" href="/zodiacales/cancer.html"><i class="fa fa-arrow-right"></i></a>
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+6 %>"><i class="fa fa-arrow-right"></i></a>
 
                             </div>
                             <div class="post-thumb post-left">
-                                <a href="/zodiacales/cancer.html">
+                                <a href="<%='/horoscopo/signo/'+6 %>">
                                     <img class="img-fluid" src="/images/icon/cancer.png" alt="Post 1">
                                 </a>
                             </div>
@@ -191,21 +191,21 @@
                         <div class="single-rpost d-sm-flex" data-aos="fade-left" data-aos-delay="200"
                             data-aos-duration="800">
                             <div class="post-thumb">
-                                <a href="/zodiacales/leo.html">
+                                <a href="<%='/horoscopo/signo/'+7 %>">
                                     <img class="img-fluid" src="/images/icon/leo.png" alt="Post 1">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <h1><time datetime="2019-04-06T13:53">23/Julio - 23/Agosto</time></h1>
                                 <h3>
-                                    <a href="/zodiacales/leo.html">Leo</a>
-                                    <i class="fa fa-edit"></i>
+                                    <a href="<%='/horoscopo/signo/'+7 %>">Leo</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+7 %>"></a><i class="fa fa-edit"></i>
                                 </h3>
                                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque
                                     libero mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam
                                     perspiciatis</h5>
                                 <h6 style="color:rgb(231, 34, 7)">Fuego</h6>
-                                <a class="post-btn" href="/zodiacales/leo.html"><i class="fa fa-arrow-right"></i></a>
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+7 %>"><i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -216,19 +216,21 @@
                             <div class="post-content text-sm-right">
                                 <h1><time datetime="2019-04-06T13:53">24/Agosto - 22/Septiembre</time></h1>
                                 <h3>
-                                    <i class="fa fa-edit"></i>
-                                    <a href="/zodiacales/virgo.html">Virgo</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+8 %>"><i class="fa fa-edit"></i></a>
+                                    <a href="<%='/horoscopo/signo/'+8 %>">Virgo</a>
                                     
                                 </h3>
                                 <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
                                     molestiae
                                     amet aspernatur nulla autem corrupti, unde itaque officia</h5>
                                 <h6 style="color: rgb(134, 43, 43)">Tierra</h6>
-                                <a class="post-btn" href="/zodiacales/virgo.html"><i class="fa fa-arrow-right"></i></a>
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+8 %>"><i class="fa fa-arrow-right"></i></a>
 
                             </div>
                             <div class="post-thumb post-left">
-                                <img class="img-fluid" src="/images/icon/virgo.png" alt="Post 1">
+                                <a href="<%='/horoscopo/signo/'+8 %>">
+                                    <img class="img-fluid" src="/images/icon/virgo.png" alt="Post 1">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -236,15 +238,15 @@
                         <div class="single-rpost d-sm-flex" data-aos="fade-left" data-aos-delay="200"
                             data-aos-duration="800">
                             <div class="post-thumb">
-                                <a href="/zodiacales/libra.html">
+                                <a href="<%='/horoscopo/signo/'+9 %>">
                                     <img class="img-fluid" src="/images/icon/libra.png" alt="Post 1">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <h1><time datetime="2019-04-06T13:53">23/Septiembre - 22/Octubre</time></h1>
                                 <h3>
-                                    <a href="/zodiacales/libra.html">Libra</a>
-                                    <i class="fa fa-edit"></i>
+                                    <a href="<%='/horoscopo/signo/'+9 %>">Libra</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+9 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
                                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit obcaecati laudantium
                                     cumque ea? Quae temporibus commodi ducimus neque! Deleniti mollitia vero recusandae
@@ -253,7 +255,7 @@
                                 0px  1px 0px black,
                                -1px  0px 0px black,
                                 0px -1px 0px black">Aire</h6>
-                                <a class="post-btn" href="/zodiacales/libra.html"><i class="fa fa-arrow-right"></i></a>
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+9 %>"><i class="fa fa-arrow-right"></i></a>
 
                             </div>
 
@@ -265,18 +267,18 @@
                             <div class="post-content text-sm-right">
                                 <h1><time datetime="2019-04-06T13:53">23/Octubre - 22/Noviembre</time></h1>
                                 <h3>
-                                    <i class="fa fa-edit"></i>
-                                    <a href="/zodiacales/escorpio.html">Escorpio</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+10 %>"><i class="fa fa-edit"></i></a>
+                                    <a href="<%='/horoscopo/signo/'+10 %>">Escorpio</a>
                                 </h3>
                                 <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
                                     molestiae amet aspernatur nulla autem corrupti, unde itaque officia</h5>
                                 <h6 style="color: rgb(0, 132, 184)">Agua</h6>
-                                <a class="post-btn" href="/zodiacales/escorpio.html"><i
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+10 %>"><i
                                         class="fa fa-arrow-right"></i></a>
 
                             </div>
                             <div class="post-thumb post-left">
-                                <a href="/zodiacales/escorpio.html">
+                                <a href="<%='/horoscopo/signo/'+10 %>">
                                     <img class="img-fluid" src="/images/icon/escorpio.png" alt="Post 1">
                                 </a>
                             </div>
@@ -286,21 +288,21 @@
                         <div class="single-rpost d-sm-flex" data-aos="fade-left" data-aos-delay="200"
                             data-aos-duration="800">
                             <div class="post-thumb">
-                                <a href="/zodiacales/sagitario.html">
+                                <a href="<%='/horoscopo/signo/'+11 %>">
                                     <img class="img-fluid" src="/images/icon/sagitario.png" alt="Post 1">
                                 </a>                                
                             </div>
                             <div class="post-content">
                                 <h1><time datetime="2019-04-06T13:53">23/Noviembre - 21/Diciembre</time></h1>
                                 <h3>
-                                    <a href="/zodiacales/sagitario.html">Sagitario</a>
-                                    <i class="fa fa-edit"></i>
+                                    <a href="<%='/horoscopo/signo/'+11 %>">Sagitario</a>
+                                    <a href="<%='/horoscopo/signo/edit/'+11 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
                                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque
                                     libero mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam
                                     perspiciatis</h5>
                                 <h6 style="color:rgb(231, 34, 7)">Fuego</h6>
-                                <a class="post-btn" href="/zodiacales/sagitario.html"><i class="fa fa-arrow-right"></i></a>
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+11 %>"><i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>

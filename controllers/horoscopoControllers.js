@@ -27,23 +27,24 @@ module.exports = {
             })
     },
     mostrarsigno: (req, res, next) => {
-        db.horoscopo.findByPk(req.params.id,{            
+        db.horoscopo.findByPk(req.params.id, {
             include: ['horoscopoposteo'],
+            order: db.horoscopo.id
         })
-        .then(signo => {
-            /* Seguir arreglando desde aca*/
-            console.log(signo.horoscopoposteo.horoscopoposteo)
-            res.render('signo', {
-                title: signo.nombre,
-                css: 'estilos.css',
-                usuario: req.session.usuario,
-                signo: signo
+            .then(signo => {
+                /* Seguir arreglando desde aca*/
+                //console.log(signo.horoscopoposteo[1].text)
+                res.render('signo', {
+                    title: signo.nombre,
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
             })
-        })
-        .catch(error => {
-            console.log(error)
-            res.send(error)
-        })
+            .catch(error => {
+                console.log(error)
+                res.send(error)
+            })
 
     },
     /*  Models.Users.findAll({
@@ -68,21 +69,22 @@ module.exports = {
         db.horoscopo.findOne({
             where: { id: req.params.id }
         })
-        .then(signo => {
-            res.render('edithoroscopo', {
-                title: 'Editar signo',
-                css: 'estilos.css',
-                usuario: req.session.usuario,
-                signo: signo
+            .then(signo => {
+                res.render('edithoroscopo', {
+                    title: 'Editar signo',
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
             })
-        })
-        .catch(error => {
-            res.send(error)
-        })
+            .catch(error => {
+                res.send(error)
+            })
 
     },
     signosend: (req, res, next) => {
         let idSigno = req.params.id;
+        let errors = validationResult(req);
 
         let fecha = new Date()
 
@@ -108,11 +110,63 @@ module.exports = {
             }
           });*/
 
+
         if (dbmes === calendmes && dbanio === calendanio) {
+            
+
             db.posteohoroscopo.update({
                 text: req.body.context,
                 description: req.body.description
             },
+                {
+                    where: {
+                        idsigno: req.params.id
+                    }
+                })
+                .then(signo => {
+                    console.log(signo)
+                    res.render('horoscopo', {
+                        title: 'Horoscopo',
+                        css: 'estilos.css',
+                        usuario: req.session.usuario,
+                        signo: signo
+                    })
+                })
+                .catch(error => {
+                    res.send(error)
+                })
+        }
+        else {
+            db.posteohoroscopo.findOrCreate({
+                where: { idsigno: req.params.id },
+                defaults: {
+                    text: req.body.context,
+                    description: req.body.description,
+                    idtiposigno: tipo(req.params.id),
+                    meshoroscopo: fecha,
+                    idsigno:idSigno
+                }
+            })
+            .then(signo => {
+                console.log(signo)
+                res.render('horoscopo', {
+                    title: 'Horoscopo',
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
+                })
+            })
+            .catch(error => {
+                res.send(error)
+            })
+
+                /*db.posteohoroscopo.create({
+                    text: req.body.context,
+                    description: req.body.description,
+                    meshoroscopo: fecha,
+                    idtiposigno: tipo(req.params.id),
+                    idsigno: req.params.id
+                },
                 {
                     where: {
                         idsigno: req.params.id
@@ -128,32 +182,8 @@ module.exports = {
                 })
                 .catch(error => {
                     res.send(error)
-                })
-        }
-        else {
-            db.posteohoroscopo.create({
-                text: req.body.context,
-                description: req.body.description,
-                meshoroscopo: fecha,
-                idtiposigno: tipo(req.params.id),
-                idsigno: idSigno
-            },
-                {
-                    where: {
-                        idSigno: req.params.id
-                    }
-                })
-                .then(signo => {
-                    res.render('horoscopo', {
-                        title: 'Horoscopo',
-                        css: 'estilos.css',
-                        usuario: req.session.usuario,
-                        signo: signo
-                    })
-                })
-                .catch(error => {
-                    res.send(error)
-                })
+                })*/
+            
         }
     }
 }
