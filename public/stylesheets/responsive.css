@@ -160,6 +160,10 @@
   .group {
     order: 2;
   }
+
+  .articulo{
+    padding: 0 2.5em;
+  }
   .cart,
   .search-icon {
     font-size: 0.875rem;

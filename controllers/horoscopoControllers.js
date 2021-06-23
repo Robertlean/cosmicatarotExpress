@@ -110,8 +110,8 @@ module.exports = {
             }
           });*/
 
-
-        if (dbmes == calendmes && dbanio == calendanio) {            
+        
+        if (dbmes == calendmes && dbanio == calendanio && db.posteohoroscopo.idsigno != 'null') {
 
             db.posteohoroscopo.update({
                 text: req.body.context,
@@ -136,6 +136,7 @@ module.exports = {
                 })
         }
         else {
+            /*
             db.posteohoroscopo.findOrCreate({
                 where: { idsigno: req.params.id },
                 defaults: {
@@ -143,7 +144,7 @@ module.exports = {
                     description: req.body.description,
                     idtiposigno: tipo(req.params.id),
                     meshoroscopo: fecha,
-                    idsigno:idSigno
+                    idsigno:req.params.id
                 }
             })
             .then(signo => {
@@ -158,30 +159,30 @@ module.exports = {
             .catch(error => {
                 res.send(error)
             })
-
-                /*db.posteohoroscopo.create({
-                    text: req.body.context,
-                    description: req.body.description,
-                    meshoroscopo: fecha,
-                    idtiposigno: tipo(req.params.id),
+            */
+            db.posteohoroscopo.create({
+                text: req.body.context,
+                description: req.body.description,
+                meshoroscopo: fecha,
+                idtiposigno: tipo(req.params.id),
+                idsigno: req.params.id
+            },
+            {
+                where: {
                     idsigno: req.params.id
-                },
-                {
-                    where: {
-                        idsigno: req.params.id
-                    }
+                }
+            })
+            .then(signo => {
+                res.render('horoscopo', {
+                    title: 'Horoscopo',
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo
                 })
-                .then(signo => {
-                    res.render('horoscopo', {
-                        title: 'Horoscopo',
-                        css: 'estilos.css',
-                        usuario: req.session.usuario,
-                        signo: signo
-                    })
-                })
-                .catch(error => {
-                    res.send(error)
-                })*/
+            })
+            .catch(error => {
+                res.send(error)
+            })
             
         }
     }
