@@ -111,8 +111,7 @@ module.exports = {
           });*/
 
 
-        if (dbmes === calendmes && dbanio === calendanio) {
-            
+        if (dbmes == calendmes && dbanio == calendanio) {            
 
             db.posteohoroscopo.update({
                 text: req.body.context,

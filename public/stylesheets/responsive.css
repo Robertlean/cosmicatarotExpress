@@ -21,6 +21,34 @@
   .services{
     padding: .9em
   }
+  .logo{
+    width:13em
+  }
+  .recent-posts .btn {
+    margin-bottom: 1em;
+  }
+  .footer-widgets {
+    padding: 2em 0;
+  }
+  .contactate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .suscribite{
+    align-items: center;
+    justify-content: center;
+  }
+  .single-widget .widget-tiltle {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .single-widget:last-child{
+    margin-bottom: 2em;
+  }
+  .suscribite p{
+    text-align: center;
+  }
 }
 
 
@@ -47,6 +75,11 @@
   }
   .content-img img{
     width:50%
+  }
+  
+  .btn .btn-primary{
+    text-align: center;
+    margin-bottom: 1em;
   }
 }
 
@@ -164,6 +197,8 @@
   .field .form-control{
     width: 37vh
   }
+
+  
 }
 
 /*-----------------------------------
