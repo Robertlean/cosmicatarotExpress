@@ -17,18 +17,27 @@
                 <section class="recent-posts">
                     <div class="container">
                         <div class=" text-center">
-                            <!-- -->
+                            <!-- Continuar por aquí con la paginación -->
                             <img class="img-fluid" src="/images/icon/<%= signo.img%>" alt="Post 1">
-                            <div class="title-blue">
-                                <h1>
-                                    <%= signo.nombre %><a href="<%='/horoscopo/signo/edit/'+ 12%> ">
+                            <div class="d-flex justify-content-between title-blue align-items-center titleplus">
+                                <div class="mesanterior pagination">
+                                    <span><a href="http://">Mes anterior</a></span>
+                                </div>
+                                <div>
+                                    <h1>
+                                    <%= signo.nombre %>
+                                    <a href="<%='/horoscopo/signo/edit/'+ 12%> ">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                </h1>
+                                    </h1>
+                                </div> 
+                                <div class="messiguiente pagination">
+                                    <span><a href="http://">Mes siguiente</a> </span>
+                                </div>
                             </div>
                             <h3 class="title-blue">Junio</h3>
                             <h5 class="title-blue">
-                                <%=signo.horoscopoposteo[1].description%> jaja
+                                <%=signo.horoscopoposteo[signo.horoscopoposteo.length-1].description%>
                             </h5>
                         </div>
                         <div class="cta-content" style="padding:1.5em 5em 1em 4em">
@@ -36,7 +45,7 @@
                                 <div class="d-md-flex align-items-center justify-content-around text-xl-start text-xl-start content-img"
                                     style="flex-direction: column; padding-bottom: 3em;">
                                     <p>
-                                        <%= signo.horoscopoposteo[1].text %>
+                                        <%= signo.horoscopoposteo[signo.horoscopoposteo.length-1].text %>
                                     </p>
                                 </div>
                             </div>

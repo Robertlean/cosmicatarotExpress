@@ -110,41 +110,81 @@ module.exports = {
             }
           });*/
 
-        
-        if (dbmes == calendmes && dbanio == calendanio && db.posteohoroscopo.idsigno != 'null') {
-
-            db.posteohoroscopo.update({
+        db.posteohoroscopo.findOrCreate({
+            where: { idsigno: req.params.id },
+            defaults: {
                 text: req.body.context,
-                description: req.body.description
-            },
-                {
-                    where: {
-                        idsigno: req.params.id
-                    }
-                })
-                .then(signo => {
-                    console.log(signo)
-                    res.render('horoscopo', {
-                        title: 'Horoscopo',
+                description: req.body.description,
+                idtiposigno: tipo(req.params.id),
+                meshoroscopo: fecha,
+                idsigno: req.params.id
+            }
+        })
+            .then((posteohoroscopo, creado) => {
+                if (creado) {
+                    /* No encontrado */
+                    res.render('edithoroscopo', {
+                        title: 'Editar signo',
                         css: 'estilos.css',
                         usuario: req.session.usuario,
                         signo: signo
                     })
-                })
-                .catch(error => {
-                    res.send(error)
-                })
-        }
-        else {
-            /*
-            db.posteohoroscopo.findOrCreate({
-                where: { idsigno: req.params.id },
-                defaults: {
-                    text: req.body.context,
-                    description: req.body.description,
-                    idtiposigno: tipo(req.params.id),
-                    meshoroscopo: fecha,
-                    idsigno:req.params.id
+                }
+                else {
+                    /* Encontro  */
+                    db.posteohoroscopo.update({
+                        text: req.body.context,
+                        description: req.body.description
+                    },
+                        {
+                            where: {
+                                idsigno: req.params.id
+                            }
+                        })
+                        .then(signo => {
+                            console.log(signo)
+                            res.render('horoscopo', {
+                                title: 'Horoscopo',
+                                css: 'estilos.css',
+                                usuario: req.session.usuario,
+                                signo: signo
+                            })
+                        })
+                        .catch(error => {
+                            res.send(error)
+                        })
+                }
+            })
+
+
+
+        /* .then(signo => {
+            console.log(signo)
+
+            res.render('horoscopo', {
+                title: 'Horoscopo',
+                css: 'estilos.css',
+                usuario: req.session.usuario,
+                signo: signo
+            })
+        })
+        .catch(error => {
+            res.send(error)
+        }) 
+
+
+    if (dbmes == calendmes && dbanio == calendanio) {
+        console.log("algo mas")
+
+        console.log(`${dbmes} / ${dbanio} and ${calendmes} / ${calendanio}`)
+
+        /*db.posteohoroscopo.update({
+            text: req.body.context,
+            description: req.body.description
+        },
+            {
+                where: {
+                    idsigno: req.params.id
                 }
             })
             .then(signo => {
@@ -159,20 +199,21 @@ module.exports = {
             .catch(error => {
                 res.send(error)
             })
-            */
-            db.posteohoroscopo.create({
+    }
+    else {
+        console.log("Algo")
+        db.posteohoroscopo.findOrCreate({
+            where: { idsigno: req.params.id },
+            defaults: {
                 text: req.body.context,
                 description: req.body.description,
-                meshoroscopo: fecha,
                 idtiposigno: tipo(req.params.id),
+                meshoroscopo: fecha,
                 idsigno: req.params.id
-            },
-            {
-                where: {
-                    idsigno: req.params.id
-                }
-            })
+            }
+        })
             .then(signo => {
+                console.log(signo)
                 res.render('horoscopo', {
                     title: 'Horoscopo',
                     css: 'estilos.css',
@@ -183,7 +224,31 @@ module.exports = {
             .catch(error => {
                 res.send(error)
             })
-            
-        }
+
+        /*db.posteohoroscopo.create({
+            text: req.body.context,
+            description: req.body.description,
+            meshoroscopo: fecha,
+            idtiposigno: tipo(req.params.id),
+            idsigno: req.params.id
+        },
+        {
+            where: {
+                idsigno: req.params.id
+            }
+        })
+        .then(signo => {
+            res.render('horoscopo', {
+                title: 'Horoscopo',
+                css: 'estilos.css',
+                usuario: req.session.usuario,
+                signo: signo
+            })
+        })
+        .catch(error => {
+            res.send(error)
+        })*/
+
+
     }
 }
