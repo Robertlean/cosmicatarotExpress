@@ -434,11 +434,8 @@ form button.btn-primary:hover {
   margin-bottom: 10px;
 }
 
-.services h6{
-  
-}
 
-.pagination span a{
+.pagination h5 a{
   color: #26264b;
   font-weight: 700;
 }

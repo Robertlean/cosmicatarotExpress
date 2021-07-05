@@ -6,7 +6,7 @@ const fs = require('fs');
 const { validationResult, body } = require('express-validator');
 const path = require('path');
 const e = require('express');
-const { Op } = require('sequelize');
+const sequelize = require('sequelize');
 
 let tipo = require('../functions/funciontipo')
 
@@ -88,12 +88,6 @@ module.exports = {
 
         let fecha = new Date()
 
-        let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo);
-        let dbanio = fecha.getYear(db.posteohoroscopo.meshoroscopo);
-        let calendmes = fecha.getMonth()
-        let calendanio = fecha.getYear()
-
-
         //https://stackoverflow.com/questions/37723420/convert-datetime-to-date-of-a-column-in-where-condition-using-sequelize
         //https://sequelize.org/master/manual/model-querying-finders.html#-code-findall--code-
 
@@ -110,8 +104,9 @@ module.exports = {
             }
           });*/
 
+
         db.posteohoroscopo.findOrCreate({
-            where: { idsigno: req.params.id },
+            where: { idsigno: req.params.id/*, meshoroscopo: sequelize.literal('extract(MONTH FROM `posteohoroscopo`.`meshoroscopo`) = `calendmes`')*/ },
             defaults: {
                 text: req.body.context,
                 description: req.body.description,
@@ -132,17 +127,26 @@ module.exports = {
                 }
                 else {
                     /* Encontro  */
-                    db.posteohoroscopo.update({
-                        text: req.body.context,
-                        description: req.body.description
-                    },
+
+                    let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo);
+                    let dbanio = fecha.getYear(db.posteohoroscopo.meshoroscopo);
+                    let calendmes = fecha.getMonth()
+                    let calendanio = fecha.getYear()
+
+                    console.log(`${dbmes} / ${dbanio} es igual a ${calendmes} / ${calendanio}`)
+
+                    if (dbmes == calendmes && dbanio == calendanio) {
+                        db.posteohoroscopo.update({
+                            text: req.body.context,
+                            description: req.body.description,
+                        },
                         {
                             where: {
                                 idsigno: req.params.id
                             }
                         })
                         .then(signo => {
-                            console.log(signo)
+                            console.log(signo + " algo mas")
                             res.render('horoscopo', {
                                 title: 'Horoscopo',
                                 css: 'estilos.css',
@@ -153,6 +157,33 @@ module.exports = {
                         .catch(error => {
                             res.send(error)
                         })
+
+                    }
+                    else {
+                        db.posteohoroscopo.create({
+                            text: req.body.context,
+                            description: req.body.description,
+                            meshoroscopo: fecha,
+                            idtiposigno: tipo(req.params.id),
+                            idsigno: req.params.id
+                        },
+                            {
+                                where: {
+                                    idsigno: req.params.id
+                                }
+                            })
+                            .then(signo => {
+                                res.render('horoscopo', {
+                                    title: 'Horoscopo',
+                                    css: 'estilos.css',
+                                    usuario: req.session.usuario,
+                                    signo: signo
+                                })
+                            })
+                            .catch(error => {
+                                res.send(error)
+                            })
+                    }
                 }
             })
 

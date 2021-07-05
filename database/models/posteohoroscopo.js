@@ -21,7 +21,7 @@ module.exports = (sequelize,dataTypes) => {
             allowNull: true
         },
         meshoroscopo:{
-            type: dataTypes.DATE(),
+            type: dataTypes.DATEONLY,
             allowNull:true
         },
         idtiposigno:{
