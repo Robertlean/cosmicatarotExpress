@@ -2,43 +2,113 @@
 const db = require('../database/models');
 
 /****Librerias ****/
-const fs = require('fs');
 const { validationResult, body } = require('express-validator');
-const path = require('path');
-const e = require('express');
-const sequelize = require('sequelize');
 
 let tipo = require('../functions/funciontipo')
+let mes = require('../functions/mesDelAnio');
+let mesDelAnio = require('../functions/mesDelAnio');
 
 module.exports = {
     mostrarhoroscopo: (req, res, next) => {
+        let fecha = new Date()
+        let nombremes = mes(fecha.getMonth()-1)
         db.horoscopo.findAll()
             .then(signo => {
-                console.log(signo)
                 res.render('horoscopo', {
                     title: 'Horoscopo',
                     css: 'estilos.css',
                     usuario: req.session.usuario,
-                    signo: signo
+                    signo: signo,
+                    nombremes: nombremes
                 })
             })
             .catch(error => {
                 res.send(error)
             })
     },
-    mostrarsigno: (req, res, next) => {
+    mesanterior:(req, res, next)=>{
+        let fecha = new Date()
+        let history = req.params.data;
         db.horoscopo.findByPk(req.params.id, {
             include: ['horoscopoposteo'],
-            order: db.horoscopo.id
+            order: [['id', 'ASC']],            
+            where:{
+                id: req.params.id,  meshoroscopo: fecha
+            }
         })
             .then(signo => {
-                /* Seguir arreglando desde aca*/
-                //console.log(signo.horoscopoposteo[1].text)
+                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo)
+
+                      
+
                 res.render('signo', {
                     title: signo.nombre,
                     css: 'estilos.css',
                     usuario: req.session.usuario,
-                    signo: signo
+                    signo: signo,
+                    nombremessigno: mes(month-1),
+                    meshoroscopo: month,
+                    mesactual: fecha.getMonth()
+                })
+            })
+            .catch(error => {
+                console.log(error)
+                res.send(error)
+            })
+
+    },
+    messiguiente:(req, res, next)=>{
+        let fecha = new Date()
+        let history = req.params.data;
+        db.horoscopo.findByPk(req.params.id, {
+            include: ['horoscopoposteo'],
+            order: [['id', 'ASC']],            
+            where:{
+                id: req.params.id,  meshoroscopo: fecha
+            }
+        })
+            .then(signo => {
+                
+                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo)
+
+                console.log(signo.count + ' algo mas')
+
+                res.render('signo', {
+                    title: signo.nombre,
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo,
+                    nombremessigno: mes(month-1),
+                    meshoroscopo: month,
+                    mesactual: fecha.getMonth(),
+                })
+            })
+            .catch(error => {
+                console.log(error)
+                res.send(error)
+            })        
+    },
+    mostrarsigno: (req, res, next) => {     
+        let fecha = new Date()
+        let history = req.params.data;
+        db.horoscopo.findByPk(req.params.id, {
+            include: ['horoscopoposteo'],
+            order: [['id', 'ASC']],            
+            where:{
+                id: req.params.id,  meshoroscopo: fecha
+            }
+        })
+            .then(signo => {
+                console.log(signo.count)
+                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo)
+                res.render('signo', {
+                    title: signo.nombre,
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo,
+                    nombremessigno: mes(month-1),
+                    meshoroscopo: month,
+                    mesactual: fecha.getMonth()
                 })
             })
             .catch(error => {
@@ -83,27 +153,7 @@ module.exports = {
 
     },
     signosend: (req, res, next) => {
-        let idSigno = req.params.id;
-        let errors = validationResult(req);
-
         let fecha = new Date()
-
-        //https://stackoverflow.com/questions/37723420/convert-datetime-to-date-of-a-column-in-where-condition-using-sequelize
-        //https://sequelize.org/master/manual/model-querying-finders.html#-code-findall--code-
-
-        /*db.posteohoroscopo.findOrCreate({
-            where: sequelize.where(sequelize.fn('date', sequelize.col('meshoroscopo')), '=', 'new Date(getYear())'),
-
-            //Where: { new Date(meshoroscopo).getMonth: new Date().getMonth}, andWhere: {new Date(meshoroscopo).getYear(): new Date().getYear()}
-       
-
-            defaults: {
-                text: req.body.titulo,
-                description: req.body.subtitulo,
-                meshoroscopo: fecha
-            }
-          });*/
-
 
         db.posteohoroscopo.findOrCreate({
             where: { idsigno: req.params.id/*, meshoroscopo: sequelize.literal('extract(MONTH FROM `posteohoroscopo`.`meshoroscopo`) = `calendmes`')*/ },
@@ -118,7 +168,7 @@ module.exports = {
             .then((posteohoroscopo, creado) => {
                 if (creado) {
                     /* No encontrado */
-                    res.render('edithoroscopo', {
+                    res.render('signo/req.params.id', {
                         title: 'Editar signo',
                         css: 'estilos.css',
                         usuario: req.session.usuario,
@@ -127,23 +177,25 @@ module.exports = {
                 }
                 else {
                     /* Encontro  */
+                    let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo)+1;
+                    let dbanio = fecha.getFullYear(db.posteohoroscopo.meshoroscopo);
+                    let calendmes = fecha.getMonth()+1
+                    let calendanio = fecha.getYear()                  
 
-                    let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo);
-                    let dbanio = fecha.getYear(db.posteohoroscopo.meshoroscopo);
-                    let calendmes = fecha.getMonth()
-                    let calendanio = fecha.getYear()
+                    console.log(`${dbmes}/${dbanio} es igual a ${fecha.getMonth()+1}/${fecha.getFullYear()} --> ${fecha}`)
 
-                    console.log(`${dbmes} / ${dbanio} es igual a ${calendmes} / ${calendanio}`)
-
-                    if (dbmes == calendmes && dbanio == calendanio) {
+                    if (dbmes == fecha.getMonth()+1 && dbanio == fecha.getFullYear()) {                       
                         db.posteohoroscopo.update({
                             text: req.body.context,
                             description: req.body.description,
+                            
                         },
                         {
                             where: {
-                                idsigno: req.params.id
-                            }
+                                idsigno: req.params.id, meshoroscopo: fecha
+                            },
+                            limit: 1,
+                            order: [['idsigno', 'DESC'], ['id', 'ASC']]
                         })
                         .then(signo => {
                             console.log(signo + " algo mas")

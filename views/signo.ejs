@@ -22,21 +22,24 @@
                             <img class="img-fluid" src="/images/icon/<%= signo.img%>" alt="Post 1">
                             <div class="d-flex justify-content-between title-blue align-items-center titleplus">
                                 <div class="mesanterior pagination">
-                                    <h5><a href="http://">Mes anterior</a></h5>
+                                     
+                                    <h5><a href="<%='/horoscopo/signo/'+signo.id+'/:data'%>">Mes anterior</a></h5>
                                 </div>
                                 <div>
                                     <h1>
                                     <%= signo.nombre %>
-                                    <a href="<%='/horoscopo/signo/edit/'+ 12%> ">
+                                    <a href="<%='/horoscopo/signo/edit/'+ signo%> ">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </h1>
                                 </div> 
                                 <div class="messiguiente pagination">
-                                    <h5><a href="http://">Mes siguiente</a> </h5>
+                                    <% if(meshoroscopo != mesactual){ %> 
+                                        <h5><a href="<%='/horoscopo/signo/'+signo.id+'/:data'%>">Mes siguiente</a></h5>
+                                    <% } %> 
                                 </div>
                             </div>
-                            <h3 class="title-blue">Junio</h3>
+                            <h3 class="title-blue"><%= nombremessigno %></h3>
                             <h5 class="title-blue">
                                 <%=signo.horoscopoposteo[signo.horoscopoposteo.length-1].description%>
                             </h5>
@@ -53,7 +56,7 @@
                             </div>
                         </div>
 
-                        <section class=" text-center">
+                        <!-- <section class=" text-center">
                             <h2 class="title-blue">Comentarios</h2>
                         </section>
                         <div class="cta-content" style="padding:0 5em 5em 4em">
@@ -85,7 +88,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </section>
