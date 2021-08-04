@@ -23,7 +23,7 @@
                             <div class="d-flex justify-content-between title-blue align-items-center titleplus">
                                 <div class="mesanterior pagination">
                                      
-                                    <h5><a href="<%='/horoscopo/signo/'+signo.id+'/:data'%>">Mes anterior</a></h5>
+                                    <h5><a href="<%= '/horoscopo/signo/'+signo.id+'/mesanterior'%>">Mes anterior</a></h5>
                                 </div>
                                 <div>
                                     <h1>
@@ -35,7 +35,7 @@
                                 </div> 
                                 <div class="messiguiente pagination">
                                     <% if(meshoroscopo != mesactual){ %> 
-                                        <h5><a href="<%='/horoscopo/signo/'+signo.id+'/:data'%>">Mes siguiente</a></h5>
+                                        <h5><a href="<%='/horoscopo/signo/'+signo.id+'/messiguiente'%>">Mes siguiente</a></h5>
                                     <% } %> 
                                 </div>
                             </div>

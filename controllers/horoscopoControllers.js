@@ -11,7 +11,7 @@ let mesDelAnio = require('../functions/mesDelAnio');
 module.exports = {
     mostrarhoroscopo: (req, res, next) => {
         let fecha = new Date()
-        let nombremes = mes(fecha.getMonth()-1)
+        let nombremes = mes(fecha.getMonth() - 1)
         db.horoscopo.findAll()
             .then(signo => {
                 res.render('horoscopo', {
@@ -26,50 +26,88 @@ module.exports = {
                 res.send(error)
             })
     },
-    mesanterior:(req, res, next)=>{
+    mesanterior: (req, res, next) => {
         let fecha = new Date()
-        let history = req.params.data;
+
+        console.log("estoy pasando por aca ")
+
         db.horoscopo.findByPk(req.params.id, {
             include: ['horoscopoposteo'],
-            order: [['id', 'ASC']],            
-            where:{
-                id: req.params.id,  meshoroscopo: fecha
-            }
+            order: [['id', 'ASC']],
+            where: {
+                id: req.params.id
+            },
+            limit: 1
         })
-            .then(signo => {
-                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo)
-
-                      
+            .then(resultado => {
+                db.posteohoroscopo.findAndCountAll({
+                    where:{
+                        idsigno: req.params.id
+                    },
+                    
+                    limit: 1 
+                })
+                .then(signo =>{
+                    console.log(signo.count);
+                console.log(signo.rows);
+                console.log(signo)
 
                 res.render('signo', {
                     title: signo.nombre,
                     css: 'estilos.css',
                     usuario: req.session.usuario,
                     signo: signo,
-                    nombremessigno: mes(month-1),
-                    meshoroscopo: month,
-                    mesactual: fecha.getMonth()
+                    nombremessigno: mes(0),
+                    meshoroscopo: "algo",
+                    mesactual: "otra cosa"
+                }
+                )
+                })
+
+                
+            })
+        /* db.posteohoroscopo.findAndCountAll({        
+            order: [['id', 'ASC']],            
+            where:{
+                id: req.params.id
+            },
+            offset:0,
+            limit:2
+        })
+            .then(signo => {
+                console.log(signo.count);
+                console.log(signo.rows);
+                console.log(signo)                    
+
+                res.render('signo', {
+                    title: signo.nombre,
+                    css: 'estilos.css',
+                    usuario: req.session.usuario,
+                    signo: signo,
+                    nombremessigno: mes(0),
+                    meshoroscopo: "algo",
+                    mesactual: "otra cosa"
                 })
             })
             .catch(error => {
                 console.log(error)
                 res.send(error)
-            })
+            }) */
 
     },
-    messiguiente:(req, res, next)=>{
+    messiguiente: (req, res, next) => {
         let fecha = new Date()
         let history = req.params.data;
         db.horoscopo.findByPk(req.params.id, {
             include: ['horoscopoposteo'],
-            order: [['id', 'ASC']],            
-            where:{
-                id: req.params.id,  meshoroscopo: fecha
+            order: [['id', 'ASC']],
+            where: {
+                id: req.params.id, meshoroscopo: fecha
             }
         })
             .then(signo => {
-                
-                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo)
+
+                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length - 1].meshoroscopo)
 
                 console.log(signo.count + ' algo mas')
 
@@ -78,7 +116,7 @@ module.exports = {
                     css: 'estilos.css',
                     usuario: req.session.usuario,
                     signo: signo,
-                    nombremessigno: mes(month-1),
+                    nombremessigno: mes(month - 1),
                     meshoroscopo: month,
                     mesactual: fecha.getMonth(),
                 })
@@ -86,27 +124,27 @@ module.exports = {
             .catch(error => {
                 console.log(error)
                 res.send(error)
-            })        
+            })
     },
-    mostrarsigno: (req, res, next) => {     
+    mostrarsigno: (req, res, next) => {
         let fecha = new Date()
         let history = req.params.data;
         db.horoscopo.findByPk(req.params.id, {
             include: ['horoscopoposteo'],
-            order: [['id', 'ASC']],            
-            where:{
-                id: req.params.id,  meshoroscopo: fecha
+            order: [['id', 'ASC']],
+            where: {
+                id: req.params.id, meshoroscopo: fecha
             }
         })
             .then(signo => {
                 console.log(signo.count)
-                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo)
+                let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length - 1].meshoroscopo)
                 res.render('signo', {
                     title: signo.nombre,
                     css: 'estilos.css',
                     usuario: req.session.usuario,
                     signo: signo,
-                    nombremessigno: mes(month-1),
+                    nombremessigno: mes(month - 1),
                     meshoroscopo: month,
                     mesactual: fecha.getMonth()
                 })
@@ -177,38 +215,38 @@ module.exports = {
                 }
                 else {
                     /* Encontro  */
-                    let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo)+1;
+                    let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo) + 1;
                     let dbanio = fecha.getFullYear(db.posteohoroscopo.meshoroscopo);
-                    let calendmes = fecha.getMonth()+1
-                    let calendanio = fecha.getYear()                  
+                    let calendmes = fecha.getMonth() + 1
+                    let calendanio = fecha.getYear()
 
-                    console.log(`${dbmes}/${dbanio} es igual a ${fecha.getMonth()+1}/${fecha.getFullYear()} --> ${fecha}`)
+                    console.log(`${dbmes}/${dbanio} es igual a ${fecha.getMonth() + 1}/${fecha.getFullYear()} --> ${fecha}`)
 
-                    if (dbmes == fecha.getMonth()+1 && dbanio == fecha.getFullYear()) {                       
+                    if (dbmes == fecha.getMonth() + 1 && dbanio == fecha.getFullYear()) {
                         db.posteohoroscopo.update({
                             text: req.body.context,
                             description: req.body.description,
-                            
+
                         },
-                        {
-                            where: {
-                                idsigno: req.params.id, meshoroscopo: fecha
-                            },
-                            limit: 1,
-                            order: [['idsigno', 'DESC'], ['id', 'ASC']]
-                        })
-                        .then(signo => {
-                            console.log(signo + " algo mas")
-                            res.render('horoscopo', {
-                                title: 'Horoscopo',
-                                css: 'estilos.css',
-                                usuario: req.session.usuario,
-                                signo: signo
+                            {
+                                where: {
+                                    idsigno: req.params.id, meshoroscopo: fecha
+                                },
+                                limit: 1,
+                                order: [['idsigno', 'DESC'], ['id', 'ASC']]
                             })
-                        })
-                        .catch(error => {
-                            res.send(error)
-                        })
+                            .then(signo => {
+                                console.log(signo + " algo mas")
+                                res.render('horoscopo', {
+                                    title: 'Horoscopo',
+                                    css: 'estilos.css',
+                                    usuario: req.session.usuario,
+                                    signo: signo
+                                })
+                            })
+                            .catch(error => {
+                                res.send(error)
+                            })
 
                     }
                     else {
