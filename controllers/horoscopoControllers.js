@@ -1,17 +1,16 @@
 /****Bases de datos ****/
 const db = require('../database/models');
 
-/****Librerias ****/
-const { validationResult, body } = require('express-validator');
 
+let fecha = new Date()
 let tipo = require('../functions/funciontipo')
 let mes = require('../functions/mesDelAnio');
-let mesDelAnio = require('../functions/mesDelAnio');
-
+let nombremes = mes(fecha.getMonth() - 1) 
 module.exports = {
     mostrarhoroscopo: (req, res, next) => {
         let fecha = new Date()
-        let nombremes = mes(fecha.getMonth() - 1)
+        let mes = require('../functions/mesDelAnio');
+        let nombremes = mes(fecha.getMonth() - 1) 
         db.horoscopo.findAll()
             .then(signo => {
                 res.render('horoscopo', {
@@ -137,7 +136,7 @@ module.exports = {
             }
         })
             .then(signo => {
-                console.log(signo.count)
+                console.log(signo.count+ "contador")
                 let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length - 1].meshoroscopo)
                 res.render('signo', {
                     title: signo.nombre,
@@ -206,7 +205,7 @@ module.exports = {
             .then((posteohoroscopo, creado) => {
                 if (creado) {
                     /* No encontrado */
-                    res.render('signo/req.params.id', {
+                    res.render('horoscopo', {
                         title: 'Editar signo',
                         css: 'estilos.css',
                         usuario: req.session.usuario,
@@ -218,9 +217,11 @@ module.exports = {
                     let dbmes = fecha.getMonth(db.posteohoroscopo.meshoroscopo) + 1;
                     let dbanio = fecha.getFullYear(db.posteohoroscopo.meshoroscopo);
                     let calendmes = fecha.getMonth() + 1
-                    let calendanio = fecha.getYear()
+                    let calendanio = fecha.getFullYear()
+                    let calendia = fecha.getDate()
 
-                    console.log(`${dbmes}/${dbanio} es igual a ${fecha.getMonth() + 1}/${fecha.getFullYear()} --> ${fecha}`)
+                    console.log(`${calendanio}-${calendmes}-${calendia}`)
+                    //console.log(`${dbmes}/${dbanio} es igual a ${fecha.getMonth() + 1}/${fecha.getFullYear()} --> ${fecha}`)
 
                     if (dbmes == fecha.getMonth() + 1 && dbanio == fecha.getFullYear()) {
                         db.posteohoroscopo.update({
@@ -236,13 +237,14 @@ module.exports = {
                                 order: [['idsigno', 'DESC'], ['id', 'ASC']]
                             })
                             .then(signo => {
-                                console.log(signo + " algo mas")
-                                res.render('horoscopo', {
+                                console.log(signo.id + " algo mas")
+                                res.redirect('/horoscopo'/* , {
                                     title: 'Horoscopo',
                                     css: 'estilos.css',
                                     usuario: req.session.usuario,
-                                    signo: signo
-                                })
+                                    signo: signo,
+                                    nombremes: nombremes
+                                } */)
                             })
                             .catch(error => {
                                 res.send(error)
@@ -250,10 +252,15 @@ module.exports = {
 
                     }
                     else {
+                    let calendmes = fecha.getMonth() + 1
+                    let calendanio = fecha.getFullYear()
+                    let calendia = fecha.getDate()
+
+                    let fechaCompleta = `${calendanio}-${calendmes}-${calendia}`
                         db.posteohoroscopo.create({
                             text: req.body.context,
                             description: req.body.description,
-                            meshoroscopo: fecha,
+                            meshoroscopo: fechaCompleta,
                             idtiposigno: tipo(req.params.id),
                             idsigno: req.params.id
                         },
@@ -263,12 +270,9 @@ module.exports = {
                                 }
                             })
                             .then(signo => {
-                                res.render('horoscopo', {
-                                    title: 'Horoscopo',
-                                    css: 'estilos.css',
-                                    usuario: req.session.usuario,
-                                    signo: signo
-                                })
+                                console.log("pasando por aqui");
+                                console.log(signo)
+                                res.redirect('/horoscopo')
                             })
                             .catch(error => {
                                 res.send(error)
