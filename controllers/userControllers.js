@@ -26,11 +26,13 @@ module.exports = {
   register: (req, res, next) => {
     res.render('register', { title: 'Registrate', css: 'estilos.css' })
   },
-  processLogin: function (req, res) {
-    let url = '/';
-    if (req.session.url) {
-      url = req.session.url
-      console.log(req)
+  processLogin:(req, res) => {
+    console.log('holaaa pasando pri')
+
+
+    /* if (req.session.url) {
+      let url = req.session.url
+      
     }
     let errors = validationResult(req);
     console.log(errors)
@@ -43,16 +45,17 @@ module.exports = {
 
       })
         .then(usuario => {
+          console.log('holaaa')
           req.session.usuario = {
-            id: usuario.id,
-            nameuser: usuario.nameuser,
+           
+
             mail: usuario.mail,
             avatar: (usuario.rol == "usuario") ? usuario.avatar : usuario.avatar,
             rol: usuario.rol
           }
          
           res.locals.usuario = req.session.usuario
-          return res.redirect(url)
+          return res.redirect('/')
         })
         .catch(error => {
           res.send(error)
@@ -65,10 +68,10 @@ module.exports = {
         errors: errors.mapped(),
         old: req.body
       })
-    }
+    } */
   },
 
-  processRegister: function (req, res) {
+  processRegister: (req, res) => {
     let errors = validationResult(req);
     console.log(req.body)
     let fecha = new Date(req.body.date.trim())

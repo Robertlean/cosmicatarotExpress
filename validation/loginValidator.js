@@ -38,7 +38,7 @@ module.exports = [
             }
         })
         .then(user => {
-            console.log(user)
+
             if(!bcrypt.compareSync(value,user.dataValues.password)){ //si no machea la contraseña
                 return Promise.reject('Contraseña incorrecta')
             }
