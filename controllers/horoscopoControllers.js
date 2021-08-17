@@ -11,8 +11,12 @@ module.exports = {
         let fecha = new Date()
         let mes = require('../functions/mesDelAnio');
         let nombremes = mes(fecha.getMonth() - 1) 
-        db.horoscopo.findAll()
+        db.horoscopo.findAll({
+            include: ['horoscopoposteo'],
+            
+        })
             .then(signo => {
+                console.log(signo)
                 res.render('horoscopo', {
                     title: 'Horoscopo',
                     css: 'estilos.css',
@@ -25,6 +29,7 @@ module.exports = {
                 res.send(error)
             })
     },
+    /* 
     mesanterior: (req, res, next) => {
         let fecha = new Date()
 
@@ -64,7 +69,7 @@ module.exports = {
                 })
 
                 
-            })
+            }) */
         /* db.posteohoroscopo.findAndCountAll({        
             order: [['id', 'ASC']],            
             where:{
@@ -91,7 +96,7 @@ module.exports = {
             .catch(error => {
                 console.log(error)
                 res.send(error)
-            }) */
+            }) 
 
     },
     messiguiente: (req, res, next) => {
@@ -124,10 +129,9 @@ module.exports = {
                 console.log(error)
                 res.send(error)
             })
-    },
+    },*/
     mostrarsigno: (req, res, next) => {
         let fecha = new Date()
-        let history = req.params.data;
         db.horoscopo.findByPk(req.params.id, {
             include: ['horoscopoposteo'],
             order: [['id', 'ASC']],
@@ -136,7 +140,6 @@ module.exports = {
             }
         })
             .then(signo => {
-                console.log(signo.count+ "contador")
                 let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length - 1].meshoroscopo)
                 res.render('signo', {
                     title: signo.nombre,
@@ -238,13 +241,7 @@ module.exports = {
                             })
                             .then(signo => {
                                 console.log(signo.id + " algo mas")
-                                res.redirect('/horoscopo'/* , {
-                                    title: 'Horoscopo',
-                                    css: 'estilos.css',
-                                    usuario: req.session.usuario,
-                                    signo: signo,
-                                    nombremes: nombremes
-                                } */)
+                                res.redirect('/horoscopo')
                             })
                             .catch(error => {
                                 res.send(error)
@@ -280,100 +277,5 @@ module.exports = {
                     }
                 }
             })
-
-
-
-        /* .then(signo => {
-            console.log(signo)
-
-            res.render('horoscopo', {
-                title: 'Horoscopo',
-                css: 'estilos.css',
-                usuario: req.session.usuario,
-                signo: signo
-            })
-        })
-        .catch(error => {
-            res.send(error)
-        }) 
-
-
-    if (dbmes == calendmes && dbanio == calendanio) {
-        console.log("algo mas")
-
-        console.log(`${dbmes} / ${dbanio} and ${calendmes} / ${calendanio}`)
-
-        /*db.posteohoroscopo.update({
-            text: req.body.context,
-            description: req.body.description
-        },
-            {
-                where: {
-                    idsigno: req.params.id
-                }
-            })
-            .then(signo => {
-                console.log(signo)
-                res.render('horoscopo', {
-                    title: 'Horoscopo',
-                    css: 'estilos.css',
-                    usuario: req.session.usuario,
-                    signo: signo
-                })
-            })
-            .catch(error => {
-                res.send(error)
-            })
-    }
-    else {
-        console.log("Algo")
-        db.posteohoroscopo.findOrCreate({
-            where: { idsigno: req.params.id },
-            defaults: {
-                text: req.body.context,
-                description: req.body.description,
-                idtiposigno: tipo(req.params.id),
-                meshoroscopo: fecha,
-                idsigno: req.params.id
-            }
-        })
-            .then(signo => {
-                console.log(signo)
-                res.render('horoscopo', {
-                    title: 'Horoscopo',
-                    css: 'estilos.css',
-                    usuario: req.session.usuario,
-                    signo: signo
-                })
-            })
-            .catch(error => {
-                res.send(error)
-            })
-
-        /*db.posteohoroscopo.create({
-            text: req.body.context,
-            description: req.body.description,
-            meshoroscopo: fecha,
-            idtiposigno: tipo(req.params.id),
-            idsigno: req.params.id
-        },
-        {
-            where: {
-                idsigno: req.params.id
-            }
-        })
-        .then(signo => {
-            res.render('horoscopo', {
-                title: 'Horoscopo',
-                css: 'estilos.css',
-                usuario: req.session.usuario,
-                signo: signo
-            })
-        })
-        .catch(error => {
-            res.send(error)
-        })*/
-
-
     }
 }

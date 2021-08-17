@@ -17,7 +17,7 @@
         <section class="recent-posts services">
             <div class="title text-center">
                 <h1 class="title-blue horoscopo">horoscopo</h1>
-                <p class="title-blue"><%=nombremes %> algo</p>
+                <p class="title-blue"><%= nombremes %></p>
             </div>
             <div class="container">
                 <div class="row">
@@ -32,9 +32,10 @@
                                     
                                     <a href="<%='/horoscopo/signo/'+ 12%> ">Capricornio</a>
                                 </h3>
-                                <h5><%= signo.description +12 %></h5>
+                                <% let capricornio = signo.find(sign => sign.id == 12)%>
+                                <h5><%= capricornio.horoscopoposteo[0].description %></h5>
                                 <h6 style="color: rgb(134, 43, 43)">Tierra</h6>
-
+                                 
                                 <a class="post-btn" href="<%='/horoscopo/signo/'+ 12%>"><i
                                         class="fa fa-arrow-right"></i></a>
                             </div>
@@ -58,8 +59,10 @@
                                     <a href="<%='/horoscopo/signo/'+1 %>">Acuario</a>
                                     <a href="<%='/horoscopo/signo/edit/'+1 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quis quae,
-                                    tempore aliquid, hic, iusto fugit iste</h5>
+                                <% let acuario = signo.find(sign => sign.id == 1)%>
+                                <h5><%= acuario.horoscopoposteo[0].description %> .</h5>
+                                <%# } %> 
+                                    
                                 <h6 style="color: rgb(190, 242, 255);  text-shadow: 1px  0px 0px black,
                                 0px  1px 0px black,
                                -1px  0px 0px black,
@@ -79,9 +82,8 @@
                                     <a href="<%='/horoscopo/signo/edit/'+2 %>"><i class="fa fa-edit"></i></a>
                                     <a href="<%='/horoscopo/signo/'+2 %>">Piscis</a>
                                 </h3>
-                                <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
-                                    molestiae
-                                    amet aspernatur nulla autem corrupti, unde itaque officia</h5>
+                                <% let piscis = signo.find(sign => sign.id == 2)%>
+                                <h5><%= piscis.horoscopoposteo[0].description %></h5>
                                 <h6 style="color: rgb(0, 132, 184);">Agua</h6>
                                 <a class="post-btn" href="#"><i class="fa fa-arrow-right"></i></a>
 
@@ -108,8 +110,9 @@
                                     <a href="<%='/horoscopo/signo/'+3 %>">Aries</a>
                                     <a href="<%='/horoscopo/signo/edit/'+3 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque libero
-                                    mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam perspiciatis</h5>
+                                
+                                <% let aries = signo.find(sign => sign.id == 3)%>
+                                <h5><%= aries.horoscopoposteo[0].description %></h5>
                                 <h6 style="color:rgb(231, 34, 7)">Fuego</h6>
                                 <a class="post-btn" href="<%='/horoscopo/signo/'+3 %>"><i class="fa fa-arrow-right"></i></a>
                             </div>
@@ -124,12 +127,14 @@
                                     <a href="<%='/horoscopo/signo/edit/'+4 %>"><i class="fa fa-edit"></i></a>
                                     <a href="<%='/horoscopo/signo/'+4 %>">Tauro</a>
                                 </h3>
-                                <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
-                                    molestiae
-                                    amet aspernatur nulla autem corrupti, unde itaque officia</p>
-                                    <h6 style="color: rgb(134, 43, 43)">Tierra</h6>
-                                    <a class="post-btn" href="<%='/horoscopo/signo/'+4 %>"><i
-                                            class="fa fa-arrow-right"></i></a>
+
+                                <% let tauro = signo.find(sign => sign.id == 4)%>
+                                <h5><%= tauro.horoscopoposteo[0].description %></h5>
+
+                                <h6 style="color: rgb(134, 43, 43)">Tierra</h6>
+                                <a class="post-btn" href="<%='/horoscopo/signo/'+4 %>">
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
 
                             </div>
                             <div class="post-thumb post-left">
@@ -153,8 +158,8 @@
                                     <a href="<%='/horoscopo/signo/edit/'+5 %>"><i class="fa fa-edit"></i></a>
                                     <a href="<%='/horoscopo/signo/'+5 %>">Geminis</a>
                                 </h3>
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque libero
-                                    mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam perspiciatis</p>
+                                <% let geminis = signo.find(sign => sign.id == 5)%>
+                                <h5><%= geminis.horoscopoposteo[0].description %></h5>
                                     <h6 style="color: rgb(190, 242, 255); text-shadow: 1px  0px 0px black,
                                 0px  1px 0px black,
                                -1px  0px 0px black,
@@ -173,8 +178,8 @@
                                     <a href="<%='/horoscopo/signo/edit/'+6 %>"><i class="fa fa-edit"></i></a>                 
                                     <a href="<%='/horoscopo/signo/'+6 %>">Cancer</a>                                    
                                 </h3>
-                                <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
-                                    molestiae amet aspernatur nulla autem corrupti, unde itaque officia</h5>
+                                <% let cancer = signo.find(sign => sign.id == 6)%>
+                                <h5><%= cancer.horoscopoposteo[0].description %></h5>
                                 <h6 style="color: rgb(0, 132, 184)">Agua</h6>
                                 <a class="post-btn" href="<%='/horoscopo/signo/'+6 %>"><i class="fa fa-arrow-right"></i></a>
 
@@ -198,11 +203,10 @@
                                 <h1><time datetime="2019-04-06T13:53">23/Julio - 23/Agosto</time></h1>
                                 <h3>
                                     <a href="<%='/horoscopo/signo/'+7 %>">Leo</a>
-                                    <a href="<%='/horoscopo/signo/edit/'+7 %>"></a><i class="fa fa-edit"></i>
+                                    <a href="<%='/horoscopo/signo/edit/'+7 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque
-                                    libero mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam
-                                    perspiciatis</h5>
+                                <% let leo = signo.find(sign => sign.id == 7)%>
+                                <h5><%= leo.horoscopoposteo[0].description %></h5>
                                 <h6 style="color:rgb(231, 34, 7)">Fuego</h6>
                                 <a class="post-btn" href="<%='/horoscopo/signo/'+7 %>"><i class="fa fa-arrow-right"></i></a>
                             </div>
@@ -219,9 +223,8 @@
                                     <a href="<%='/horoscopo/signo/'+8 %>">Virgo</a>
                                     
                                 </h3>
-                                <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
-                                    molestiae
-                                    amet aspernatur nulla autem corrupti, unde itaque officia</h5>
+                                <% let virgo = signo.find(sign => sign.id == 8)%>
+                                <h5><%= virgo.horoscopoposteo[0].description %></h5>
                                 <h6 style="color: rgb(134, 43, 43)">Tierra</h6>
                                 <a class="post-btn" href="<%='/horoscopo/signo/'+8 %>"><i class="fa fa-arrow-right"></i></a>
 
@@ -247,9 +250,8 @@
                                     <a href="<%='/horoscopo/signo/'+9 %>">Libra</a>
                                     <a href="<%='/horoscopo/signo/edit/'+9 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit obcaecati laudantium
-                                    cumque ea? Quae temporibus commodi ducimus neque! Deleniti mollitia vero recusandae
-                                    odit corporis, hic quos temporibus aperiam optio accusantium!</h5>
+                                <% let libra = signo.find(sign => sign.id == 9)%>
+                                <h5><%= libra.horoscopoposteo[0].description %></h5>
                                 <h6 style="color: rgb(190, 242, 255); text-shadow: 1px  0px 0px black,
                                 0px  1px 0px black,
                                -1px  0px 0px black,
@@ -269,8 +271,8 @@
                                     <a href="<%='/horoscopo/signo/edit/'+10 %>"><i class="fa fa-edit"></i></a>
                                     <a href="<%='/horoscopo/signo/'+10 %>">Escorpio</a>
                                 </h3>
-                                <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque, ipsum
-                                    molestiae amet aspernatur nulla autem corrupti, unde itaque officia</h5>
+                                <% let escorpio = signo.find(sign => sign.id == 10)%>
+                                <h5><%= escorpio.horoscopoposteo[0].description %></h5>
                                 <h6 style="color: rgb(0, 132, 184)">Agua</h6>
                                 <a class="post-btn" href="<%='/horoscopo/signo/'+10 %>"><i
                                         class="fa fa-arrow-right"></i></a>
@@ -297,9 +299,8 @@
                                     <a href="<%='/horoscopo/signo/'+11 %>">Sagitario</a>
                                     <a href="<%='/horoscopo/signo/edit/'+11 %>"><i class="fa fa-edit"></i></a>
                                 </h3>
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui repellat neque
-                                    libero mollitia ut eligendi corrupti illum accusamus. Quos odit aliquam
-                                    perspiciatis</h5>
+                                <% let sagitario = signo.find(sign => sign.id == 11)%>
+                                <h5><%= sagitario.horoscopoposteo[0].description %></h5>
                                 <h6 style="color:rgb(231, 34, 7)">Fuego</h6>
                                 <a class="post-btn" href="<%='/horoscopo/signo/'+11 %>"><i class="fa fa-arrow-right"></i></a>
                             </div>

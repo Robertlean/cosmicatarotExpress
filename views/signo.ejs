@@ -16,15 +16,13 @@
 
                 <section class="recent-posts">
                     <div class="container">
+                        <small>Actualizado: <%= signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo %> </small>
                         <div class=" text-center">
 
                             <!-- Continuar por aquí con la paginación -->
                             <img class="img-fluid" src="/images/icon/<%= signo.img%>" alt="Post 1">
                             <div class="d-flex justify-content-between title-blue align-items-center titleplus">
-                                <div class="mesanterior pagination">
-                                     
-                                    <h5><a href="<%= '/horoscopo/signo/'+signo.id+'/mesanterior'%>">Mes anterior</a></h5>
-                                </div>
+                                <div></div>
                                 <div>
                                     <h1>
                                     <%= signo.nombre %>
@@ -34,9 +32,7 @@
                                     </h1>
                                 </div> 
                                 <div class="messiguiente pagination">
-                                    <% if(meshoroscopo != mesactual){ %> 
-                                        <h5><a href="<%='/horoscopo/signo/'+signo.id+'/messiguiente'%>">Mes siguiente</a></h5>
-                                    <% } %> 
+                                    
                                 </div>
                             </div>
                             <h3 class="title-blue"><%= nombremessigno %></h3>

@@ -6,7 +6,7 @@ const db = require('../database/models');
 
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
-const { validationResult, body } = require('express-validator');
+const { validationResult } = require('express-validator');
 const path = require('path')
 const e = require('express');
 const {
@@ -30,12 +30,13 @@ module.exports = {
     console.log('holaaa pasando pri')
 
 
-    /* if (req.session.url) {
+    if (req.session.url) {
       let url = req.session.url
       
     }
     let errors = validationResult(req);
-    console.log(errors)
+    console.log("Error puto")
+    
     if (errors.isEmpty()) {
 
       db.users.findOne({
@@ -68,7 +69,7 @@ module.exports = {
         errors: errors.mapped(),
         old: req.body
       })
-    } */
+    }
   },
 
   processRegister: (req, res) => {
@@ -96,7 +97,7 @@ module.exports = {
           return res.redirect('/login')
         })
         .catch(errores => {
-          console.log(errores)
+          
           errores.errors.forEach(error => {
             if (error.path == "nameuser") {
               errors["nameuser"] = {};
