@@ -20,10 +20,10 @@ module.exports = {
         res.render('post', { title: 'Post', css: 'estilos.css', usuario: req.session.usuario })
     },
     sendpost: function (req, res) {
-        console.log(req);
-        return
+        
+        
         let errors = validationResult(req);
-        console.log(req.body);
+        
         let fecha = new Date();
         console.log(fecha);
 

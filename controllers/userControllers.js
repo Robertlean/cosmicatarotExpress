@@ -27,15 +27,12 @@ module.exports = {
     res.render('register', { title: 'Registrate', css: 'estilos.css' })
   },
   processLogin:(req, res) => {
-    console.log('holaaa pasando pri')
-
 
     if (req.session.url) {
       let url = req.session.url
       
     }
-    let errors = validationResult(req);
-    console.log("Error puto")
+    let errors = validationResult(req);   
     
     if (errors.isEmpty()) {
 
@@ -46,7 +43,6 @@ module.exports = {
 
       })
         .then(usuario => {
-          console.log('holaaa')
           req.session.usuario = {
            
 
@@ -60,7 +56,7 @@ module.exports = {
         })
         .catch(error => {
           res.send(error)
-          console.log(error)
+          
         })
     } else {
       res.render('login', {
@@ -74,7 +70,7 @@ module.exports = {
 
   processRegister: (req, res) => {
     let errors = validationResult(req);
-    console.log(req.body)
+    
     let fecha = new Date(req.body.date.trim())
     let dia = fecha.getDate() + 1
     let mes = fecha.getMonth() + 1

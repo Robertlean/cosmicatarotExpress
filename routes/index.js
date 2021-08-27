@@ -16,8 +16,8 @@ const cookieCheck = require('../middleware/CookieCheck')
 /* GET home page. */
 router.get('/', cookieCheck, controller.index);
 router.get('/createpost', controllerPost.createpost);
-router.post('/:id', upload.single('posteos'), controllerPost.sendpost,function(req, res){
-    console.log(req.file.filename, req.body)})
+/* router.post('/:id', upload.single('posteos'), controllerPost.sendpost,function(req, res){
+    console.log(req.file.filename, req.body)}) */
 //router.get('/post', controllerPost.post);
 router.get('/aboutme', controller.aboutme);
 router.get('/buy', controller.buy);

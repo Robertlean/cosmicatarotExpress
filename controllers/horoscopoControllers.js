@@ -94,7 +94,7 @@ module.exports = {
                 })
             })
             .catch(error => {
-                console.log(error)
+              
                 res.send(error)
             }) 
 
@@ -126,7 +126,7 @@ module.exports = {
                 })
             })
             .catch(error => {
-                console.log(error)
+                
                 res.send(error)
             })
     },*/
@@ -152,7 +152,6 @@ module.exports = {
                 })
             })
             .catch(error => {
-                console.log(error)
                 res.send(error)
             })
 
@@ -240,7 +239,7 @@ module.exports = {
                                 order: [['idsigno', 'DESC'], ['id', 'ASC']]
                             })
                             .then(signo => {
-                                console.log(signo.id + " algo mas")
+                                
                                 res.redirect('/horoscopo')
                             })
                             .catch(error => {
@@ -268,7 +267,6 @@ module.exports = {
                             })
                             .then(signo => {
                                 console.log("pasando por aqui");
-                                console.log(signo)
                                 res.redirect('/horoscopo')
                             })
                             .catch(error => {
