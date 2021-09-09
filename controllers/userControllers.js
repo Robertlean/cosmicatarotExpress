@@ -29,11 +29,9 @@ module.exports = {
   processLogin:(req, res) => {
 
     if (req.session.url) {
-      let url = req.session.url
-      
+      let url = req.session.url      
     }
-    let errors = validationResult(req);   
-    
+    let errors = validationResult(req);       
     if (errors.isEmpty()) {
 
       db.users.findOne({
@@ -44,19 +42,20 @@ module.exports = {
       })
         .then(usuario => {
           req.session.usuario = {
-           
-
+            id: usuario.id,       
             mail: usuario.mail,
             avatar: (usuario.rol == "usuario") ? usuario.avatar : usuario.avatar,
-            rol: usuario.rol
+            rol: usuario.rol,
+            nameuser: usuario.nameuser
           }
          
           res.locals.usuario = req.session.usuario
+          res.cookie('cosmicaTarot', req.session.usuario)
           return res.redirect('/')
         })
         .catch(error => {
           res.send(error)
-          
+          return res.redirect('/login')
         })
     } else {
       res.render('login', {
@@ -89,7 +88,6 @@ module.exports = {
 
       })
         .then(result => {
-          console.log('Llegue acá')
           return res.redirect('/login')
         })
         .catch(errores => {
@@ -130,14 +128,20 @@ module.exports = {
   },
   profile: function (req, res) {
     if (req.session.usuario) {
-      db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo'] }
+      db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo', 'horoscopoperfil'] }
       )
-        .then(usuario => {
+        .then(usuario => {          
+          let horoscopohorosc = usuario.horoscopo
+          let horoscopopost = usuario.horoscopoperfil
           res.render('perfil', {
-            title: "Perfil de " + usuario.nameuser,
+            title: "Perfil de " +req.session.usuario.nameuser,
             css: "estilos.css",
-            usuario: usuario
-          })
+            usuario: usuario,
+            signo: horoscopohorosc
+          }
+          );
+          console.log(horoscopopost)
+          
         })
     } else {
       res.redirect('/')

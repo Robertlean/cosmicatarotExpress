@@ -50,7 +50,14 @@ module.exports = (sequelize,dataTypes) => {
             foreignKey: "id",
             where: "signo"
         })
+        posteoHoroscopo.belongsTo(models.users, {
+        as: "horoscopoperfil", //nombre de fantasia de la relación de las tablas
+        foreignKey: "id",
+        where: "signo",
+
+        })
     }
+    
 
 
     return posteoHoroscopo;

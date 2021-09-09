@@ -8,16 +8,12 @@ var controller = require('../controllers/userControllers');
 
 const upload = require('../middleware/UpImageAvatar')
 
-
-
 /* GET profile listing. */
 
 router.get('/:id', controller.profile);
 
 router.get('/:id/editperfil',controller.mostraredit);
-router.post('/:id', upload.single('avatar'),controller.editprofile, function(req, res){
-    console.log(req.file.filename, req.body)
-})
+router.post('/:id', upload.single('avatar'),controller.editprofile)
 
 
 module.exports = router;
