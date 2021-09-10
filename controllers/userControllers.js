@@ -139,19 +139,13 @@ module.exports = {
           .then(posteo =>{
             console.log(posteo)
             res.render('perfil', {
-                        title: "Perfil de " +req.session.usuario.nameuser,
-                        css: "estilos.css",
-                        usuario: usuario,
-                        signo: posteo
-                      }
-                      );
+              title: "Perfil de " +req.session.usuario.nameuser,
+              css: "estilos.css",
+              usuario: usuario,
+              signo: posteo
+            });
 
-          })     
-          let horoscopohorosc = usuario
-          let horoscopopost = usuario.horoscopoperfil
-          
-          
-          console.log(horoscopopost)
+          })
           
         })
     } else {
