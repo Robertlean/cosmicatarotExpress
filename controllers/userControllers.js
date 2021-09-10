@@ -130,16 +130,27 @@ module.exports = {
     if (req.session.usuario) {
       db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo', 'horoscopoperfil'] }
       )
-        .then(usuario => {          
-          let horoscopohorosc = usuario.horoscopo
+        .then(usuario => {
+          posteo = db.posteohoroscopo.findAll({
+            where:{
+              idsigno: usuario.idsigno
+            }
+          })
+          .then(posteo =>{
+            console.log(posteo)
+            res.render('perfil', {
+                        title: "Perfil de " +req.session.usuario.nameuser,
+                        css: "estilos.css",
+                        usuario: usuario,
+                        signo: posteo
+                      }
+                      );
+
+          })     
+          let horoscopohorosc = usuario
           let horoscopopost = usuario.horoscopoperfil
-          res.render('perfil', {
-            title: "Perfil de " +req.session.usuario.nameuser,
-            css: "estilos.css",
-            usuario: usuario,
-            signo: horoscopohorosc
-          }
-          );
+          
+          
           console.log(horoscopopost)
           
         })
