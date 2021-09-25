@@ -13,7 +13,7 @@
     border-top-right-radius: 6.5em;
     border-bottom-left-radius: 6.5em;
     padding: 2em 0;
-    margin-top: 2em;
+    margin-top: 3em;
   }
   .cta-content::after{
     top: -45px

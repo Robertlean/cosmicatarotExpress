@@ -74,6 +74,8 @@ module.exports = {
     let dia = fecha.getDate() + 1
     let mes = fecha.getMonth() + 1
 
+    console.log(errors)
+
     if (errors.isEmpty()) {
       db.users.create({
         nameuser: req.body.name.trim(),
@@ -128,40 +130,36 @@ module.exports = {
   },
   profile: function (req, res) {
     if (req.session.usuario) {
-      db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo', 'horoscopoperfil'] }
+
+      db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo','horoscopoposteo'] }
       )
         .then(usuario => {
-          posteo = db.posteohoroscopo.findAll({
+          db.posteohoroscopo.findOne({
             where:{
               idsigno: usuario.idsigno
             }
+            
           })
           .then(posteo =>{
-            console.log(posteo)
             res.render('perfil', {
               title: "Perfil de " +req.session.usuario.nameuser,
               css: "estilos.css",
               usuario: usuario,
-              signo: posteo
+              posteo: posteo
             });
-
           })
-          
         })
     } else {
       res.redirect('/')
     }
   },
   editprofile: function (req, res) {
-    let url = '/';
-    if (req.session.url) {
-      url = req.session.url
-    }
     let errors = validationResult(req);
     
     if (errors.isEmpty()){
+      console.log( req.file +" -- "+ req.file.filename)
       db.users.update({
-          avatar: (req.file.filename == req.file.filename)? req.file.filename: "default.png",
+          avatar: (req.file) ? req.file.filename : user.avatar,
           description: req.body.description.trim()
         },{
           where: {
@@ -173,11 +171,9 @@ module.exports = {
           res.redirect('/perfil/:id')
         })
         .catch(error => res.send(error))
-
     }
-
   },
-  mostraredit: (req, res, next) => {
+  mostraredit: (req, res) => {
     res.render('editperfil', {
       title: 'Modifica tu perfil',
       css: 'estilos.css',

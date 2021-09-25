@@ -12,9 +12,7 @@ module.exports = {
     experience: (req, res, next) =>{
         res.render('experienceclient', {title: 'Experiencia', css:'estilos.css', usuario: req.session.usuario})
     },    
-    /*search: (req, res, next) =>{
-        res.render('search', {title: 'Resultado de la busqueda', css:'estilos.css', usuario: req.session.usuario})
-    },*/
+    
     service: (req, res, next) =>{
         res.render('service', {title: 'Sesiones', css:'estilos.css', usuario: req.session.usuario})
     }

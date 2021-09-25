@@ -30,23 +30,25 @@ module.exports = {
     },
     mostrarsigno: (req, res, next) => {
         let fecha = new Date()
-        db.horoscopo.findByPk(req.params.id, {
+        db.horoscopo.findOne({
             include: ['horoscopoposteo'],
             order: [['id', 'ASC']],
             where: {
-                id: req.params.id, meshoroscopo: fecha
+                id: req.params.id
             }
         })
             .then(signo => {
+                let data = new Date(signo.horoscopoposteo[signo.horoscopoposteo.length - 1].meshoroscopo)
                 let month = fecha.getMonth(signo.horoscopoposteo[signo.horoscopoposteo.length - 1].meshoroscopo)
                 res.render('signo', {
                     title: signo.nombre,
                     css: 'estilos.css',
                     usuario: req.session.usuario,
                     signo: signo,
-                    nombremessigno: mes(month - 1),
+                    nombremessigno: mes(data.getMonth()-1),
                     meshoroscopo: month,
-                    mesactual: fecha.getMonth()
+                    mesactual: fecha.getMonth(),
+                    actualizado: `${data.getDate()+1} de ${mes(data.getMonth()-1)} del ${data.getFullYear()}`
                 })
             })
             .catch(error => {

@@ -75,7 +75,7 @@ header::after {
 }
 
 .login {
-  
+  display: contents;
   font-size: 14px;
   margin-right: 5px;
   text-transform: uppercase;
@@ -98,7 +98,7 @@ header::after {
 
 .social {
   padding-left: 0;
-  margin: 0;
+  margin-left: 1em;
   list-style: none;
 }
 
@@ -868,7 +868,7 @@ footer {
     1 - Footer Widgets
 ------------------------------------*/
 .footer-widgets {
-  padding: 100px 0;
+  padding: 3em 0;
 }
 
 .footer-widgets .col-md-6 .single-widget:not(:first-child) .widget-tiltle {
@@ -879,8 +879,14 @@ footer {
   color: #aaa;
 }
 
+.footer-widgets-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .single-widget .widget-tiltle {
-  font-size: 17px;
+  font-size: 20px;
   text-transform: uppercase;
   color: #fff;
   margin-bottom: 45px;

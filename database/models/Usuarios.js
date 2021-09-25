@@ -75,7 +75,7 @@ module.exports = (sequelize, dataTypes) => {
             where: "nombre"
         })
         users.hasMany(models.posteohoroscopo,{
-            as: "horoscopoperfil",
+            as: "horoscopoposteo",
             foreignKey: "id",
             where: "signopost"
         })

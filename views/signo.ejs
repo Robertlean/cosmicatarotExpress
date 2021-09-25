@@ -16,19 +16,20 @@
 
                 <section class="recent-posts">
                     <div class="container">
-                        <small>Actualizado: <%= signo.horoscopoposteo[signo.horoscopoposteo.length-1].meshoroscopo %> </small>
+                        <h6 class="title-blue">Actualizado: <%= actualizado %> </h6>
                         <div class=" text-center">
-
-                            <!-- Continuar por aquí con la paginación -->
                             <img class="img-fluid" src="/images/icon/<%= signo.img%>" alt="Post 1">
                             <div class="d-flex justify-content-between title-blue align-items-center titleplus">
                                 <div></div>
                                 <div>
                                     <h1>
                                     <%= signo.nombre %>
-                                    <a href="<%='/horoscopo/signo/edit/'+ signo.id%> ">
+                                    <% if (typeof usuario != "undefined" && usuario.rol=="admin") { %>
+                                     <a href="<%='/horoscopo/signo/edit/'+ signo.id%> ">
                                             <i class="fa fa-edit"></i>
                                         </a>
+                                    <% } %>
+                                    
                                     </h1>
                                 </div> 
                                 <div class="messiguiente pagination">
@@ -51,41 +52,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <section class=" text-center">
-                            <h2 class="title-blue">Comentarios</h2>
-                        </section>
-                        <div class="cta-content" style="padding:0 5em 5em 4em">
-                            <div class="container">
-                                <div class="coments">
-                                    <h6>Comentado por <a href="../user/Robert">Robert</a> hace -20hs</h6>
-                                    <h6> Cancer</h6>
-                                </div>
-                                <div class="d-md-flex align-items-center justify-content-around text-center text-xl-left"
-                                    style="flex-direction: column; padding-bottom: 3em">
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere eveniet iure
-                                        deleniti tempore aut soluta animi. Maxime nam numquam atque eius accusantium
-                                        sequi, minus id omnis fuga quae assumenda fugit. Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Neque sapiente nobis, odio voluptatum fugit velit
-                                        rerum, consectetur exercitationem quisquam nostrum provident optio minima. Aut
-                                        aspernatur itaque aperiam harum distinctio deserunt!</p>
-
-                                </div>
-                                <div class=" form-comentario">
-                                    <form action="" method="post" class="form-coment">
-                                        <div class="d-md-flex" style="flex-direction:column;">
-                                            <label for="comentario">Deja un comentario</label>
-                                            <textarea name="coment" id="comentario" cols="90" rows="3"
-                                                placeholder="Escribi que te parecio el post"></textarea>
-                                        </div>
-
-                                        <button class="btn btn-primary">Enviar</button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div> -->
-
                     </div>
                 </section>
 

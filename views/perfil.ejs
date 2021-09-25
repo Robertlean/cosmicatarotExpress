@@ -15,50 +15,53 @@
                 </section>
 
                 <section class="recent-post">
-                    <div class="cta-content2" style="padding:2em 0 2.5em; margin:3em 0">
-                        <div class="container" style="display:block; justify-content: center; align-items: center;">
-                            <div class="d-md-flex row align-items-center justify-content-center text-xl-start text-xl-start content-img"
-                                style="flex-direction: column; justify-content: center;">
-                                <div class="col-lg-12">
-                                    <div class="test-img">
-                                        <img src="/images/users/<%= usuario.avatar%>" alt="">
-
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-6"
-                                    style="display: flex; justify-content: center; flex-direction: column;">
-                                    <div class="col-lg-12"
-                                        style="justify-content: center; display: flex; align-items: center;">
-                                        <h1>
-                                            <%= usuario.nameuser%>
-                                        </h1>
-                                    </div>
-                                    <div class="col-lg-12" style="display: flex; justify-content: space-between;">
-                                        <div class="col-lg-12 title"
-                                            style="display: flex; justify-content: space-between;">
-                                            <h6 style="color:red">
-                                                <%=usuario.horoscopo.nombre %>
-                                            </h6>
-                                            <h6 style="color: rgb(0, 184, 9)">
-                                                <%= usuario.tiposigno.signo %>
-                                            </h6>
-
+                    <div class="container">
+                        <div class="cta-content2" style="padding:2em 0 2.5em; margin:3em 0">
+                            <div class="container" style="display:block; justify-content: center; align-items: center;">
+                                <div class="d-md-flex row align-items-center justify-content-center text-xl-start text-xl-start content-img"
+                                    style="flex-direction: column; justify-content: center;">
+                                    <div class="col-lg-12">
+                                        <div class="test-img">
+                                            <img src="/images/users/<%= usuario.avatar%>" alt="">
+    
                                         </div>
+    
                                     </div>
-                                    <div class="col-lg-12" style="display: flex; justify-content: center;">
-                                        <% if(typeof usuario.description=="null" ) { %>
-                                            <p> Agregue una pequeña descripción sobre tí</p>
-                                            <% }else{ %>
-                                                <p>
-                                                    <%= usuario.description %>
-                                                </p>
-                                                <% } %>
+                                    <div class="col-lg-6"
+                                        style="display: flex; justify-content: center; flex-direction: column;">
+                                        <div class="col-lg-12"
+                                            style="justify-content: center; display: flex; align-items: center;">
+                                            <h1>
+                                                <%= usuario.nameuser%>
+                                            </h1>
+                                        </div>
+                                        <div class="col-lg-12" style="display: flex; justify-content: space-between;">
+                                            <div class="col-lg-12 title"
+                                                style="display: flex; justify-content: space-between;">
+                                                <h6 style="color:red">
+                                                    <%=usuario.horoscopo.nombre %>
+                                                </h6>
+                                                <h6 style="color: rgb(0, 184, 9)">
+                                                    <%= usuario.tiposigno.signo %>
+                                                </h6>
+    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12" style="display: flex; justify-content: center;">
+                                            <% if(typeof usuario.description=="null" || usuario.description == "undefined") { %>
+                                                <p> Edita tu perfil para agregar una descripción</p>
+                                                <% }else{ %>
+                                                    <p>
+                                                        <%= usuario.description %>
+                                                    </p>
+                                                    <% } %>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="testimonials">
                         <div class="title text-center">
                             <h1 class="title-blue">Horoscopo de tu signo</h1>
@@ -70,38 +73,33 @@
                             <div class="col-sm-6 col-lg-12 border-radius">
                                 <div class="media rounded-bottom" data-aos="fade-up" data-aos-delay="200"
                                     data-aos-duration="400">
-
                                     <div class="container">
                                         <div class=" text-center">
-
-                                            <img class="img-fluid" src="/images/icon/<%= posteo.img%>"
+                                            <img class="img-fluid" src="/images/icon/<%= usuario.horoscopo.img%>"
                                                 alt="Post 1">
                                             <div
                                                 class="d-flex justify-content-between title-blue align-items-center titleplus">
                                                 <div></div>
                                                 <div>
                                                     <h1>
-                                                        <%= posteo.nombre %>
+                                                        <%= usuario.horoscopo.nombre %>
                                                     </h1>
                                                 </div>
                                                 <div class="messiguiente pagination">
 
                                                 </div>
                                             </div>
-                                            <h3 class="title-blue">
-                                                <%= posteo[usuario.title] %>
-                                            </h3>
                                             <h5 class="title-blue">
-                                                <%=posteo[usuario.description]%>
-                                            </h5>
+                                                <%= posteo.description%>
+                                            </h5>                                            
                                         </div>
 
-                                        <div class="cta-content" style="padding:1.5em 5em 1em 4em">
+                                        <div class="cta-content" style="padding:1.5em 5em 1em 4em; margin-bottom: 3em">
                                             <div class="container">
                                                 <div class="d-md-flex align-items-center justify-content-around text-xl-start text-xl-start content-img"
                                                     style="flex-direction: column; padding-bottom: 3em;">
                                                     <p>
-                                                        <%= signo[usuario.idsigno] %>
+                                                        <%= posteo.text %>
                                                     </p>
                                                 </div>
                                             </div>
