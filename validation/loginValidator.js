@@ -7,7 +7,7 @@ module.exports = [
     .isEmail()
     .withMessage('Ingrese un email válido'),
 
-    check('pass')
+    check('passlog')
     .isLength({
         min:6
     })
@@ -30,7 +30,7 @@ module.exports = [
         })
     }),
 
-    body('pass')
+    body('passlog')
     .custom((value,{req})=>{
         return db.users.findOne({
             where:{
@@ -38,13 +38,12 @@ module.exports = [
             }
         })
         .then(user => {
-
             if(!bcrypt.compareSync(value,user.dataValues.password)){ //si no machea la contraseña
                 return Promise.reject('Contraseña incorrecta')
             }
         })
         .catch(() => {
-            return Promise.reject('E-mail y contraseña incorrectas')
+            return Promise.reject('E-mail y/o contraseña incorrectas')
         })
     })
 

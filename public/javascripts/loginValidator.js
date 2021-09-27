@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     let formulario = qs('#formIngreso')
 
     let inputmail = qs('#mail');
-    let inputPass = qs('#pass');
+    let inputPass = qs('#passlog');
     let regExEmail =  /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]:+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/;
     //let regExPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$/;
 
@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
                 this.classList.add('is_invalid')
                 break;
             case !regExEmail.test(this.value):
-                errorEmail.innerHTML = "El campo del email debe tener al menos 3 letras";
+                errorEmail.innerHTML = "El campo del email es obligatorio";
                 this.classList.add('is-invalid')
                 break;
             default:

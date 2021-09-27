@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var multer = require('multer');
-var path = require('path');
-
 var controller = require('../controllers/userControllers');
+var editValidator = require('../validation/editPerfilValidator')
 
 
 const upload = require('../middleware/UpImageAvatar')

@@ -2,9 +2,6 @@ let qs = function(elemento){
     return document.querySelector(elemento)
 }
 window.addEventListener('load',function(){
-
-   console.log('JS vinculado correctamente...')
-
    let formulario = qs ('#formRegister')
    
    let inputNombre = qs('#users');
@@ -115,7 +112,6 @@ window.addEventListener('load',function(){
            }
        }
        if(!error){
-           console.log("Todo Perfecto!!");
            alert("Te registraste correctamente, inicia sesión")
            formulario.submit()
        }

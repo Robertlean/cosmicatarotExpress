@@ -46,7 +46,9 @@ module.exports = {
             mail: usuario.mail,
             avatar: (usuario.rol == "usuario") ? usuario.avatar : usuario.avatar,
             rol: usuario.rol,
-            nameuser: usuario.nameuser
+            description: usuario.description,
+            nameuser: usuario.nameuser,
+            pass: bcrypt.hashSync(usuario.password, 10),
           }
          
           res.locals.usuario = req.session.usuario
@@ -157,23 +159,35 @@ module.exports = {
     let errors = validationResult(req);
     
     if (errors.isEmpty()){
-      console.log( req.file +" -- "+ req.file.filename)
       db.users.update({
-          avatar: (req.file) ? req.file.filename : user.avatar,
-          description: req.body.description.trim()
+        avatar : req.file ? req.file.filename : req.session.usuario.avatar,
+        description: req.body.description.trim(),
+        password:(bcrypt.hashSync(req.body.pass.trim(), 10) == req.session.usuario.pass) ? req.session.usuario.pass : bcrypt.hashSync(req.body.pass.trim(), 10)
         },{
           where: {
             id: req.params.id
           }
         })
         .then(result => {
-          console.log(req.session.usuario);
-          res.redirect('/perfil/:id')
+          db.users.findByPk(req.session.usuario.id)
+          .then(resultado => {
+            req.session.usuario = {
+              id: resultado.id,
+              mail: resultado.mail,
+              avatar: (req.filename == "default.png")? "default.png" : resultado.avatar,
+              rol: resultado.rol,
+              description: resultado.description,
+              nameuser: resultado.nameuser
+            }
+            res.cookie('cosmicaTarot', req.session.usuario)
+            return res.redirect('/')
+          })
         })
         .catch(error => res.send(error))
     }
   },
   mostraredit: (req, res) => {
+    console.log(req.session.usuario)
     res.render('editperfil', {
       title: 'Modifica tu perfil',
       css: 'estilos.css',

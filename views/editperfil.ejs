@@ -33,26 +33,13 @@
                                             </p>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <input type="file" name="avatar" id="avatar" lang="en">
-                                            <% if(usuario.avatar!="default.png" ) {%>
-
-                                                <a class="dropdown-item" href="/perfil/">Cambiar foto</a>
-                                                <a class="dropdown-item" href="/perfil/">Eliminar foto</a>
-                                                <% }else{ %>
-                                                    <a class="dropdown-item" href="/perfil/">Agregar foto</a>
-                                                    <% } %>
-
-
+                                            <input type="file" name="avatar" id="avatar" lang="en" value="<%= usuario.avatar %> ">
                                         </div>
                                     </div>
                                     
                                     <div class="col-lg-4 form-group" style="display: flex; justify-content: center; flex-direction: column;">
                                         <label for="description">descripción sobre tí: </label>
-                                        <% var saludo = "Hola" %> 
-                                        <p><% saludo %> </p>
                                         <div style="display: flex; justify-content: center; padding: 0.5em 0em;">
-                                            <%=usuario.description %>
-                                                
                                                 <% if (usuario.description=="undefined" ||
                                                     usuario.description=="null" ) {%>
                                                     
@@ -62,19 +49,20 @@
                                                         autocomplete="randomasdqwea">
                                                     <% }else{ %>
                                                         <input type="text" name="description" id="description"
-                                                            class="form-control" value="<%=usuario.idsigno%>"
+                                                            class="form-control" value="<%=usuario.description%>"
                                                             placeholder="<%=usuario.description%>" autocomplete="randomasdqwea">
-
-
-                                                        <% } %>
+                                                    <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-4">
-                                        <label for="pass">Contraseña Actual</label>
-                                        <input type="password" class="form-control" name="pass" id="pass"
-                                            autocomplete="new-password"></input>
+                                        <label for="passactual">Contraseña Actual</label>
+                                        <input type="password" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.passactual == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.passactual)?"is-invalid": ""  %>" id="passactual" name="passactual" value="<%= (typeof inputs != 'undefined' && inputs.passacutal)?inputs.passacutal:'' %>" placeholder="Ingrese su e-mail">
+
+
+                                        <%#<input type="password" class="form-control" name="passactual" id="passactual"
+                                            autocomplete="new-password"></input>%>
                                         <small id="errorPass" class="text-danger">
-                                            <%= (typeof errors !='undefined' && errors.pass)?errors.pass.msg: "" %>
+                                            <%= (typeof errors !='undefined' && errors.passactual)?errors.passactual.msg: "" %>
                                         </small>
                                     </div>
                                     <div class="form-group col-lg-4">
@@ -86,8 +74,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-4">
-                                        <label for="pass2">Reingresar contraseña<span
-                                                class="text-danger">*</span></label>
+                                        <label for="pass2">Reingresar contraseña</label>
                                         <input type="password" class="form-control" name="pass2">
                                         <small id="errorPass2" class="text-danger">
                                             <%= (typeof errors !='undefined' && errors.pass2)?errors.pass2.msg: "" %>

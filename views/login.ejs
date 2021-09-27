@@ -28,13 +28,13 @@
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
                                     <input type="email" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.mail == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.mail)?"is-invalid": ""  %>" id="mail" name="mail" value="<%= (typeof inputs != 'undefined' && inputs.mail)?inputs.mail:'' %>" placeholder="Ingrese su e-mail">
-                                    <small class="text-warning"><%# (typeof errors != 'undefined' && errors.mail)?errors.mail.msg: "" %> </small>
+                                    <small id="errorEmail" class="text-danger"><%= (typeof errors != 'undefined' && errors.name)?errors.name.msg: "" %> </small>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña</label>
-                                    <input type="password" name="pass" id="pass" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pass == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.pass)?"is-invalid": ""  %>" value="<%= (typeof inputs != 'undefined' && inputs.pass)?inputs.pass:'' %>" placeholder="Ingrese su contraseña">
-                                    <small class="text-warning"><%# (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
+                                    <input type="password" name="passlog" id="passlog" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pass == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.pass)?"is-invalid": ""  %>" value="<%= (typeof inputs != 'undefined' && inputs.pass)?inputs.pass:'' %>" placeholder="Ingrese su contraseña">
+                                    <small id="errorPass" class="text-danger"><%= (typeof errors != 'undefined' && errors.pass)?errors.pass.msg: "" %> </small>
 
                                 </div>
                                 <!--<span>¿Te olviste la contraseña? Formateala desde el mail</span>-->
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <small class="text-warning" id="msgError"></small>
+                            <small class="text-warning" id="msgError"><%= (typeof errors != 'undefined' && errors.passlog)?errors.passlog.msg: "" %></small>
                         </div>
                     </div>
                 </div>
