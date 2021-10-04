@@ -19,9 +19,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/perfil/<%= usuario.id %> ">Mi perfil</a>
                         <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editperfil ">Editar Perfil</a>
+                        <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editpass ">Editar Contraseña</a>
                         <a class="dropdown-item" href="/logout">Cerrar sesión</a>        
-                    </div>                    
-
+                    </div>               
                     <% }else { %>
                         <a href="/login" class="login"><i class="fa fa-user" aria-hidden="true"></i>Iniciar
                             Sesión
@@ -52,6 +52,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/perfil/<%= usuario.id %> ">Mi perfil</a>
                         <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editperfil ">Editar Perfil</a>
+                        <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editpass">Editar Contraseña</a>
                         <a class="dropdown-item" href="/logout">Cerrar sesión</a>        
                     </div>
                     <% }else{ %>

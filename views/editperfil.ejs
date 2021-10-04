@@ -54,32 +54,6 @@
                                                     <% } %>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-4">
-                                        <label for="passactual">Contraseña Actual</label>
-                                        <input type="password" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.passactual == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.passactual)?"is-invalid": ""  %>" id="passactual" name="passactual" value="<%= (typeof inputs != 'undefined' && inputs.passacutal)?inputs.passacutal:'' %>" placeholder="Ingrese su e-mail">
-
-
-                                        <%#<input type="password" class="form-control" name="passactual" id="passactual"
-                                            autocomplete="new-password"></input>%>
-                                        <small id="errorPass" class="text-danger">
-                                            <%= (typeof errors !='undefined' && errors.passactual)?errors.passactual.msg: "" %>
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-lg-4">
-                                        <label for="pass">Nueva Contraseña</label>
-                                        <input type="password" class="form-control" name="pass" id="pass"></input>
-                                        <small id="errorPass" class="text-danger">
-                                            <%= (typeof errors !='undefined' && errors.pass)?errors.pass.msg: "" %>
-                                        </small>
-                                    </div>
-
-                                    <div class="form-group col-lg-4">
-                                        <label for="pass2">Reingresar contraseña</label>
-                                        <input type="password" class="form-control" name="pass2">
-                                        <small id="errorPass2" class="text-danger">
-                                            <%= (typeof errors !='undefined' && errors.pass2)?errors.pass2.msg: "" %>
-                                        </small>
-                                    </div>
                                     <div class="d-flex justify-content-center" style="padding: 0.5em 0em;">
                                         <div class="subscribe-btn" data-aos="fade-left" data-aos-delay="200"
                                             data-aos-offset="0">

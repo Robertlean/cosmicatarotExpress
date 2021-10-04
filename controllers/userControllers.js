@@ -187,12 +187,34 @@ module.exports = {
     }
   },
   mostraredit: (req, res) => {
-    console.log(req.session.usuario)
     res.render('editperfil', {
       title: 'Modifica tu perfil',
       css: 'estilos.css',
       usuario: req.session.usuario
     })
+  },
+  mostrarpass: (req, res) => {
+    res.render('editpassword',{
+      title: "Modifica tu contraseña",
+      css: 'estilos.css',
+      usuario: req.session.usuario
+    })
+  },
+  editpass: (req, res) => {
+    let errors = validationResult(req);
+    if (errors.isEmpty()){
+      db.users.update({     
+        
+          pass: bcrypt.hashSync(usuario.password, 10),
+        
+        where:{
+          id: req.params.id
+        }
+      })
+      .then(result => {
+        res.redirecy('/')
+      })
+    }
   },
   logout: function (req, res) {
     req.session.destroy();
