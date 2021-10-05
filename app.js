@@ -36,8 +36,8 @@ app.use('/login', usersRouter)
 app.use('/examp',exampleRouter);
 app.use('/register',registerRouter);
 app.use('/logout', logoutRouter);
-app.use('/perfil',perfilRouter);
-app.use('/horoscopo',horoscopoRouter)
+app.use('/profile',perfilRouter);
+app.use('/horoscope',horoscopoRouter)
 
 
 // catch 404 and forward to error handler

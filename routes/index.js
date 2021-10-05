@@ -22,6 +22,6 @@ router.get('/createpost', controllerPost.createpost);
 router.get('/aboutme', controller.aboutme);
 router.get('/buy', controller.buy);
 router.get('/experienceclient', controller.experience);
-router.get('/service', controller.service);
+router.get('/session', controller.service);
 
 module.exports = router;

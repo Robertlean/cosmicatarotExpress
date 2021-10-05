@@ -3,6 +3,6 @@ module.exports = function sessionUserAdminCheck(req,res,next){
         next()
     }else{
     	req.session.url = req.originalUrl;
-        res.redirect('/register')
+        res.redirect('/horoscopo')
     }
 }

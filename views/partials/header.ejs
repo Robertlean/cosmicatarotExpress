@@ -17,9 +17,9 @@
                         </p>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/perfil/<%= usuario.id %> ">Mi perfil</a>
-                        <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editperfil ">Editar Perfil</a>
-                        <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editpass ">Editar Contraseña</a>
+                        <a class="dropdown-item" href="/profile/<%= usuario.id %> ">Mi perfil</a>
+                        <a class="dropdown-item" href="/profile/<%= usuario.id %>/editprofile ">Editar Perfil</a>
+                        <a class="dropdown-item" href="/progile/<%= usuario.id %>/editpass ">Editar Contraseña</a>
                         <a class="dropdown-item" href="/logout">Cerrar sesión</a>        
                     </div>               
                     <% }else { %>
@@ -50,9 +50,9 @@
                         </p> -->
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/perfil/<%= usuario.id %> ">Mi perfil</a>
-                        <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editperfil ">Editar Perfil</a>
-                        <a class="dropdown-item" href="/perfil/<%= usuario.id %>/editpass">Editar Contraseña</a>
+                        <a class="dropdown-item" href="/profile/<%= usuario.id %> ">Mi perfil</a>
+                        <a class="dropdown-item" href="/profile/<%= usuario.id %>/editprofile ">Editar Perfil</a>
+                        <a class="dropdown-item" href="/profile/<%= usuario.id %>/editpass">Editar Contraseña</a>
                         <a class="dropdown-item" href="/logout">Cerrar sesión</a>        
                     </div>
                     <% }else{ %>
@@ -62,8 +62,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/horoscopo">Horoscopo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/service">Sesiones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/horoscope">Horoscopo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/session">Sesiones</a></li>
                     <li class="nav-item"><a href="https://api.whatsapp.com/send?phone=541127782468"
                             class="nav-link">Contactame</a></li>
                     <li class="nav-item"><a class="nav-link" href="/aboutme">Sobre mi</a></li>

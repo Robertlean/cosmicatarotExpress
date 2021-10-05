@@ -162,7 +162,6 @@ module.exports = {
       db.users.update({
         avatar : req.file ? req.file.filename : req.session.usuario.avatar,
         description: req.body.description.trim(),
-        password:(bcrypt.hashSync(req.body.pass.trim(), 10) == req.session.usuario.pass) ? req.session.usuario.pass : bcrypt.hashSync(req.body.pass.trim(), 10)
         },{
           where: {
             id: req.params.id

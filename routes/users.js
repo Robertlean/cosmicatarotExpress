@@ -14,6 +14,6 @@ const sessionUserCheck = require('../middleware/sessionUserCheck')
 
 router.get('/', controller.login);
 router.post('/', loginValidator, controller.processLogin)
-router.get('/perfil', sessionUserCheck, controller.user);
+router.get('/profile', sessionUserCheck, controller.user);
 
 module.exports = router;
