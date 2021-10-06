@@ -27,7 +27,7 @@
                             <form method="POST" action="" id="formIngreso">
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
-                                    <input type="email" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.mail == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.mail)?"is-invalid": ""  %>" id="mail" name="mail" value="<%= (typeof inputs != 'undefined' && inputs.mail)?inputs.mail:'' %>" placeholder="Ingrese su e-mail">
+                                    <input type="email" class="form-control <%= (typeof inputs != 'undefined' && typeof errors.mail == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.mail)?"is-invalid": ""  %>" id="mail" name="mail" value="<%= (typeof inputs != 'undefined' && inputs.mail)?inputs.mail:'' %>" placeholder="Ingrese su e-mail" autocomplete>
                                     <small id="errorEmail" class="text-danger"><%= (typeof errors != 'undefined' && errors.name)?errors.name.msg: "" %> </small>
 
                                 </div>

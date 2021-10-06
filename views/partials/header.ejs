@@ -19,7 +19,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/profile/<%= usuario.id %> ">Mi perfil</a>
                         <a class="dropdown-item" href="/profile/<%= usuario.id %>/editprofile ">Editar Perfil</a>
-                        <a class="dropdown-item" href="/progile/<%= usuario.id %>/editpass ">Editar Contraseña</a>
+                        <a class="dropdown-item" href="/editpassword/<%= usuario.id %> ">Editar Contraseña</a>
                         <a class="dropdown-item" href="/logout">Cerrar sesión</a>        
                     </div>               
                     <% }else { %>
@@ -52,7 +52,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/profile/<%= usuario.id %> ">Mi perfil</a>
                         <a class="dropdown-item" href="/profile/<%= usuario.id %>/editprofile ">Editar Perfil</a>
-                        <a class="dropdown-item" href="/profile/<%= usuario.id %>/editpass">Editar Contraseña</a>
+                        <a class="dropdown-item" href="/editpassword/<%= usuario.id %>">Editar Contraseña</a>
                         <a class="dropdown-item" href="/logout">Cerrar sesión</a>        
                     </div>
                     <% }else{ %>

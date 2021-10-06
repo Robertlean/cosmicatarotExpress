@@ -130,9 +130,37 @@ module.exports = {
       })
     }
   },
+  mostrarpass: (req, res) => {
+    console.log('quiero pasar por aca')
+    res.render('editpassword',{
+      title: "Modifica tu contraseña",
+      css: 'estilos.css',
+      usuario: req.session.usuario
+    })
+  },
+  editpass: (req, res) => {
+    let errors = validationResult(req);
+    console.log(errors)
+    /* if (errors.isEmpty()){ */
+      db.users.update({        
+        password: bcrypt.hashSync(req.body.passnew, 10),
+        nameuser: "robertinho"},{       
+        where:{
+          mail: req.session.usuario.mail
+        }
+      })
+      .then(result => {
+        console.log(req.body)
+        res.redirect('/profile/'+req.session.usuario.id)
+      }).catch(error => {
+        console.log('pasando por un error grave')
+        res.send(error)
+      })
+    /* } */
+  },
   profile: function (req, res) {
     if (req.session.usuario) {
-
+      console.log('probando por aquí')
       db.users.findByPk(req.session.usuario.id, { include: ['tiposigno', 'horoscopo','horoscopoposteo'] }
       )
         .then(usuario => {
@@ -161,7 +189,7 @@ module.exports = {
     if (errors.isEmpty()){
       db.users.update({
         avatar : req.file ? req.file.filename : req.session.usuario.avatar,
-        description: req.body.description.trim(),
+        description: req.body.description,
         },{
           where: {
             id: req.params.id
@@ -186,35 +214,14 @@ module.exports = {
     }
   },
   mostraredit: (req, res) => {
+    console.log(req.body)
     res.render('editperfil', {
       title: 'Modifica tu perfil',
       css: 'estilos.css',
       usuario: req.session.usuario
     })
   },
-  mostrarpass: (req, res) => {
-    res.render('editpassword',{
-      title: "Modifica tu contraseña",
-      css: 'estilos.css',
-      usuario: req.session.usuario
-    })
-  },
-  editpass: (req, res) => {
-    let errors = validationResult(req);
-    if (errors.isEmpty()){
-      db.users.update({     
-        
-          pass: bcrypt.hashSync(usuario.password, 10),
-        
-        where:{
-          id: req.params.id
-        }
-      })
-      .then(result => {
-        res.redirecy('/')
-      })
-    }
-  },
+  
   logout: function (req, res) {
     req.session.destroy();
     if (req.cookies.userCosmica) {

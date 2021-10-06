@@ -41,8 +41,7 @@ module.exports = [
     }),
 
     check('date')
-    .isDate({
-       
+    .isDate({       
     })
     .withMessage('Ingrese su fecha de nacimiento'),
     
