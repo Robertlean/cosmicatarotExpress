@@ -131,7 +131,6 @@ module.exports = {
     }
   },
   mostrarpass: (req, res) => {
-    console.log('quiero pasar por aca')
     res.render('editpassword',{
       title: "Modifica tu contraseña",
       css: 'estilos.css',
@@ -140,7 +139,6 @@ module.exports = {
   },
   editpass: (req, res) => {
     let errors = validationResult(req);
-    console.log(errors)
     /* if (errors.isEmpty()){ */
       db.users.update({        
         password: bcrypt.hashSync(req.body.passnew, 10),
@@ -150,10 +148,8 @@ module.exports = {
         }
       })
       .then(result => {
-        console.log(req.body)
         res.redirect('/profile/'+req.session.usuario.id)
       }).catch(error => {
-        console.log('pasando por un error grave')
         res.send(error)
       })
     /* } */
